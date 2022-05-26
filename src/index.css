@@ -6,7 +6,7 @@
 
 @layer components {
   .btn-primary {
-    @apply text-heading px-10 py-4 bg-primary cursor-pointer rounded-lg text-xl capitalize font-bold;
+    @apply text-heading px-10 py-4 bg-primary cursor-pointer rounded-lg text-xl capitalize font-bold hover:bg-primary_hover transition-all ease-in-out duration-100 hover:text-white;
   }
   .btn-tab {
     @apply text-heading px-10 py-4 bg-transparent cursor-pointer rounded-full text-xl capitalize font-bold border-2 border-gray-200 hover:border-primary transition-all duration-100;
