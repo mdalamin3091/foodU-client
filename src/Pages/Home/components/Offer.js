@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from "react-router-dom";
 const Offer = () => {
     return (
-        <div className='bg-[#F7F2E2] py-24 font-JosefinSans'>
+        <div className='bg-[#F7F2E2] section-padding font-JosefinSans'>
             <div className="container">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 p-5 md:p-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 p-5 lg:p-0">
                     {/* 1 */}
                     <div className='bg-white p-10 flex items-center justify-between cursor-pointer rounded-md group'>
                         <div className='text-left basis-1/2 mr-1'>

@@ -16,6 +16,7 @@ module.exports = {
       },
       fontFamily: {
         JosefinSans: ['Josefin Sans', 'sans-serif'],
+        Norican: ['Norican', 'cursive'],
       },
       backgroundImage: {
         "hero": "url('https://i.ibb.co/grmgsSZ/React-App.png')",
