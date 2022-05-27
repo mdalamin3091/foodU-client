@@ -6,7 +6,7 @@ import Login from './Pages/Auth/Login';
 import Home from './Pages/Home/Home';
 function App() {
   return (
-    <div className="App">
+    <>
       {/* <h1>In the name of Alah</h1> */}
       <Router>
         <NavBar />
@@ -16,7 +16,7 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
       </Router>
-    </div>
+    </>
   );
 }
 

@@ -7,7 +7,7 @@ const HeroArea = () => {
         {/* col - 1 */}
         <div className="md:text-left text-center py-6 md:py-0 z-20">
           <h1 className="text-3xl md:text-5xl lg:text-7xl uppercase text-white font-bold mb-3 leading-tight">UNLIMITED <br />
-            MEDIUM <span className='text-primary'>PIZZAS</span></h1>
+            MEDIUM <span className='text-primary text-shadow-lg'>PIZZAS</span></h1>
           <h2 className="text-secondary text-2xl md:text-3xl lg:text-4xl font-bold mb-3">Medium 2-topping* pizza</h2>
           <p className="text-white text-lg md:text-xl mb-5">*Additional charge for premium toppings. Minimum of 2 required.</p>
           <div className="flex flex-col md:flex-row items-center justify-center md:justify-start">

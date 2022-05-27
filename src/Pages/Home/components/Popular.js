@@ -8,7 +8,7 @@ const Popular = () => {
     return (
         <div className="bg-white font-JosefinSans section-padding">
             <div className="container">
-                <h2 className="text-5xl font-bold mb-8">Popular dishes</h2>
+                <h2 className="section-title text-center">Popular dishes</h2>
                 {/* tab */}
                 <Tab openTab={openTab} setOpenTab={setOpenTab} />
                 {/* product */}

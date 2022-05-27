@@ -7,7 +7,7 @@ const Product = () => {
       <div className="product border-2 border-gray-200 rounded-2xl p-2 relative group font-JosefinSans">
         {/* image */}
         <div className="product-image">
-          <img src={require("../assets/images/food_1.png")} alt="food" />
+          <img className="group-hover:scale-110 transition-all ease-linear duration-200" src={require("../assets/images/food_1.png")} alt="food" />
         </div>
         {/* heart icon */}
         <span className="absolute top-4 right-4 text-gray-300 text-2xl cursor-pointer hover:text-black z-20">
@@ -28,7 +28,7 @@ const Product = () => {
           </p>
           <div className="flex items-center justify-between mt-3">
             <h3 className="text-2xl text-primary font-bold">£8.00</h3>
-            <div className="bg-primary text-2xl w-12 h-12 rounded-full flex items-center justify-center cursor-pointer hover:text-white">
+            <div className="cart-icon">
               <BsMinecart />
             </div>
           </div>

@@ -4,6 +4,8 @@ import Menus from './components/Menus'
 import Offer from './components/Offer'
 import Popular from './components/Popular'
 import Offer50 from './components/Offer50'
+import TopRecipe from './components/TopRecipe'
+import Testimonial from './components/Testimonial'
 
 const Home = () => {
   return (
@@ -13,6 +15,8 @@ const Home = () => {
       <Offer />
       <Popular />
       <Offer50 />
+      <TopRecipe />
+      <Testimonial />
     </>
   )
 }
