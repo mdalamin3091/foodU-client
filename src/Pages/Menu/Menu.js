@@ -1,9 +1,25 @@
-import React from 'react'
-
+import React from "react";
+import ScreenHeader from "../../Shared/ScreenHeader";
+import { Link } from "react-router-dom";
+import MenuSection from "./components/MenuSection";
+import FreeService from "./components/FreeService";
 const Menu = () => {
   return (
-    <div>Menu</div>
-  )
-}
+    <>
+      <ScreenHeader>
+        <div>
+          <h1 className="font-JosefinSans font-bold text-5xl text-center">Menu Restaurant</h1>
+          <Link to="/" className="text-gray-400 hover:text-primary">
+            Home
+          </Link>
+          <span className="text-gray-400 space-x-3"> {">"} </span>
+          <span>Menu Resturant</span>
+        </div>
+      </ScreenHeader>
+      <MenuSection />
+      <FreeService />
+    </>
+  );
+};
 
-export default Menu
+export default Menu;

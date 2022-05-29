@@ -20,8 +20,11 @@
   .cart-icon {
     @apply bg-primary text-2xl w-12 h-12 rounded-full flex items-center justify-center cursor-pointer hover:text-white;
   }
-  .section-title{
-    @apply text-5xl font-bold mb-8
+  .section-title {
+    @apply text-5xl font-bold mb-8;
+  }
+  .footer-icon {
+    @apply bg-white hover:bg-primary hover:text-white transition-all ease-in-out duration-150 p-3 text-black rounded-full text-lg;
   }
 }
 

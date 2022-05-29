@@ -13,7 +13,6 @@ import { FreeMode, Pagination } from "swiper";
 import { AiFillStar } from "react-icons/ai"
 
 const Testimonial = () => {
-  console.log(window.innerWidth)
   return (
     <div className="font-JosefinSans section-padding bg-[#fff7e2]">
       <div className="container">

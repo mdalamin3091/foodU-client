@@ -1,11 +1,11 @@
-import React from 'react'
-import HeroArea from './components/HeroArea'
-import Menus from './components/Menus'
-import Offer from './components/Offer'
-import Popular from './components/Popular'
-import Offer50 from './components/Offer50'
-import TopRecipe from './components/TopRecipe'
-import Testimonial from './components/Testimonial'
+import React from "react";
+import HeroArea from "./components/HeroArea";
+import Menus from "./components/Menus";
+import Offer from "./components/Offer";
+import Popular from "./components/Popular";
+import Offer50 from "./components/Offer50";
+import TopRecipe from "./components/TopRecipe";
+import Testimonial from "./components/Testimonial";
 
 const Home = () => {
   return (
@@ -18,7 +18,7 @@ const Home = () => {
       <TopRecipe />
       <Testimonial />
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

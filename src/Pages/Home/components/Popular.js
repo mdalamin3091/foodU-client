@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const Popular = () => {
     const [openTab, setOpenTab] = useState("Pizza");
+    const [gridView, setGridView] = useState(true);
     return (
         <div className="bg-white font-JosefinSans section-padding">
             <div className="container">
@@ -13,14 +14,14 @@ const Popular = () => {
                 <Tab openTab={openTab} setOpenTab={setOpenTab} />
                 {/* product */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5 lg:px-0">
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
+                    <Product gridView={gridView}/>
+                    <Product gridView={gridView}/>
+                    <Product gridView={gridView}/>
+                    <Product gridView={gridView}/>
+                    <Product gridView={gridView}/>
+                    <Product gridView={gridView}/>
+                    <Product gridView={gridView}/>
+                    <Product gridView={gridView}/>
                 </div>
                 <div className="flex items-center justify-center mt-12">
                     <Link to="/shop" className="btn-primary">All Products</Link>
