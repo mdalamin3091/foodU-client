@@ -7,7 +7,7 @@ import Login from './Pages/Auth/Login';
 import Home from './Pages/Home/Home';
 import Menu from './Pages/Menu/Menu';
 import Shop from './Pages/Shop/Shop';
-import ProductDetails from './Pages/Product/ProductDetails';
+import ProductDetails from './Pages/ProductDetails/ProductDetails';
 function App() {
   return (
     <>
