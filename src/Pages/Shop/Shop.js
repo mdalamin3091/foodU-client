@@ -56,7 +56,7 @@ const Shop = () => {
                     <FaList />
                   </span>
                 </div>
-                <select className="outline-none text-lg px-8 py-4 bg-[#fff7e2] text-black rounded-md">
+                <select className="outline-none text-lg px-8 py-4 bg-light-gray text-black rounded-md">
                   <option className="text-black text-lg" value="">
                     Default sorting
                   </option>

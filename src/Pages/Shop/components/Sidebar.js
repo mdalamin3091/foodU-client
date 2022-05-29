@@ -25,7 +25,7 @@ const Sidebar = () => {
      <div className="col-span-1">
             <div className="border-2 border-gray-200 rounded-2xl p-2 pt-5 mb-7">
               <h3 className="text-xl font-bold mb-3 pl-2">Categories</h3>
-              <div className="bg-[#fff7e2] p-4 rounded-xl space-y-4">
+              <div className="bg-light-gray p-4 rounded-xl space-y-4">
                 {
                   categories.map((category, index) => (
 
@@ -41,7 +41,7 @@ const Sidebar = () => {
             </div>
 
             {/* search bar */}
-            <div className="outline-none text-lg px-8 py-3 bg-[#fff7e2] text-black rounded-md relative mb-7">
+            <div className="outline-none text-lg px-8 py-3 bg-light-gray text-black rounded-md relative mb-7">
               <input type="search" name="search" placeholder="Search product" className="outline-none py-3 w-full bg-transparent" />
               <span className="absolute right-3 text-xl text-gray-400 top-8 cursor-pointer">
                 <FaSearch />
@@ -51,7 +51,7 @@ const Sidebar = () => {
             {/* best deals */}
             <h3 className="text-xl font-bold mb-6 border-b-[1px] border-dashed border-gray-300">Best Deals</h3>
             <div className="recipe border-2 border-gray-200 rounded-3xl p-2">
-              <div className="bg-[#fff7e2] flex items-center justify-between rounded-3xl gap-2">
+              <div className="bg-light-gray flex items-center justify-between rounded-3xl gap-2">
                 <div className="basis-1/3">
                   <img
                     className="w-full"

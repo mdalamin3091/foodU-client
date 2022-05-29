@@ -26,7 +26,7 @@ const Footer = () => {
               <h2 className="uppercase mb-3 text-white text-2xl font-bold">Opening Hours</h2>
               <p className='text-gray-300'>Monday – Friday: <span className='font-bold text-white'>8am – 4pm</span></p>
               <p className='text-gray-300'>Saturday:
-                <span className='font-bold text-white'>9am – 5pm</span></p>
+                <span className='font-bold text-white'> 9am – 5pm</span></p>
               <div className="flex items-center gap-3 justify-center mt-5">
                 <Link to="https://www.facebook.com/AK.AlAmin01/" className='footer-icon'>
                   <FaFacebookSquare />

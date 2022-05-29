@@ -5,7 +5,7 @@ const MenuItem = () => {
   return (
     <>
       <div className="recipe border-2 border-gray-200 rounded-3xl p-2">
-        <div className="bg-[#fff7e2] flex items-center justify-between rounded-3xl gap-2">
+        <div className="bg-light-gray flex items-center justify-between rounded-3xl gap-2">
           <div className="basis-1/3">
             <img
               className="w-full"

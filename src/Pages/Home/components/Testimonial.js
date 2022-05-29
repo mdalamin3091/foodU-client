@@ -14,7 +14,7 @@ import { AiFillStar } from "react-icons/ai"
 
 const Testimonial = () => {
   return (
-    <div className="font-JosefinSans section-padding bg-[#fff7e2]">
+    <div className="font-JosefinSans section-padding bg-light-gray">
       <div className="container">
         <h2 className="section-title text-center">What our client says </h2>
 
