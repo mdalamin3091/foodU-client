@@ -17,7 +17,7 @@ const Product = ({gridView}) => {
         {/* product content */}
         <div className="content text-left p-4 pt-5 basis-4/6">
           <Link
-            to="/shop"
+            to="/product/asdfadf"
             className="text-2xl font-bold text-heading hover:text-primary_hover"
           >
             BBQ chicken breast

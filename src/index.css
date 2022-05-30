@@ -26,6 +26,12 @@
   .footer-icon {
     @apply bg-white hover:bg-primary hover:text-white transition-all ease-in-out duration-150 p-3 text-black rounded-full text-lg;
   }
+  .navbar-icon {
+    @apply p-3 cursor-pointer mx-1 hover:bg-primary hover:border-primary hover:text-white text-xl border-2 border-border rounded-[50%];
+  }
+  .form-group{
+    @apply flex items-center justify-between border border-gray-200 rounded-lg px-2;
+  }
 }
 
 @layer utilities {
@@ -38,7 +44,7 @@
   .shadow-custom {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
-  .bg-light-gray{
-    background:#fff7e2
+  .bg-light-gray {
+    background: #fff7e2;
   }
 }
