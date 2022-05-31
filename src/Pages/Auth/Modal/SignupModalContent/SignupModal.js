@@ -4,7 +4,7 @@ import { FiLock } from "react-icons/fi";
 import axios from "axios";
 import { useSignupMutation } from "../../../../store/services/authServices";
 import {useDispatch} from "react-redux"
-import {showModalFalse} from "../../../../store/auth/authSlice"
+import {showModalFalse} from "../../../../store/reducers/authSlice"
 const SignupModal = ({ setIsSignUpModal }) => {
   const [userInfo, setUserInfo] = React.useState({
     fullname: "",
@@ -45,9 +45,9 @@ const SignupModal = ({ setIsSignUpModal }) => {
   };
   return (
     <>
-      <div className="relative my-6 mx-auto max-w-lg">
+      <div className="relative my-6 mx-auto w-full max-w-lg">
         {/*content*/}
-        <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+        <div className="border-0 rounded-xl shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
           {/*header*/}
           <div className="flex items-center justify-center p-5 rounded-t">
             <div>

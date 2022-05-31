@@ -5,9 +5,10 @@ import { BiSearchAlt2 } from "react-icons/bi";
 import { MdOutlineShoppingCart, MdAddIcCall } from "react-icons/md";
 import { RiMenuLine } from "react-icons/ri";
 import { BsFillPersonFill, BsFillSuitHeartFill } from "react-icons/bs";
-import Drawer from "./Drawer";
+import Drawer from "./Drawer/Drawer";
 import { useDispatch } from "react-redux";
-import { showModalTrue } from "../store/auth/authSlice";
+import { showModalTrue } from "../store/reducers/authSlice";
+import { drawerOpenTrue } from "../store/reducers/drawerSlice";
 const NavBar = () => {
   const menus = [
     {
@@ -32,7 +33,6 @@ const NavBar = () => {
     },
   ];
   const [scrollPosition, setScrollPosition] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     const handleScroll = () => {
@@ -49,9 +49,8 @@ const NavBar = () => {
   return (
     <>
       <nav
-        className={`bg-white shadow-lg font-JosefinSans sticky ${
-          !scrollPosition ? "py-7" : "py-2"
-        } top-0 transition-all duration-100 z-40`}
+        className={`bg-white shadow-lg font-JosefinSans sticky ${!scrollPosition ? "py-7" : "py-2"
+          } top-0 transition-all duration-100 z-40`}
       >
         <div className="container flex justify-between">
           <div className="lg:hidden text-2xl text-left flex items-center justify-center !ml-[15px]">
@@ -107,7 +106,9 @@ const NavBar = () => {
             </Link>
             <span
               className="navbar-icon relative group"
-              onClick={() => setIsOpen(true)}
+              onClick={() =>
+                dispatch(drawerOpenTrue(true))
+              }
             >
               <MdOutlineShoppingCart />
               <span className="flex items-center justify-center w-6 h-6 text-sm font-semibold text-white bg-primary rounded-[50%] absolute top-0 right-0 group-hover:bg-primary_hover">
@@ -123,7 +124,7 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
-      <Drawer isOpen={isOpen} setIsOpen={setIsOpen} />
+      <Drawer />
     </>
   );
 };
