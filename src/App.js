@@ -9,6 +9,8 @@ import ProductDetails from './Pages/ProductDetails/ProductDetails';
 import Wishlist from './Pages/Wishlist/Wishlist';
 import Modal from './Pages/Auth/Modal/Modal';
 import Checkout from './Pages/Checkout/Checkout';
+import ConfirmOrder from './Pages/ConfirmOrder/ConfirmOrder';
+import NotFound from './Pages/NotFound/NotFound';
 function App() {
   return (
     <>
@@ -23,7 +25,9 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/confirmOrder" element={<ConfirmOrder />} />
           <Route path="/product/:productId" element={<ProductDetails />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </Router>
