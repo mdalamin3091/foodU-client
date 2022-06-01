@@ -6,10 +6,12 @@ import Popular from "./components/Popular";
 import Offer50 from "./components/Offer50";
 import TopRecipe from "./components/TopRecipe";
 import Testimonial from "./components/Testimonial";
+import NavBar from "../../Shared/NavBar";
 
 const Home = () => {
   return (
     <>
+      <NavBar />
       <HeroArea />
       <Menus />
       <Offer />

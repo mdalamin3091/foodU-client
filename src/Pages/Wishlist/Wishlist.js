@@ -3,9 +3,12 @@ import ScreenHeader from "../../Shared/ScreenHeader";
 import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import NavBar from "../../Shared/NavBar";
+
 const Wishlist = () => {
   return (
     <>
+    <NavBar />
       <ScreenHeader>
         <div>
           <h1 className="font-JosefinSans font-bold text-5xl text-center">

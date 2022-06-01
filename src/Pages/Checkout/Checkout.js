@@ -3,9 +3,12 @@ import ScreenHeader from "../../Shared/ScreenHeader";
 import { Link } from "react-router-dom";
 import CheckoutForm from "./components/CheckoutForm";
 import OrderSummary from "./components/OrderSummary";
+import NavBar from "../../Shared/NavBar";
+
 const Checkout = () => {
   return (
     <>
+    <NavBar />
       <ScreenHeader>
         <div>
           <h1 className="font-JosefinSans font-bold text-5xl text-center">

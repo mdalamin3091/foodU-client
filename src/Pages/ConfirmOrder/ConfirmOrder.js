@@ -1,9 +1,12 @@
 import React from "react";
 import { GiConfirmed } from "react-icons/gi";
 import { Link } from "react-router-dom";
+import NavBar from "../../Shared/NavBar";
+
 const ConfirmOrder = () => {
   return (
     <>
+      <NavBar />
       <div className="bg-light-gray font-JosefinSans section-padding">
         <div className="container text-center flex items-center justify-center">
           <div>

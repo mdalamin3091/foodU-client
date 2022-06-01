@@ -6,10 +6,12 @@ import { BsSuitHeartFill } from "react-icons/bs";
 import ProductDetailsTab from "./ProductDetailsTab/ProductDetailsTab";
 import RelatedProduct from "./RelatedProduct";
 import ProductDetailsBottom from "./ProductDetailsBottom";
+import NavBar from "../../Shared/NavBar";
 const ProductDetails = () => {
   const [productCount, setProductCount] = useState(1);
   return (
     <div>
+      <NavBar />
       <div className="container">
         <Breadcrumb />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 section-padding font-JosefinSans px-5 lg:px-0">

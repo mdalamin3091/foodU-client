@@ -50,7 +50,7 @@ const NavBar = () => {
     <>
       <nav
         className={`bg-white shadow-lg font-JosefinSans sticky ${!scrollPosition ? "py-7" : "py-2"
-          } top-0 transition-all duration-100 z-40`}
+          } top-0 transition-all duration-100 z-[38]`}
       >
         <div className="container flex justify-between">
           <div className="lg:hidden text-2xl text-left flex items-center justify-center !ml-[15px]">
