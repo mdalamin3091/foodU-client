@@ -2,7 +2,10 @@ import React from 'react'
 
 const AddCategory = () => {
   return (
-    <div>AddCategory</div>
+    <>
+      <h2 className="text-2xl font-bold mb-4">Add Category</h2>
+        
+    </>
   )
 }
 

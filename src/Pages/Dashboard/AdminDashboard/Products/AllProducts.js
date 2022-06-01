@@ -2,7 +2,10 @@ import React from 'react'
 
 const AllProducts = () => {
   return (
-    <div>AllProducts</div>
+    <>
+    <h2 className="text-2xl font-bold mb-4">All Products</h2>
+    
+    </>
   )
 }
 

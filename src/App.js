@@ -17,12 +17,12 @@ import UserDashboadIndex from "./Pages/Dashboard/UserDashboard/Index";
 import UpdateProfile from "./Pages/Dashboard/UserDashboard/UpdateProfile";
 import ChangePassword from "./Pages/Dashboard/UserDashboard/ChangePassword";
 import AdminDashboardIndex from "./Pages/Dashboard/AdminDashboard/Index";
-import AllProducts from "./Pages/Dashboard/AdminDashboard/AllProducts";
-import AllCategory from "./Pages/Dashboard/AdminDashboard/AllCategory";
-import AddProduct from "./Pages/Dashboard/AdminDashboard/AddProduct";
-import AddCategory from "./Pages/Dashboard/AdminDashboard/AddCategory";
-import AllOrders from "./Pages/Dashboard/AdminDashboard/AllOrders";
-import AllUsers from "./Pages/Dashboard/AdminDashboard/AllUsers";
+import AllProducts from "./Pages/Dashboard/AdminDashboard/Products/AllProducts";
+import AllCategory from "./Pages/Dashboard/AdminDashboard/Categories/AllCategory";
+import AddProduct from "./Pages/Dashboard/AdminDashboard/Products/AddProduct";
+import AddCategory from "./Pages/Dashboard/AdminDashboard/Categories/AddCategory";
+import AllOrders from "./Pages/Dashboard/AdminDashboard/Orders/AllOrders";
+import AllUsers from "./Pages/Dashboard/AdminDashboard/Users/AllUsers";
 function App() {
   return (
     <>
