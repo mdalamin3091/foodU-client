@@ -9,6 +9,7 @@ import { AiFillStar } from "react-icons/ai";
 import { FaList} from "react-icons/fa";
 import Sidebar from "./components/Sidebar"
 import NavBar from "../../Shared/NavBar";
+import Footer from "../../Shared/Footer";
 
 const Shop = () => {
   const [gridView, setGridView] = useState(true);
@@ -94,6 +95,7 @@ const Shop = () => {
           <Sidebar />
         </div>
       </div>
+      <Footer />
     </>
   );
 };

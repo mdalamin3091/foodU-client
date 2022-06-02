@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const ProductDetailsBottom = () => {
-    const [showProduct, setShowProduct] = useState(false);
+    const [showProduct, setShowProduct] = useState(null);
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 600) {
@@ -10,9 +10,7 @@ const ProductDetailsBottom = () => {
                 setShowProduct(false)
             }
         }
-
         window.addEventListener("scroll", handleScroll)
-        return () => window.removeEventListener("scroll", handleScroll)
     }, [])
     return (
         <>

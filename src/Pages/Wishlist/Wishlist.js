@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import NavBar from "../../Shared/NavBar";
+import Footer from "../../Shared/Footer";
 
 const Wishlist = () => {
   return (
@@ -83,6 +84,7 @@ const Wishlist = () => {
           </tbody>
         </table>
       </div>
+      <Footer />
     </>
   );
 };

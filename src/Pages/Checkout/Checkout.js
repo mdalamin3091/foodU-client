@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import CheckoutForm from "./components/CheckoutForm";
 import OrderSummary from "./components/OrderSummary";
 import NavBar from "../../Shared/NavBar";
+import Footer from "../../Shared/Footer";
 
 const Checkout = () => {
   return (
@@ -34,6 +35,7 @@ const Checkout = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

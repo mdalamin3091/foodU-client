@@ -2,6 +2,7 @@ import React from "react";
 import { GiConfirmed } from "react-icons/gi";
 import { Link } from "react-router-dom";
 import NavBar from "../../Shared/NavBar";
+import Footer from "../../Shared/Footer";
 
 const ConfirmOrder = () => {
   return (
@@ -25,6 +26,7 @@ const ConfirmOrder = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

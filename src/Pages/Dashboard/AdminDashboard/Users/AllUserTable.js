@@ -5,7 +5,7 @@ const AllUserTable = () => {
     <>
       <>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table class="w-full text-left text-gray-500 dark:text-gray-400">
+          <table class="w-full text-left text-gray-500 dark:text-gray-400 whitespace-nowrap">
             <thead class="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" class="px-6 py-3">
@@ -34,7 +34,7 @@ const AllUserTable = () => {
                 <td class="px-6 py-4">
                   <select
                     name="role"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 outline-none"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary focus:border-primary block lg:w-full w-[150px] p-2.5 outline-none"
                   >
                     <option selected value="User">
                       User

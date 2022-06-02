@@ -7,6 +7,7 @@ import Offer50 from "./components/Offer50";
 import TopRecipe from "./components/TopRecipe";
 import Testimonial from "./components/Testimonial";
 import NavBar from "../../Shared/NavBar";
+import Footer from "../../Shared/Footer";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <Offer50 />
       <TopRecipe />
       <Testimonial />
+      <Footer />
     </>
   );
 };
