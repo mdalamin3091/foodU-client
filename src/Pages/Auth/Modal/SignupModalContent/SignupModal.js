@@ -1,10 +1,10 @@
 import React from "react";
 import { BsPerson, BsEnvelope } from "react-icons/bs";
 import { FiLock } from "react-icons/fi";
-import axios from "axios";
 import { useSignupMutation } from "../../../../store/services/authServices";
-import {useDispatch} from "react-redux"
-import {showModalFalse} from "../../../../store/reducers/authSlice"
+import { useUploadImagesMutation } from "../../../../store/services/uploadServices";
+import { useDispatch } from "react-redux"
+import { showModalFalse } from "../../../../store/reducers/authSlice"
 const SignupModal = ({ setIsSignUpModal }) => {
   const [userInfo, setUserInfo] = React.useState({
     fullname: "",
@@ -13,6 +13,7 @@ const SignupModal = ({ setIsSignUpModal }) => {
   });
   const [profilePic, setProfilePic] = React.useState(null);
   const [signupData, result] = useSignupMutation();
+  const [uploadImages] = useUploadImagesMutation();
   const dispatch = useDispatch();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,25 +25,20 @@ const SignupModal = ({ setIsSignUpModal }) => {
       data.append("file", pics);
       data.append("upload_preset", "poco-site");
       data.append("cloud_name", "online-poco");
-      axios
-        .post("https://api.cloudinary.com/v1_1/online-poco/image/upload", data)
-        .then(({ data }) => {
-          setProfilePic(data.url.toString());
-          console.log(data.url.toString());
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      uploadImages(data).then((result) => setProfilePic(result.data.url.toString()))
     }
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    signupData({
-      ...userInfo,
-      profilePic,
-    });
-    dispatch(showModalFalse(false))
+    if (profilePic) {
+      await signupData({
+        ...userInfo,
+        profilePic,
+      })
+      dispatch(showModalFalse(false))
+    }
   };
+  console.log(result)
   return (
     <>
       <div className="relative my-6 mx-auto w-full max-w-lg">
@@ -58,7 +54,7 @@ const SignupModal = ({ setIsSignUpModal }) => {
             </div>
           </div>
           {/*body*/}
-          <form action="" onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <div className="relative p-9 flex-auto grid grid-cols-1 gap-4">
               {/* full name */}
               <div>
@@ -144,7 +140,7 @@ const SignupModal = ({ setIsSignUpModal }) => {
                   className="hover:text-primary cursor-pointer"
                   onClick={() => setIsSignUpModal(false)}
                 >
-                   Login
+                  Login
                 </span>
               </p>
             </div>

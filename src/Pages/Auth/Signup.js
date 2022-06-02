@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useSignupMutation } from "../../store/services/authServices";
+import { useUploadImagesMutation } from "../../store/services/uploadServices";
 const Signup = () => {
   const [userInfo, setUserInfo] = React.useState({
     fullname: "",
@@ -8,7 +9,8 @@ const Signup = () => {
     password: "",
   });
   const [profilePic, setProfilePic] = React.useState(null);
-  const [signupData, result] = useSignupMutation();
+  const [signupData] = useSignupMutation();
+  const [uploadImages] = useUploadImagesMutation();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
@@ -19,23 +21,19 @@ const Signup = () => {
       data.append("file", pics);
       data.append("upload_preset", "poco-site");
       data.append("cloud_name", "online-poco");
-      axios
-        .post("https://api.cloudinary.com/v1_1/online-poco/image/upload", data)
-        .then(({ data }) => {
-          setProfilePic(data.url.toString());
-          console.log(data.url.toString());
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      uploadImages(data).then((result) => setProfilePic(result.data.url.toString()))
     }
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    signupData({
-      ...userInfo,
-      profilePic,
-    });
+    if (profilePic) {
+      signupData({
+        ...userInfo,
+        profilePic,
+      }).then(res => console.log(res))
+    }else{
+      alert("Upload Profile photo")
+    }
   };
   return (
     <>

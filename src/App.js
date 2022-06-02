@@ -1,9 +1,9 @@
 import "./styled/App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Footer from "./Shared/Footer";
 import Home from "./Pages/Home/Home";
 import Menu from "./Pages/Menu/Menu";
 import Shop from "./Pages/Shop/Shop";
+import Signup from "./Pages/Auth/Signup";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import Wishlist from "./Pages/Wishlist/Wishlist";
 import Modal from "./Pages/Auth/Modal/Modal";
@@ -25,6 +25,8 @@ import AllOrders from "./Pages/Dashboard/AdminDashboard/Orders/AllOrders";
 import AllUsers from "./Pages/Dashboard/AdminDashboard/Users/AllUsers";
 import UpdateProduct from "./Pages/Dashboard/AdminDashboard/Products/UpdateProduct";
 import UpdateCateogory from "./Pages/Dashboard/AdminDashboard/Categories/UpdateCategory";
+import Contact from "./Pages/Contact/Contact";
+import About from "./Pages/About/About";
 function App() {
   return (
     <>
@@ -36,6 +38,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="menu" element={<Menu />} />
           <Route path="shop" element={<Shop />} />
+          <Route path="about" element={<About />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="contact" element={<Contact />} />
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="checkout" element={<Checkout />} />
           <Route path="confirmOrder" element={<ConfirmOrder />} />

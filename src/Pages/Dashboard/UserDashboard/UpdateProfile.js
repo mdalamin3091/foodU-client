@@ -17,7 +17,7 @@ const UpdateProfile = () => {
             name="profilePic"
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 col-span-2 lg:col-span-1">
           <label htmlFor="Full Name" className="text-gray-600 text-lg">
             Full Name
           </label>
@@ -29,7 +29,7 @@ const UpdateProfile = () => {
             value="Al Amin"
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 col-span-2 lg:col-span-1">
           <label htmlFor="Email" className="text-gray-600 text-lg">
             Email
           </label>
