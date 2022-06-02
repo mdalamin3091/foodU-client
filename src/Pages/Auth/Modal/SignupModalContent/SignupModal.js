@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BsPerson, BsEnvelope } from "react-icons/bs";
 import { FiLock } from "react-icons/fi";
 import { useSignupMutation } from "../../../../store/services/authServices";
 import { useUploadImagesMutation } from "../../../../store/services/uploadServices";
-import { useDispatch } from "react-redux"
-import { showModalFalse } from "../../../../store/reducers/authSlice"
+import { useDispatch } from "react-redux";
+import {
+  showModalFalse,
+  setToken,
+  setUser,
+} from "../../../../store/reducers/authSlice";
 const SignupModal = ({ setIsSignUpModal }) => {
   const [userInfo, setUserInfo] = React.useState({
     fullname: "",
@@ -25,7 +29,9 @@ const SignupModal = ({ setIsSignUpModal }) => {
       data.append("file", pics);
       data.append("upload_preset", "poco-site");
       data.append("cloud_name", "online-poco");
-      uploadImages(data).then((result) => setProfilePic(result.data.url.toString()))
+      uploadImages(data).then((result) =>
+        setProfilePic(result.data.url.toString())
+      );
     }
   };
   const handleSubmit = async (e) => {
@@ -34,11 +40,21 @@ const SignupModal = ({ setIsSignUpModal }) => {
       await signupData({
         ...userInfo,
         profilePic,
-      })
-      dispatch(showModalFalse(false))
+      });
+      dispatch(showModalFalse(false));
+    } else {
+      alert("Please select a profile photo");
     }
   };
-  console.log(result)
+  useEffect(() => {
+    if (result?.isSuccess) {
+      localStorage.setItem("token", result?.data?.token);
+      dispatch(setToken(result?.data?.token));
+      localStorage.setItem("user", JSON.stringify(result?.data?.newUser));
+      dispatch(setUser(result?.data?.newUser));
+    }
+  }, [result?.isSuccess]);
+  console.log(result);
   return (
     <>
       <div className="relative my-6 mx-auto w-full max-w-lg">

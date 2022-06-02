@@ -1,26 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BsEnvelope } from "react-icons/bs";
 import { FiLock } from "react-icons/fi";
-import { useLoginMutation } from "../../../../store/services/authServices"
-import { useDispatch } from "react-redux"
-import { showModalFalse } from "../../../../store/reducers/authSlice"
+import { useLoginMutation } from "../../../../store/services/authServices";
+import { useDispatch } from "react-redux";
+import {
+  showModalFalse,
+  setToken,
+  setUser,
+} from "../../../../store/reducers/authSlice";
 const LoginModal = ({ setIsSignUpModal }) => {
   const [userInfo, setUserInfo] = React.useState({
     email: "",
-    password: ""
+    password: "",
   });
   const [loginData, result] = useLoginMutation();
   const dispatch = useDispatch();
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserInfo({ ...userInfo, [name]: value })
-  }
+    setUserInfo({ ...userInfo, [name]: value });
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await loginData(userInfo)
-    dispatch(showModalFalse(false))
-    setIsSignUpModal(true)
-  }
+    await loginData(userInfo);
+    dispatch(showModalFalse(false));
+    setIsSignUpModal(true);
+  };
+  useEffect(() => {
+    if (result?.isSuccess) {
+      localStorage.setItem("token", result?.data?.token);
+      dispatch(setToken(result?.data?.token));
+      localStorage.setItem("user", JSON.stringify(result?.data?.user));
+      dispatch(setUser(result?.data?.user));
+    }
+  }, [result?.isSuccess]);
+  console.log(result);
   return (
     <>
       <div className="relative my-6 mx-auto w-full max-w-lg">
