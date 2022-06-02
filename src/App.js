@@ -23,6 +23,8 @@ import AddProduct from "./Pages/Dashboard/AdminDashboard/Products/AddProduct";
 import AddCategory from "./Pages/Dashboard/AdminDashboard/Categories/AddCategory";
 import AllOrders from "./Pages/Dashboard/AdminDashboard/Orders/AllOrders";
 import AllUsers from "./Pages/Dashboard/AdminDashboard/Users/AllUsers";
+import UpdateProduct from "./Pages/Dashboard/AdminDashboard/Products/UpdateProduct";
+import UpdateCateogory from "./Pages/Dashboard/AdminDashboard/Categories/UpdateCategory";
 function App() {
   return (
     <>
@@ -49,7 +51,10 @@ function App() {
             <Route index element={<AdminDashboardIndex />} />
             <Route path="dashboard" element={<AdminDashboardIndex />} />
             <Route path="allProducts" element={<AllProducts />} />
-            <Route path="allCategorys" element={<AllCategory />} />
+            <Route path="allProducts/updateProduct/:productId" element={<UpdateProduct />} />
+
+            <Route path="allCategories" element={<AllCategory />} />
+            <Route path="allCategories/updateCategory/:categoryId" element={<UpdateCateogory />} />
             <Route path="allUsers" element={<AllUsers />} />
             <Route path="allOrders" element={<AllOrders />} />
             <Route path="addProduct" element={<AddProduct />} />

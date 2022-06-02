@@ -1,7 +1,13 @@
-import React from 'react'
+import React from "react";
 import { FaShoppingCart, FaUsers, FaHeart } from "react-icons/fa";
-import { MdOutlineProductionQuantityLimits, MdOutlineReviews } from "react-icons/md";
+import {
+  MdOutlineProductionQuantityLimits,
+  MdOutlineReviews,
+} from "react-icons/md";
 import { BiCategoryAlt } from "react-icons/bi";
+import SingleProduct from "./Products/SingleProduct";
+import AllUserTable from "./Users/AllUserTable";
+import AllOrderTable from "./Orders/AllOrderTable";
 const Index = () => {
   const sidebarMenu = [
     {
@@ -37,7 +43,7 @@ const Index = () => {
   ];
   return (
     <>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {sidebarMenu.map((item, index) => (
           <div
             class="p-4 flex items-center bg-white border border-border rounded-md shadow-md"
@@ -53,12 +59,19 @@ const Index = () => {
           </div>
         ))}
       </div>
-      <h2 className="text-2xl font-bold mb-4">Dashboard Summary</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2">
-        
+      <h2 className="text-3xl font-bold mb-4">Dashboard Summary</h2>
+      <h2 className="text-xl font-bold mb-4">Some Products</h2>
+      <div class="flex flex-wrap -mx-4">
+        <SingleProduct />
+        <SingleProduct />
+        <SingleProduct />
       </div>
+      <h2 className="text-xl font-bold my-4">Some Users</h2>
+      <AllUserTable />
+      <h2 className="text-xl font-bold my-4">Some Orders</h2>
+      <AllOrderTable />
     </>
-  )
-}
+  );
+};
 
-export default Index
+export default Index;

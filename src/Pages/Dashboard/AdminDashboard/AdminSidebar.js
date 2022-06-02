@@ -33,7 +33,7 @@ const AdminSidebar = () => {
     {
       title: "All Category",
       icon: <BiCategoryAlt />,
-      path: "/admin/allCategorys",
+      path: "/admin/allCategories",
     },
     {
       title: "Add Product",
@@ -53,7 +53,7 @@ const AdminSidebar = () => {
   ];
   return (
     <>
-      <aside className="w-64 flex-shrink-0 bg-white shadow-lg h-screen overflow-y-auto hidden lg:block z-10">
+      <aside className="z-30 flex-shrink-0 hidden w-64 overflow-y-auto bg-white lg:block shadow-md">
         <h3 className="px-6 py-3 text-3xl font-bold uppercase mt-4">
           Md. Al Amin
         </h3>

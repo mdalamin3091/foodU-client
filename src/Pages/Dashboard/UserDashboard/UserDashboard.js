@@ -4,10 +4,9 @@ import UserSidebar from "./UserSidebar";
 const UserDashboard = () => {
   return (
     <>
-      <div className="h-screen bg-gray-100 overflow-hidden font-JosefinSans">
-        <div className="flex">
+      <div className="flex h-screen bg-gray-100 font-JosefinSans">
           <UserSidebar />
-          <div className="flex-1 bg-gray-100 flex-col">
+          <div className="flex flex-col flex-1 w-full">
             <header className="bg-white shadow-md py-4 px-8">
               <div className="container flex items-center justify-between">
                 <h2 className="text-2xl font-bold">User Dashboard</h2>
@@ -22,7 +21,6 @@ const UserDashboard = () => {
               <Outlet />
             </div>
           </div>
-        </div>
       </div>
     </>
   );
