@@ -15,9 +15,9 @@ const LoginModal = ({ setIsSignUpModal }) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value })
   }
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    loginData(userInfo)
+    await loginData(userInfo)
     dispatch(showModalFalse(false))
     setIsSignUpModal(true)
   }
