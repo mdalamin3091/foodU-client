@@ -1,12 +1,30 @@
 import { createSlice } from "@reduxjs/toolkit";
+import jwtDecode from "jwt-decode";
 const getToken = localStorage.getItem("token");
-const user = JSON.parse(localStorage.getItem("user"));
+const user = localStorage.getItem("user")
+  ? JSON.parse(localStorage.getItem("user"))
+  : null;
+const verifyToken = () => {
+  if (getToken) {
+    const decodeToken = jwtDecode(getToken);
+    console.log(decodeToken.exp, new Date());
+    const expiresTime = new Date(decodeToken.exp * 1000);
+    if (expiresTime < new Date()) {
+      localStorage.removeItem("token"); 
+      return null;
+    } else {
+      return getToken;
+    }
+  } else {
+    return null;
+  }
+};
 export const authSlice = createSlice({
   name: "auth",
   initialState: {
     showModal: false,
-    token: getToken ? getToken : null,
-    user: user ? user : null,
+    token: verifyToken(),
+    user: user,
   },
   reducers: {
     showModalTrue: (state, { payload }) => {

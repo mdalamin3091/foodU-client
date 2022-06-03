@@ -3,6 +3,7 @@ import { BsEnvelope } from "react-icons/bs";
 import { FiLock } from "react-icons/fi";
 import { useLoginMutation } from "../../../../store/services/authServices";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import {
   showModalFalse,
   setToken,
@@ -19,21 +20,42 @@ const LoginModal = ({ setIsSignUpModal }) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
+  // handle login
   const handleSubmit = async (e) => {
     e.preventDefault();
     await loginData(userInfo);
     dispatch(showModalFalse(false));
     setIsSignUpModal(true);
   };
+
+  // set login data and jwt token in local storage
   useEffect(() => {
     if (result?.isSuccess) {
       localStorage.setItem("token", result?.data?.token);
       dispatch(setToken(result?.data?.token));
       localStorage.setItem("user", JSON.stringify(result?.data?.user));
       dispatch(setUser(result?.data?.user));
+      toast.success(result?.data.msg, {
+        theme: "colored",
+        closeOnClick: true,
+        hideProgressBar: false,
+      });
     }
   }, [result?.isSuccess]);
-  console.log(result);
+
+  // handle error
+  useEffect(() => {
+    if (result?.isError) {
+      if (result?.error) {
+        toast.error(result?.error?.data?.error, {
+          theme: "colored",
+          closeOnClick: true,
+          hideProgressBar: false,
+        });
+      }
+    }
+  }, [result?.isError]);
+  console.log(result)
   return (
     <>
       <div className="relative my-6 mx-auto w-full max-w-lg">
@@ -69,6 +91,7 @@ const LoginModal = ({ setIsSignUpModal }) => {
                     className="block border-none w-full p-2 rounded outline-none"
                     name="email"
                     placeholder="Email"
+                    required
                   />
                 </div>
               </div>
@@ -90,6 +113,7 @@ const LoginModal = ({ setIsSignUpModal }) => {
                     className="block border-none w-full p-2 rounded outline-none"
                     name="password"
                     placeholder="Password"
+                    required
                   />
                 </div>
               </div>

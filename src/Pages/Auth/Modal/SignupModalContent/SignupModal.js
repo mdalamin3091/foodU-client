@@ -4,6 +4,8 @@ import { FiLock } from "react-icons/fi";
 import { useSignupMutation } from "../../../../store/services/authServices";
 import { useUploadImagesMutation } from "../../../../store/services/uploadServices";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+
 import {
   showModalFalse,
   setToken,
@@ -16,6 +18,7 @@ const SignupModal = ({ setIsSignUpModal }) => {
     password: "",
   });
   const [profilePic, setProfilePic] = React.useState(null);
+  const [loading, setLoading] = React.useState(false);
   const [signupData, result] = useSignupMutation();
   const [uploadImages] = useUploadImagesMutation();
   const dispatch = useDispatch();
@@ -23,17 +26,22 @@ const SignupModal = ({ setIsSignUpModal }) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
+  // image upload
   const handleImage = (pics) => {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
       data.append("upload_preset", "poco-site");
       data.append("cloud_name", "online-poco");
-      uploadImages(data).then((result) =>
-        setProfilePic(result.data.url.toString())
+      setLoading(true);
+      uploadImages(data).then(
+        (result) => setProfilePic(result.data.url.toString()),
+        setLoading(false)
       );
     }
   };
+
+  // create new user
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (profilePic) {
@@ -46,15 +54,36 @@ const SignupModal = ({ setIsSignUpModal }) => {
       alert("Please select a profile photo");
     }
   };
+
+  // set user info in local storage
   useEffect(() => {
     if (result?.isSuccess) {
       localStorage.setItem("token", result?.data?.token);
       dispatch(setToken(result?.data?.token));
       localStorage.setItem("user", JSON.stringify(result?.data?.newUser));
       dispatch(setUser(result?.data?.newUser));
+      toast.success(result?.data.msg, {
+        theme: "colored",
+        closeOnClick: true,
+        pauseOnHover: true,
+        hideProgressBar: false,
+      });
     }
   }, [result?.isSuccess]);
-  console.log(result);
+
+  // handle error
+  useEffect(() => {
+    if (result?.isError) {
+      if (result.data.error) {
+        toast.error(result?.data.error, {
+          theme: "colored",
+          closeOnClick: true,
+          pauseOnHover: true,
+          hideProgressBar: false,
+        });
+      }
+    }
+  }, [result?.isError])
   return (
     <>
       <div className="relative my-6 mx-auto w-full max-w-lg">
@@ -147,9 +176,12 @@ const SignupModal = ({ setIsSignUpModal }) => {
                   />
                 </div>
               </div>
-              <button className="btn-primary py-2 block" type="submit">
-                Register
-              </button>
+              <input
+                disabled={loading}
+                className="btn-primary py-2 block"
+                type="submit"
+                value="Register"
+              />
               <p className="text-gray-500 text-center">
                 Already have a account ?&nbsp;
                 <span

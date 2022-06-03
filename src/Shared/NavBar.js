@@ -126,7 +126,7 @@ const NavBar = () => {
             {user?.profilePic ? (
               <div className="cursor-pointer" onClick={handleNavigate}>
                 <img
-                  className="w-[45px] h-[45px] rounded-full"
+                  className="w-[50px] h-[50px] rounded-full"
                   src={user?.profilePic}
                   alt="profile photo"
                 />
