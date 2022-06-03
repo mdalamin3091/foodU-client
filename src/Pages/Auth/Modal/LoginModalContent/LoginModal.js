@@ -24,8 +24,6 @@ const LoginModal = ({ setIsSignUpModal }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await loginData(userInfo);
-    dispatch(showModalFalse(false));
-    setIsSignUpModal(true);
   };
 
   // set login data and jwt token in local storage
@@ -40,6 +38,8 @@ const LoginModal = ({ setIsSignUpModal }) => {
         closeOnClick: true,
         hideProgressBar: false,
       });
+      dispatch(showModalFalse(false));
+      setIsSignUpModal(true);
     }
   }, [result?.isSuccess]);
 

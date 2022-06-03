@@ -39,9 +39,13 @@ export const authSlice = createSlice({
     setUser: (state, { payload }) => {
       state.user = payload;
     },
+    logout: (state) =>{
+      state.token = null;
+      localStorage.removeItem("user"); 
+    }
   },
 });
 
-export const { showModalTrue, showModalFalse, setToken, setUser } =
+export const { showModalTrue, showModalFalse, setToken, setUser, logout } =
   authSlice.actions;
 export default authSlice.reducer;

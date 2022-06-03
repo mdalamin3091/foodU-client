@@ -4,7 +4,7 @@ import { GoListUnordered } from "react-icons/go";
 import { AiOutlineSetting } from "react-icons/ai";
 import { FiUnlock } from "react-icons/fi";
 import { FaExchangeAlt } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const UserSidebar = ({ openMenu, setOpenMenu }) => {
   const sidebarLinks = [
@@ -34,6 +34,14 @@ const UserSidebar = ({ openMenu, setOpenMenu }) => {
       path: "/",
     },
   ];
+  const navigate = useNavigate();
+  const handleLogout = (title) => {
+    if (title === "Logout") {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      navigate("/");
+    }
+  };
   return (
     <>
       {/* Desktop menu */}
@@ -50,6 +58,7 @@ const UserSidebar = ({ openMenu, setOpenMenu }) => {
                 ? "border-l-4 border-primary bg-light-gray px-6 py-3 flex items-center justify-start text-lg"
                 : "px-6 py-3 flex items-center justify-start text-lg"
             }
+            onClick={() => handleLogout(item.title)}
           >
             <span className="mr-3">{item?.icon}</span>
             {item?.title}

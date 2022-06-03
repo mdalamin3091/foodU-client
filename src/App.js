@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Menu from "./Pages/Menu/Menu";
 import Shop from "./Pages/Shop/Shop";
-import Signup from "./Pages/Auth/Signup";
 import ProductDetails from "./Pages/ProductDetails/ProductDetails";
 import Wishlist from "./Pages/Wishlist/Wishlist";
 import Modal from "./Pages/Auth/Modal/Modal";
@@ -39,7 +38,6 @@ function App() {
           <Route path="menu" element={<Menu />} />
           <Route path="shop" element={<Shop />} />
           <Route path="about" element={<About />} />
-          <Route path="signup" element={<Signup />} />
           <Route path="contact" element={<Contact />} />
           <Route path="wishlist" element={<Wishlist />} />
           <Route path="checkout" element={<Checkout />} />
@@ -57,7 +55,6 @@ function App() {
             <Route path="dashboard" element={<AdminDashboardIndex />} />
             <Route path="allProducts" element={<AllProducts />} />
             <Route path="allProducts/updateProduct/:productId" element={<UpdateProduct />} />
-
             <Route path="allCategories" element={<AllCategory />} />
             <Route path="allCategories/updateCategory/:categoryId" element={<UpdateCateogory />} />
             <Route path="allUsers" element={<AllUsers />} />

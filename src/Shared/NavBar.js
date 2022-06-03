@@ -6,7 +6,7 @@ import { MdOutlineShoppingCart, MdAddIcCall } from "react-icons/md";
 import { RiMenuLine } from "react-icons/ri";
 import { BsFillPersonFill, BsFillSuitHeartFill } from "react-icons/bs";
 import Drawer from "./Drawer/Drawer";
-import { showModalTrue } from "../store/reducers/authSlice";
+import { showModalTrue, logout } from "../store/reducers/authSlice";
 import { drawerOpenTrue } from "../store/reducers/drawerSlice";
 import { useSelector, useDispatch } from "react-redux";
 const NavBar = () => {
@@ -50,17 +50,18 @@ const NavBar = () => {
   }, []);
   const handleNavigate = () => {
     if (user?.role === "user") {
+      dispatch(logout())
       navigate("/user/dashboard");
-    } else {
+    }
+    if (user?.role === "admin") {
       navigate("/admin/dashboard");
     }
   };
   return (
     <>
       <nav
-        className={`bg-white shadow-lg font-JosefinSans sticky ${
-          !scrollPosition ? "py-7" : "py-2"
-        } top-0 transition-all duration-100 z-[38]`}
+        className={`bg-white shadow-lg font-JosefinSans sticky ${!scrollPosition ? "py-7" : "py-2"
+          } top-0 transition-all duration-100 z-[38]`}
       >
         <div className="container flex justify-between">
           <div className="lg:hidden text-2xl text-left flex items-center justify-center !ml-[15px]">
