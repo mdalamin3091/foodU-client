@@ -7,7 +7,6 @@ const user = localStorage.getItem("user")
 const verifyToken = () => {
   if (getToken) {
     const decodeToken = jwtDecode(getToken);
-    console.log(decodeToken.exp, new Date());
     const expiresTime = new Date(decodeToken.exp * 1000);
     if (expiresTime < new Date()) {
       localStorage.removeItem("token"); 
@@ -39,9 +38,9 @@ export const authSlice = createSlice({
     setUser: (state, { payload }) => {
       state.user = payload;
     },
-    logout: (state) =>{
-      state.token = null;
-      localStorage.removeItem("user"); 
+    logout: (state, { payload }) =>{
+      state.token = payload;
+      state.user = payload;
     }
   },
 });

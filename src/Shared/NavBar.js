@@ -50,7 +50,6 @@ const NavBar = () => {
   }, []);
   const handleNavigate = () => {
     if (user?.role === "user") {
-      dispatch(logout())
       navigate("/user/dashboard");
     }
     if (user?.role === "admin") {
