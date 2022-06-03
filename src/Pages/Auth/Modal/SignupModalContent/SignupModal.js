@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { BsPerson, BsEnvelope } from "react-icons/bs";
 import { FiLock } from "react-icons/fi";
 import { useSignupMutation } from "../../../../store/services/authServices";
@@ -18,7 +18,6 @@ const SignupModal = ({ setIsSignUpModal }) => {
     password: "",
   });
   const [profilePic, setProfilePic] = React.useState(null);
-  const [loading, setLoading] = React.useState(false);
   const [signupData, result] = useSignupMutation();
   const [uploadImages] = useUploadImagesMutation();
   const dispatch = useDispatch();
@@ -33,14 +32,11 @@ const SignupModal = ({ setIsSignUpModal }) => {
       data.append("file", pics);
       data.append("upload_preset", "poco-site");
       data.append("cloud_name", "online-poco");
-      setLoading(true);
       uploadImages(data).then(
-        (result) => setProfilePic(result.data.url.toString()),
-        setLoading(false)
+        (result) => setProfilePic(result.data.url.toString())
       );
     }
   };
-
   // create new user
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -49,12 +45,11 @@ const SignupModal = ({ setIsSignUpModal }) => {
         ...userInfo,
         profilePic,
       });
-      dispatch(showModalFalse(false));
+      
     } else {
       alert("Please select a profile photo");
     }
   };
-
   // set user info in local storage
   useEffect(() => {
     if (result?.isSuccess) {
@@ -65,25 +60,31 @@ const SignupModal = ({ setIsSignUpModal }) => {
       toast.success(result?.data.msg, {
         theme: "colored",
         closeOnClick: true,
-        pauseOnHover: true,
         hideProgressBar: false,
       });
+      dispatch(showModalFalse(false));
     }
   }, [result?.isSuccess]);
 
   // handle error
   useEffect(() => {
     if (result?.isError) {
-      if (result.data.error) {
-        toast.error(result?.data.error, {
+      if (result?.error?.data?.error?.email) {
+        toast.error("Email already use", {
           theme: "colored",
           closeOnClick: true,
-          pauseOnHover: true,
+          hideProgressBar: false,
+        });
+      }
+      if (result?.error?.data?.error?.password) {
+        toast.error("Password should be 6 characters long", {
+          theme: "colored",
+          closeOnClick: true,
           hideProgressBar: false,
         });
       }
     }
-  }, [result?.isError])
+  }, [result?.isError]);
   return (
     <>
       <div className="relative my-6 mx-auto w-full max-w-lg">
@@ -119,6 +120,7 @@ const SignupModal = ({ setIsSignUpModal }) => {
                     className="block border-none w-full p-2 rounded outline-none"
                     name="fullname"
                     placeholder="Full Name"
+                    required
                   />
                 </div>
               </div>
@@ -140,6 +142,7 @@ const SignupModal = ({ setIsSignUpModal }) => {
                     className="block border-none w-full p-2 rounded outline-none"
                     name="email"
                     placeholder="Email"
+                    required
                   />
                 </div>
               </div>
@@ -161,6 +164,7 @@ const SignupModal = ({ setIsSignUpModal }) => {
                     className="block border-none w-full p-2 rounded outline-none"
                     name="password"
                     placeholder="Password"
+                    required
                   />
                 </div>
               </div>
@@ -173,11 +177,11 @@ const SignupModal = ({ setIsSignUpModal }) => {
                     onChange={(e) => handleImage(e.target.files[0])}
                     className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
                     name="profilePic"
+                    required
                   />
                 </div>
               </div>
               <input
-                disabled={loading}
                 className="btn-primary py-2 block"
                 type="submit"
                 value="Register"
