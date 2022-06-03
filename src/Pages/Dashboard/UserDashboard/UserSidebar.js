@@ -38,7 +38,6 @@ const UserSidebar = ({ openMenu, setOpenMenu }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {user} = useSelector(state => state.auth);
-  console.log(user);
   const handleLogout = (title) => {
     if (title === "Logout") {
       dispatch(logout(null))
@@ -52,7 +51,7 @@ const UserSidebar = ({ openMenu, setOpenMenu }) => {
       {/* Desktop menu */}
       <aside className="z-30 flex-shrink-0 hidden w-64 overflow-y-auto bg-white lg:block shadow-md">
         <h3 className="px-6 py-3 text-3xl font-bold uppercase mt-4">
-          Md. Al Amin
+          {user?.fullname}
         </h3>
         {sidebarLinks.map((item, index) => (
           <NavLink
