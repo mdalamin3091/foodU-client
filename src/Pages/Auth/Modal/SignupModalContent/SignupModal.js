@@ -167,7 +167,7 @@ const SignupModal = ({ setIsSignUpModal }) => {
                     required
                   />
                 </div>
-              </div>
+              </div> 
               {/* choose file */}
               <div>
                 <div className="form-group border-none my-2">
