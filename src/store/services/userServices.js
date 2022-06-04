@@ -14,8 +14,16 @@ const userServices = createApi({
         body: updateData,
       }),
     }),
+    changePassword: builder.mutation({
+      query: (updatePassword) => ({
+        headers: { "Content-Type": "application/json" },
+        url: "auth/changePassword",
+        method: "PUT",
+        body: updatePassword,
+      }),
+    }),
   }),
 });
 
-export const { useUpdateProfileMutation } = userServices;
+export const { useUpdateProfileMutation, useChangePasswordMutation } = userServices;
 export default userServices;

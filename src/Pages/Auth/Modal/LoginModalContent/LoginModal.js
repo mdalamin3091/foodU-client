@@ -108,7 +108,7 @@ const LoginModal = ({ setIsSignUpModal }) => {
                     <FiLock />
                   </div>
                   <input
-                    type="text"
+                    type="password"
                     onChange={handleChange}
                     className="block border-none w-full p-2 rounded outline-none"
                     name="password"
