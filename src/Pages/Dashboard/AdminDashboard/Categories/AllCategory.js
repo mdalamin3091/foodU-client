@@ -16,7 +16,7 @@ const AllCategory = () => {
       title: "Are you sure!",
       icon: "warning",
       showCancelButton: true,
-      text: "delete this category and all this category included product",
+      text: "Delete this category and all this category included product",
       confirmButtonText: `Delete`,
     }).then((result) => {
       if (result.isConfirmed) {
@@ -25,8 +25,8 @@ const AllCategory = () => {
       }
     });
   };
-  const handleNavigate = () => {
-    navigate("updateCategory/categoryId");
+  const handleNavigate = (id) => {
+    navigate(`updateCategory/${id}`);
   };
   return (
     <>
@@ -37,21 +37,20 @@ const AllCategory = () => {
             key={index}
             className="flex items-center justify-center flex-col cursor-pointer hover:text-primary transition-all duration-150 group bg-white p-6 relative"
           >
-            <div className="mx-auto">
+            <div className="mx-auto overflow-hidden">
               <img
-                className="group-hover:scale-125 transition-all duration-300 ease-in-out w-36"
+                className="group-hover:scale-110 transition-all duration-300 ease-in-out w-36"
                 src={category.categoryImage}
                 alt="category-img"
               />
             </div>
-            <h2 className="uppercase text-sm font-bold text-center">
+            <h2 className="uppercase text-sm font-bold text-center mt-3">
               {category.categoryName}
             </h2>
-
             <div className="absolute top-4 right-2 flex items-center justify-end gap-2 translate-x-0 opacity-0 group-hover:-translate-x-0 group-hover:opacity-100 origin-left transition-all ease-linear duration-300">
               <span
                 className="text-2xl font-bold text-green-600"
-                onClick={handleNavigate}
+                onClick={()=> handleNavigate(category._id)}
               >
                 <FaEdit />
               </span>

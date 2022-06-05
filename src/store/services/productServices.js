@@ -20,11 +20,26 @@ const productServices = createApi({
       }),
       providesTags: ["products"],
     }),
+    singleCategory: builder.query({
+      query: ({ categoryId }) => ({
+        url: `category/${categoryId}`,
+        method: "GET",
+      }),
+      providesTags: ["products"],
+    }),
     addCategory: builder.mutation({
       query: (categoryInfo) => ({
         url: `category/createCategory`,
         method: "POST",
         body: categoryInfo,
+      }),
+      invalidatesTags: ["products"],
+    }),
+    updateCategory: builder.mutation({
+      query: (updateCateInfo) => ({
+        url: `category/updateCategory/${updateCateInfo.id}`,
+        method: "PUT",
+        body: updateCateInfo,
       }),
       invalidatesTags: ["products"],
     }),
@@ -41,6 +56,8 @@ const productServices = createApi({
 export const {
   useAddCategoryMutation,
   useAllCategoryQuery,
+  useSingleCategoryQuery,
+  useUpdateCategoryMutation,
   useDeleteCategoryMutation,
 } = productServices;
 export default productServices;

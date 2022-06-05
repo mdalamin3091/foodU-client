@@ -9,8 +9,10 @@ import SingleProduct from "./Products/SingleProduct";
 import AllUserTable from "./Users/AllUserTable";
 import AllOrderTable from "./Orders/AllOrderTable";
 import { useAllUsersQuery } from "../../../store/services/authServices";
+import { useAllCategoryQuery } from "../../../store/services/productServices";
 const Index = () => {
-  const {data:userData} = useAllUsersQuery();
+  const { data: userData } = useAllUsersQuery();
+  const { data: categories } = useAllCategoryQuery();
   const sidebarMenu = [
     {
       icon: <FaShoppingCart />,
@@ -35,7 +37,9 @@ const Index = () => {
     {
       icon: <BiCategoryAlt />,
       title: "Total Category",
-      numbers: 10,
+      numbers: categories?.allCategory?.length
+        ? categories?.allCategory?.length
+        : 0,
     },
     {
       icon: <MdOutlineReviews />,

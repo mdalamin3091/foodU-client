@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { useAddCategoryMutation } from "../../../../store/services/productServices";
 import { useUploadImagesMutation } from "../../../../store/services/uploadServices";
-
+import { useNavigate } from "react-router-dom";
 const AddCategory = () => {
   const [categoryName, setCategoryName] = useState(null);
   const [categoryImage, setCategoryImage] = useState(null);
   const [uploadImages] = useUploadImagesMutation();
   const [categoryInfo, result] = useAddCategoryMutation();
+  const navigate = useNavigate();
   // category image upload
   const handleImage = (pics) => {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
@@ -27,6 +28,7 @@ const AddCategory = () => {
       categoryImage,
     })
       e.target.reset()
+      navigate("../allCategories")
   };
 
    useEffect(()=>{

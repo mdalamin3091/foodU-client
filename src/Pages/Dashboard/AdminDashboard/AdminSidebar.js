@@ -32,16 +32,6 @@ const AdminSidebar = ({ openMenu, setOpenMenu }) => {
       path: "/admin/allUsers",
     },
     {
-      title: "All Products",
-      icon: <MdOutlineProductionQuantityLimits />,
-      path: "/admin/allProducts",
-    },
-    {
-      title: "All Category",
-      icon: <BiCategoryAlt />,
-      path: "/admin/allCategories",
-    },
-    {
       title: "Add Product",
       icon: <MdOutlineAddShoppingCart />,
       path: "/admin/addProduct",
@@ -50,6 +40,16 @@ const AdminSidebar = ({ openMenu, setOpenMenu }) => {
       title: "Add Category",
       icon: <GrAdd />,
       path: "/admin/addCategory",
+    },
+    {
+      title: "All Products",
+      icon: <MdOutlineProductionQuantityLimits />,
+      path: "/admin/allProducts",
+    },
+    {
+      title: "All Category",
+      icon: <BiCategoryAlt />,
+      path: "/admin/allCategories",
     },
     {
       title: "Back Home",

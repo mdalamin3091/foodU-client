@@ -62,7 +62,7 @@ const AllUserTable = () => {
             </thead>
             <tbody className="text-[16px]">
               {data?.allUser.map((user) => (
-                <tr class="bg-white border-b">
+                <tr class="bg-white border-b" key={user._id}>
                   <td
                     scope="row"
                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
