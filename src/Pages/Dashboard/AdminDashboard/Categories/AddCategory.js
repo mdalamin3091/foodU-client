@@ -1,10 +1,48 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import { useAddCategoryMutation } from "../../../../store/services/productServices";
+import { useUploadImagesMutation } from "../../../../store/services/uploadServices";
 
 const AddCategory = () => {
+  const [categoryName, setCategoryName] = useState(null);
+  const [categoryImage, setCategoryImage] = useState(null);
+  const [uploadImages] = useUploadImagesMutation();
+  const [categoryInfo, result] = useAddCategoryMutation();
+  // category image upload
+  const handleImage = (pics) => {
+    if (pics.type === "image/jpeg" || pics.type === "image/png") {
+      const data = new FormData();
+      data.append("file", pics);
+      data.append("upload_preset", "poco-site");
+      data.append("cloud_name", "online-poco");
+      uploadImages(data).then((result) =>
+        setCategoryImage(result.data.url.toString())
+      );
+    }
+  };
+  const handleAddCategory = (e) => {
+    e.preventDefault();
+    categoryInfo({
+      categoryName,
+      categoryImage,
+    })
+      e.target.reset()
+  };
+
+   useEffect(()=>{
+    toast.success(result?.data?.msg, {
+      theme: "colored",
+    });
+   }, [result?.isSuccess])
+   useEffect(()=>{
+    toast.error(result?.error?.data?.error.categoryName, {
+      theme: "colored",
+    });
+   }, [result?.isError])
   return (
     <>
       <h2 className="text-2xl font-bold mb-4">Add Category</h2>
-      <div className="grid grid-cols-1 bg-white shadow-md p-6 rounded-md mx-0 lg:mx-16">
+      <form onSubmit={handleAddCategory} className="grid grid-cols-1 bg-white shadow-md p-6 rounded-md mx-0 lg:mx-16">
         <div className="mb-4">
           <label htmlFor="category name" className="text-xl font-bold">
             Category Name
@@ -15,6 +53,8 @@ const AddCategory = () => {
             name="categoryName"
             className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder="Category Name"
+            onChange={(e) => setCategoryName(e.target.value)}
+            required
           />
         </div>
         <div className="mb-4">
@@ -26,14 +66,16 @@ const AddCategory = () => {
             <span class="sr-only">Choose File</span>
             <input
               type="file"
-              // onChange={(e) => handleImage(e.target.files[0])}
+              onChange={(e) => handleImage(e.target.files[0])}
               className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
               name="categoryImage"
             />
           </div>
         </div>
-        <button className="btn-primary py-2">Add Category</button>
-      </div>
+        <button className="btn-primary py-2" type="submit">
+          Add Category
+        </button>
+      </form>
     </>
   );
 };
