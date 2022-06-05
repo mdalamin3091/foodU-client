@@ -13,6 +13,13 @@ const productServices = createApi({
   }),
   tagTypes: ["products"],
   endpoints: (builder) => ({
+    allCategory: builder.query({
+      query: () => ({
+        url: `category`,
+        method: "GET",
+      }),
+      providesTags: ["products"],
+    }),
     addCategory: builder.mutation({
       query: (categoryInfo) => ({
         url: `category/createCategory`,
@@ -21,8 +28,19 @@ const productServices = createApi({
       }),
       invalidatesTags: ["products"],
     }),
+    deleteCategory: builder.mutation({
+      query: (categoryId) => ({
+        url: `category/deleteCategory/${categoryId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["products"],
+    }),
   }),
 });
 
-export const { useAddCategoryMutation } = productServices;
+export const {
+  useAddCategoryMutation,
+  useAllCategoryQuery,
+  useDeleteCategoryMutation,
+} = productServices;
 export default productServices;

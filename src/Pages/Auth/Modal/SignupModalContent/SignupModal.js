@@ -59,8 +59,6 @@ const SignupModal = ({ setIsSignUpModal }) => {
       dispatch(setUser(result?.data?.newUser));
       toast.success(result?.data.msg, {
         theme: "colored",
-        closeOnClick: true,
-        hideProgressBar: false,
       });
       dispatch(showModalFalse(false));
     }
