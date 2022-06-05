@@ -8,7 +8,9 @@ import { BiCategoryAlt } from "react-icons/bi";
 import SingleProduct from "./Products/SingleProduct";
 import AllUserTable from "./Users/AllUserTable";
 import AllOrderTable from "./Orders/AllOrderTable";
+import { useAllUsersQuery } from "../../../store/services/authServices";
 const Index = () => {
+  const {data:userData} = useAllUsersQuery();
   const sidebarMenu = [
     {
       icon: <FaShoppingCart />,
@@ -18,7 +20,7 @@ const Index = () => {
     {
       icon: <FaUsers />,
       title: "Total User",
-      numbers: 15,
+      numbers: userData?.allUser.length ? userData?.allUser.length : 0,
     },
     {
       icon: <FaHeart />,

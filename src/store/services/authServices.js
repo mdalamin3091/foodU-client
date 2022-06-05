@@ -5,7 +5,30 @@ const authServices = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/",
   }),
+  tagTypes: ["user"],
   endpoints: (builder) => ({
+    allUsers: builder.query({
+      query: () => ({
+        url: "auth/allUsers",
+        method: "GET",
+      }),
+      providesTags: ["user"],
+    }),
+    updateUserRole: builder.mutation({
+      query: (body) => ({
+        url: `auth/updateRole/${body.id}`,
+        method: "PUT",
+        body,
+      }),
+      invalidatesTags: ["user"],
+    }),
+    deleteUser: builder.mutation({
+      query: (id) => ({
+        url: `auth/deleteUser/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["user"],
+    }),
     signup: builder.mutation({
       query: (signupData) => ({
         headers: { "Content-Type": "application/json" },
@@ -13,6 +36,7 @@ const authServices = createApi({
         method: "POST",
         body: signupData,
       }),
+      invalidatesTags: ["user"],
     }),
     login: builder.mutation({
       query: (loginData) => ({
@@ -21,9 +45,16 @@ const authServices = createApi({
         method: "POST",
         body: loginData,
       }),
+      invalidatesTags: ["user"],
     }),
   }),
 });
 
-export const { useSignupMutation, useLoginMutation } = authServices;
+export const {
+  useSignupMutation,
+  useLoginMutation,
+  useAllUsersQuery,
+  useDeleteUserMutation,
+  useUpdateUserRoleMutation,
+} = authServices;
 export default authServices;
