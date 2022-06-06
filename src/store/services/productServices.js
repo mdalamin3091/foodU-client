@@ -50,6 +50,14 @@ const productServices = createApi({
       }),
       invalidatesTags: ["products"],
     }),
+    addProduct: builder.mutation({
+      query: (productInfo) => ({
+        url: `product/createProduct`,
+        method: "POST",
+        body: productInfo,
+      }),
+      invalidatesTags: ["products"],
+    }),
   }),
 });
 
@@ -59,5 +67,6 @@ export const {
   useSingleCategoryQuery,
   useUpdateCategoryMutation,
   useDeleteCategoryMutation,
+  useAddProductMutation,
 } = productServices;
 export default productServices;

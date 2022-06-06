@@ -100,7 +100,7 @@ const AllUserTable = () => {
                     </span>
                   </td>
                 </tr>
-              ))}
+              )).reverse()}
             </tbody>
           </table>
         </div>

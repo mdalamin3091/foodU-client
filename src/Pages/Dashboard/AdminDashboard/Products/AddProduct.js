@@ -1,10 +1,55 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import {
+  useAddProductMutation,
+  useAllCategoryQuery,
+} from "../../../../store/services/productServices";
+import { useUploadImagesMutation } from "../../../../store/services/uploadServices";
+import { toast } from "react-toastify";
 const AddProduct = () => {
+  const { data: categories, isSuccess } = useAllCategoryQuery();
+  const [sendAddProduct, result] = useAddProductMutation();
+  const [productImages, setProductImages] = useState();
+  const [productInfo, setProductInfo] = useState({});
+  const [uploadImages] = useUploadImagesMutation();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProductInfo({ ...productInfo, [name]: value });
+  };
+  // image upload
+  const handleImage = (pics) => {
+    if (pics.type === "image/jpeg" || pics.type === "image/png") {
+      const data = new FormData();
+      data.append("file", pics);
+      data.append("upload_preset", "poco-site");
+      data.append("cloud_name", "online-poco");
+      uploadImages(data).then((result) =>
+        setProductImages(result?.data?.url?.toString())
+      );
+    }
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendAddProduct({
+      ...productInfo,
+      productImages,
+    });
+    e.target.reset();
+  };
+  useEffect(() => {
+    if (result?.isSuccess) {
+      toast.success(result?.data.msg, {
+        theme: "colored",
+      });
+    }
+  }, [result?.isSuccess]);
+  console.log(result);
   return (
     <>
       <h2 className="text-2xl font-bold mb-4">Add Product</h2>
-      <div className="grid grid-cols-1 bg-white shadow-md p-6 rounded-md mx-0 lg:mx-16">
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 bg-white shadow-md p-6 rounded-md mx-0 lg:mx-16"
+      >
         <div className="mb-4">
           <label htmlFor="title" className="text-xl font-bold">
             Product Title
@@ -15,6 +60,8 @@ const AddProduct = () => {
             name="title"
             className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder="Product title"
+            required
+            onChange={handleChange}
           />
         </div>
         <div className="mb-4">
@@ -27,22 +74,27 @@ const AddProduct = () => {
             name="price"
             className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder="Product Price"
+            required
+            onChange={handleChange}
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="price" className="text-xl font-bold">
+          <label htmlFor="category" className="text-xl font-bold">
             Select Category
           </label>
           <br />
           <select
             name="category"
             class="bg-light-gray border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 outline-none"
+            required
+            onChange={handleChange}
           >
-            <option selected value="Burger">
-              Burger
-            </option>
-            <option value="Pizza">Pizza</option>
-            <option value="Pusta">Pusta</option>
+            {isSuccess &&
+              categories.allCategory.map((category) => (
+                <option value={category.categoryName} key={category._id}>
+                  {category.categoryName}
+                </option>
+              ))}
           </select>
         </div>
         <div className="mb-4">
@@ -54,10 +106,11 @@ const AddProduct = () => {
             <span class="sr-only">Choose File</span>
             <input
               type="file"
-              // onChange={(e) => handleImage(e.target.files[0])}
+              onChange={(e) => handleImage(e.target.files[0])}
               className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
               name="profilePic"
               multiple
+              required
             />
           </div>
         </div>
@@ -71,6 +124,8 @@ const AddProduct = () => {
             className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder=" Product Short Description"
             rows="5"
+            required
+            onChange={handleChange}
           ></textarea>
         </div>
         <div className="mb-4">
@@ -79,14 +134,18 @@ const AddProduct = () => {
           </label>
           <br />
           <textarea
-            name="Description"
+            name="description"
             className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder=" Product Description"
             rows="5"
+            required
+            onChange={handleChange}
           ></textarea>
         </div>
-        <button className="btn-primary py-2">Add Product</button>
-      </div>
+        <button className="btn-primary py-2" type="submit">
+          Add Product
+        </button>
+      </form>
     </>
   );
 };
