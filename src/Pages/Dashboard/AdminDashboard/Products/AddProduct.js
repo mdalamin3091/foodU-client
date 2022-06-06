@@ -42,7 +42,6 @@ const AddProduct = () => {
       });
     }
   }, [result?.isSuccess]);
-  console.log(result);
   return (
     <>
       <h2 className="text-2xl font-bold mb-4">Add Product</h2>

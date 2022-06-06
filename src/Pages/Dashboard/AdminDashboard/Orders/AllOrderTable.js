@@ -8,6 +8,9 @@ const AllOrderTable = () => {
           <thead class="text-lg text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" class="px-6 py-3">
+                User Email
+              </th>
+              <th scope="col" class="px-6 py-3">
                 Product name
               </th>
               <th scope="col" class="px-6 py-3">
@@ -23,12 +26,18 @@ const AllOrderTable = () => {
           </thead>
           <tbody className="text-[16px]">
             <tr class="bg-white border-b">
-              <th
+              <td
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+              >
+                amin@gmail.com
+              </td>
+              <td
                 scope="row"
                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
               >
                 Apple MacBook Pro 17"
-              </th>
+              </td>
               <td class="px-6 py-4">May 31, 2022</td>
               <td class="px-6 py-4">
                 <select

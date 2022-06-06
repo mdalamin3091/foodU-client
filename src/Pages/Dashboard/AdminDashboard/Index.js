@@ -9,10 +9,15 @@ import SingleProduct from "./Products/SingleProduct";
 import AllUserTable from "./Users/AllUserTable";
 import AllOrderTable from "./Orders/AllOrderTable";
 import { useAllUsersQuery } from "../../../store/services/authServices";
-import { useAllCategoryQuery } from "../../../store/services/productServices";
+import {
+  useAllCategoryQuery,
+  useAllProductQuery,
+} from "../../../store/services/productServices";
 const Index = () => {
   const { data: userData } = useAllUsersQuery();
   const { data: categories } = useAllCategoryQuery();
+  const { data: allProducts, isLoading, isSuccess } = useAllProductQuery();
+  console.log(allProducts?.allProducts);
   const sidebarMenu = [
     {
       icon: <FaShoppingCart />,
@@ -22,7 +27,7 @@ const Index = () => {
     {
       icon: <FaUsers />,
       title: "Total User",
-      numbers: userData?.allUser.length ? userData?.allUser.length : 0,
+      numbers: userData?.allUser ? userData?.allUser.length : 0,
     },
     {
       icon: <FaHeart />,
@@ -32,14 +37,12 @@ const Index = () => {
     {
       icon: <MdOutlineProductionQuantityLimits />,
       title: "Total Product",
-      numbers: 5,
+      numbers: allProducts?.allProducts ? allProducts?.allProducts.length : 0,
     },
     {
       icon: <BiCategoryAlt />,
       title: "Total Category",
-      numbers: categories?.allCategory?.length
-        ? categories?.allCategory?.length
-        : 0,
+      numbers: categories?.allCategory ? categories?.allCategory?.length : 0,
     },
     {
       icon: <MdOutlineReviews />,
@@ -68,9 +71,11 @@ const Index = () => {
       <h2 className="text-3xl font-bold mb-4">Dashboard Summary</h2>
       <h2 className="text-xl font-bold mb-4">Some Products</h2>
       <div class="flex flex-wrap -mx-4">
-        <SingleProduct />
-        <SingleProduct />
-        <SingleProduct />
+        {isLoading
+          ? "Loading..."
+          : allProducts?.allProducts
+              ?.slice(0, 3)
+              .map((product) => <SingleProduct product={product} />)}
       </div>
       <h2 className="text-xl font-bold my-4">Some Users</h2>
       <AllUserTable />

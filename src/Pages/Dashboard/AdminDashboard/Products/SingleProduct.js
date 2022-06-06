@@ -3,10 +3,13 @@ import { FaEdit } from "react-icons/fa";
 import { HiEye } from "react-icons/hi";
 import { MdDelete } from "react-icons/md";
 import {useNavigate} from "react-router-dom";
-const SingleProduct = () => {
+const SingleProduct = ({product}) => {
   const navigate = useNavigate();
   const handleNavigate = () =>{
     navigate("updateProduct/productId")
+  }
+  const handleDelete = (id) =>{
+    
   }
   return (
     <>
@@ -15,8 +18,8 @@ const SingleProduct = () => {
           <div class="relative pb-48 overflow-hidden">
             <img
               class="absolute inset-0 h-full w-full object-cover"
-              src="https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
-              alt=""
+              src={product.images[0]}
+              alt="product Image"
             />
             <div className="absolute top-4 right-4 flex items-center justify-end gap-4 translate-x-20 group-hover:-translate-x-0 origin-left transition-all ease-linear duration-300">
               <span className="text-2xl font-bold text-[#ffffff]">
@@ -25,22 +28,21 @@ const SingleProduct = () => {
               <span className="text-2xl font-bold text-green-600" onClick={handleNavigate}>
                 <FaEdit />
               </span>
-              <span className="text-2xl font-bold text-red-600">
+              <span className="text-2xl font-bold text-red-600" onClick={()=>handleDelete(product._id)}>
                 <MdDelete />
               </span>
             </div>
           </div>
           <div class="p-4">
             <h2 class="mt-2 mb-2  font-bold text-xl">
-              Purus Ullamcorper Inceptos Nibh
+              {product.title}
             </h2>
             <div class="mt-3 flex items-center">
               <span class="text-lg font-bold">Category:</span>&nbsp;
-              <span class="font-semibold text-lg">Burger</span>
+              <span class="font-semibold text-lg">{product.category}</span>
             </div>
             <p class="text-lg">
-              Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-              ullamcorper nulla non metus auctor fringilla.
+              {product.description}
             </p>
           </div>
         </div>
