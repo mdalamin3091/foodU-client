@@ -43,6 +43,7 @@ const UpdateCateogory = () => {
   if(result?.isSuccess){
     navigate("../allCategories")
   }
+  console.log(categoryName);
   return (
     <>
       <h2 className="text-2xl font-bold mb-4">Update Category</h2>
@@ -67,7 +68,7 @@ const UpdateCateogory = () => {
           </label>
           <br />
           <div className="form-group border-none my-2 bg-light-gray py-2">
-            <span class="sr-only">Choose File</span>
+            <span className="sr-only">Choose File</span>
             <input
               type="file"
               onChange={(e) => handleImage(e.target.files[0])}

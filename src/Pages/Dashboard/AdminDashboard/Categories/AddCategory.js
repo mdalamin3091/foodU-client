@@ -26,25 +26,32 @@ const AddCategory = () => {
     categoryInfo({
       categoryName,
       categoryImage,
+    }).then((res) => {
+      console.log(res)
+      if (res?.data) {
+        navigate("../allCategories");
+      }
     })
-      e.target.reset()
-      navigate("../allCategories")
+    e.target.reset();
   };
 
-   useEffect(()=>{
+  useEffect(() => {
     toast.success(result?.data?.msg, {
       theme: "colored",
     });
-   }, [result?.isSuccess])
-   useEffect(()=>{
+  }, [result?.isSuccess]);
+  useEffect(() => {
     toast.error(result?.error?.data?.error.categoryName, {
       theme: "colored",
     });
-   }, [result?.isError])
+  }, [result?.isError]);
   return (
     <>
       <h2 className="text-2xl font-bold mb-4">Add Category</h2>
-      <form onSubmit={handleAddCategory} className="grid grid-cols-1 bg-white shadow-md p-6 rounded-md mx-0 lg:mx-16">
+      <form
+        onSubmit={handleAddCategory}
+        className="grid grid-cols-1 bg-white shadow-md p-6 rounded-md mx-0 lg:mx-16"
+      >
         <div className="mb-4">
           <label htmlFor="category name" className="text-xl font-bold">
             Category Name
@@ -65,7 +72,7 @@ const AddCategory = () => {
           </label>
           <br />
           <div className="form-group border-none my-2 bg-light-gray py-2">
-            <span class="sr-only">Choose File</span>
+            <span className="sr-only">Choose File</span>
             <input
               type="file"
               onChange={(e) => handleImage(e.target.files[0])}

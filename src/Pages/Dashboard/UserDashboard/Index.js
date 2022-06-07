@@ -32,15 +32,15 @@ const Index = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {userOrders.map((item, index) => (
           <div
-            class="p-4 flex items-center bg-white border border-border rounded-md shadow-md"
+            className="p-4 flex items-center bg-white border border-border rounded-md shadow-md"
             key={index}
           >
-            <div class="p-3 rounded-full text-orange-500 bg-orange-100 mr-4 text-xl">
+            <div className="p-3 rounded-full text-orange-500 bg-orange-100 mr-4 text-xl">
               {item.icon}
             </div>
             <div>
-              <p class="text-lg font-medium  text-gray-600 ">{item.title}</p>
-              <p class="text-lg font-semibold text-gray-700">{item.numbers}</p>
+              <p className="text-lg font-medium  text-gray-600 ">{item.title}</p>
+              <p className="text-lg font-semibold text-gray-700">{item.numbers}</p>
             </div>
           </div>
         ))}

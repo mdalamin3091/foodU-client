@@ -55,27 +55,28 @@ const Index = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
         {sidebarMenu.map((item, index) => (
           <div
-            class="p-4 flex items-center bg-white border border-border rounded-md shadow-md"
+            className="p-4 flex items-center bg-white border border-border rounded-md shadow-md"
             key={index}
           >
-            <div class="p-3 rounded-full text-orange-500 bg-orange-100 mr-4 text-2xl">
+            <div className="p-3 rounded-full text-orange-500 bg-orange-100 mr-4 text-2xl">
               {item.icon}
             </div>
             <div>
-              <p class="text-xl font-medium  text-gray-600 ">{item.title}</p>
-              <p class="text-xl font-semibold text-gray-700">{item.numbers}</p>
+              <p className="text-xl font-medium  text-gray-600 ">{item.title}</p>
+              <p className="text-xl font-semibold text-gray-700">{item.numbers}</p>
             </div>
           </div>
         ))}
       </div>
       <h2 className="text-3xl font-bold mb-4">Dashboard Summary</h2>
       <h2 className="text-xl font-bold mb-4">Some Products</h2>
-      <div class="flex flex-wrap -mx-4">
+      <div className="flex flex-wrap -mx-4">
         {isLoading
           ? "Loading..."
           : allProducts?.allProducts
               ?.slice(0, 3)
-              .map((product) => <SingleProduct product={product} />)}
+              .map((product) => <SingleProduct product={product} />)
+              .reverse()}
       </div>
       <h2 className="text-xl font-bold my-4">Some Users</h2>
       <AllUserTable />

@@ -59,7 +59,7 @@ const UpdateProfile = () => {
           Change Image
         </label>
         <div className="form-group border-none col-span-2 bg-white py-2">
-          <span class="sr-only">Choose File</span>
+          <span className="sr-only">Choose File</span>
           <input
             type="file"
             onChange={(e) => handleImage(e.target.files[0])}
@@ -77,7 +77,7 @@ const UpdateProfile = () => {
             type="text"
             name="fullname"
             placeholder="Full Name"
-            defaultValue={user?.fullname}
+            value={user?.fullname}
             onChange={(e) => handleChange(e)}
           />
         </div>
@@ -91,7 +91,7 @@ const UpdateProfile = () => {
             type="email"
             name="email"
             placeholder="Email"
-            defaultValue={user?.email}
+            value={user?.email}
             onChange={(e) => handleChange(e)}
           />
         </div>

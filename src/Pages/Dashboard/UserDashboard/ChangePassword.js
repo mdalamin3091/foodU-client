@@ -54,7 +54,7 @@ const ChangePassword = () => {
             className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-white"
             type="email"
             placeholder="Email"
-            defaultValue={user?.email}
+            value={user?.email}
             readOnly
           />
         </div>

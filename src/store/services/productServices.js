@@ -67,8 +67,23 @@ const productServices = createApi({
     }),
     deleteProduct: builder.mutation({
       query: (productId) => ({
-        url: `/product/deleteProduct/${productId}`,
+        url: `product/deleteProduct/${productId}`,
         method: "DELETE",
+      }),
+      invalidatesTags: ["products"],
+    }),
+    singleProduct: builder.query({
+      query: ({ productId }) => ({
+        url: `product/${productId}`,
+        method: "GET",
+      }),
+      providesTags: ["products"],
+    }),
+    updateProduct: builder.mutation({
+      query: (updateProductInfo) => ({
+        url: `product/updateProduct/${updateProductInfo.id}`,
+        method: "PUT",
+        body: updateProductInfo,
       }),
       invalidatesTags: ["products"],
     }),
@@ -80,7 +95,9 @@ export const {
   useAllCategoryQuery,
   useAllProductQuery,
   useSingleCategoryQuery,
+  useSingleProductQuery,
   useUpdateCategoryMutation,
+  useUpdateProductMutation,
   useDeleteCategoryMutation,
   useDeleteProductMutation,
   useAddProductMutation,

@@ -169,7 +169,7 @@ const SignupModal = ({ setIsSignUpModal }) => {
               {/* choose file */}
               <div>
                 <div className="form-group border-none my-2">
-                  <span class="sr-only">Choose File</span>
+                  <span className="sr-only">Choose File</span>
                   <input
                     type="file"
                     onChange={(e) => handleImage(e.target.files[0])}
