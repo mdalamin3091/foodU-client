@@ -8,9 +8,9 @@ const Modal = () => {
   const [isSignUpModal, setIsSignUpModal] = useState(true);
   const dispatch = useDispatch();
   const handleClick = () => {
-    dispatch(showModalTrue(false))
-    setIsSignUpModal(true)
-  }
+    dispatch(showModalTrue(false));
+    setIsSignUpModal(true);
+  };
   return (
     <>
       {showModal ? (

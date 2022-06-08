@@ -1,63 +1,28 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
+import { useAllCategoryQuery } from "../store/services/productServices";
 
-const Tab = ({openTab, setOpenTab}) => {
-  
+const Tab = ({ openTab, setOpenTab }) => {
+  const { data, isSuccess, isLoading } = useAllCategoryQuery();
   return (
     <>
-        <div className="tab-wrapper flex flex-wrap items-center justify-center gap-4 mb-12">
-          <button
-            className={
-              openTab === "Pizza"
-                ? "btn-tab bg-primary border-primary text-white"
-                : "btn-tab"
-            }
-            onClick={() => setOpenTab("Pizza")}
-          >
-            Pizza
-          </button>
-          <button
-            className={
-              openTab === "Sushi"
-                ? "btn-tab bg-primary border-primary text-white"
-                : "btn-tab"
-            }
-            onClick={() => setOpenTab("Sushi")}
-          >
-            Sushi
-          </button>
-          <button
-            className={
-              openTab === "Salats"
-                ? "btn-tab bg-primary border-primary text-white"
-                : "btn-tab"
-            }
-            onClick={() => setOpenTab("Salats")}
-          >
-            Salats
-          </button>
-          <button
-            className={
-              openTab === "Burger"
-                ? "btn-tab bg-primary border-primary text-white"
-                : "btn-tab"
-            }
-            onClick={() => setOpenTab("Burger")}
-          >
-            Burger
-          </button>
-          <button
-            className={
-              openTab === "Dersest"
-                ? "btn-tab bg-primary border-primary text-white"
-                : "btn-tab"
-            }
-            onClick={() => setOpenTab("Dersest")}
-          >
-            Dersest
-          </button>
-        </div>
+      <div className="tab-wrapper flex flex-wrap items-center justify-center gap-4 mb-12">
+        {isLoading
+          ? "Loading..."
+          : data?.allCategory?.slice(0, 5).map((category, index) => (
+              <button
+                className={
+                  openTab === category.categoryName
+                    ? "btn-tab bg-primary border-primary text-white"
+                    : "btn-tab"
+                }
+                onClick={() => setOpenTab(category.categoryName)}
+              >
+                {category.categoryName}
+              </button>
+            ))}
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Tab
+export default Tab;

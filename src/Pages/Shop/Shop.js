@@ -2,18 +2,16 @@ import React, { useState } from "react";
 import ScreenHeader from "../../Shared/ScreenHeader";
 import Product from "../../Shared/Product";
 import { Link } from "react-router-dom";
-import { BiDrink } from "react-icons/bi";
 import { BsFillGridFill } from "react-icons/bs";
-import { GiFullPizza } from "react-icons/gi";
-import { AiFillStar } from "react-icons/ai";
-import { FaList} from "react-icons/fa";
-import Sidebar from "./components/Sidebar"
+import { FaList } from "react-icons/fa";
+import Sidebar from "./components/Sidebar";
 import NavBar from "../../Shared/NavBar";
 import Footer from "../../Shared/Footer";
+import { useAllProductQuery } from "../../store/services/productServices";
 
 const Shop = () => {
   const [gridView, setGridView] = useState(true);
-
+  const { data, isLoading, isSuccess } = useAllProductQuery();
   return (
     <>
       <NavBar />
@@ -84,12 +82,13 @@ const Shop = () => {
                   : `grid grid-cols-1 gap-6`
               }
             >
-              <Product gridView={gridView} />
-              <Product gridView={gridView} />
-              <Product gridView={gridView} />
-              <Product gridView={gridView} />
-              <Product gridView={gridView} />
-              <Product gridView={gridView} />
+              {isLoading
+                ? "Loading..."
+                : data?.allProducts
+                    ?.map((product) => (
+                      <Product gridView={gridView} product={product} />
+                    ))
+                    .reverse()}
             </div>
           </div>
           <Sidebar />

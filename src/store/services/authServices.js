@@ -7,28 +7,6 @@ const authServices = createApi({
   }),
   tagTypes: ["user"],
   endpoints: (builder) => ({
-    allUsers: builder.query({
-      query: () => ({
-        url: "auth/allUsers",
-        method: "GET",
-      }),
-      providesTags: ["user"],
-    }),
-    updateUserRole: builder.mutation({
-      query: (body) => ({
-        url: `auth/updateRole/${body.id}`,
-        method: "PUT",
-        body,
-      }),
-      invalidatesTags: ["user"],
-    }),
-    deleteUser: builder.mutation({
-      query: (id) => ({
-        url: `auth/deleteUser/${id}`,
-        method: "DELETE",
-      }),
-      invalidatesTags: ["user"],
-    }),
     signup: builder.mutation({
       query: (signupData) => ({
         headers: { "Content-Type": "application/json" },
@@ -53,8 +31,5 @@ const authServices = createApi({
 export const {
   useSignupMutation,
   useLoginMutation,
-  useAllUsersQuery,
-  useDeleteUserMutation,
-  useUpdateUserRoleMutation,
 } = authServices;
 export default authServices;

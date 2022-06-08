@@ -8,7 +8,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 import SingleProduct from "./Products/SingleProduct";
 import AllUserTable from "./Users/AllUserTable";
 import AllOrderTable from "./Orders/AllOrderTable";
-import { useAllUsersQuery } from "../../../store/services/authServices";
+import { useAllUsersQuery } from "../../../store/services/userServices";
 import {
   useAllCategoryQuery,
   useAllProductQuery,

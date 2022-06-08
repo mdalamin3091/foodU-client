@@ -16,13 +16,7 @@ const UpdateProduct = () => {
   });
   const [productImage, setProductImage] = useState(data?.getProduct?.images[0]);
   const [uploadImages] = useUploadImagesMutation();
-  const [productInfo, setProductInfo] = useState({
-    title: data?.getProduct?.title,
-    price: data?.getProduct?.price,
-    category: data?.getProduct?.category,
-    shortDescription: data?.getProduct?.shortDescription,
-    description: data?.getProduct?.description,
-  });
+  const [productInfo, setProductInfo] = useState({});
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProductInfo({ ...productInfo, [name]: value });
@@ -53,7 +47,7 @@ const UpdateProduct = () => {
     })
   };
   console.log("productInfo", productInfo);
-  console.log(data?.getProduct);
+  console.log(result);
   return (
     <>
       <h2 className="text-2xl font-bold mb-4">Update Product</h2>

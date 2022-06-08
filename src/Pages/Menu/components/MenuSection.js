@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Tab from "../../../Shared/Tab";
 import MenuItem from './MenuItem';
 const MenuSection = () => {
-  const [openTab, setOpenTab] = useState("Pizza");
+  const [openTab, setOpenTab] = useState(null);
   return (
     <div className='container section-padding font-JosefinSans'>
         <h2 className="section-title text-center text-4xl">Menus Of The Day</h2>

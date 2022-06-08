@@ -1,7 +1,6 @@
 import React from "react";
 
 const ViewProductModal = ({ product, showModal, setShowModal }) => {
-  console.log("product", product);
   return (
     <>
       {showModal ? (
@@ -29,7 +28,6 @@ const ViewProductModal = ({ product, showModal, setShowModal }) => {
                       {product.description}
                     </p>
                     <h5 className="text-lg">Category: {product.category}</h5>
-
                   </div>
                   {/*footer*/}
                   <div className="flex items-center justify-end p-6 rounded-b">

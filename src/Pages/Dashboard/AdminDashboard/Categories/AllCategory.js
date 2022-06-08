@@ -32,7 +32,7 @@ const AllCategory = () => {
     <>
       <h2 className="text-2xl font-bold mb-4">All Category</h2>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-        {data?.allCategory
+      {data?.allCategory
           ?.map((category, index) => (
             <div
               key={index}
@@ -40,7 +40,7 @@ const AllCategory = () => {
             >
               <div className="mx-auto overflow-hidden">
                 <img
-                  className="group-hover:scale-110 transition-all duration-300 ease-in-out w-36"
+                  className="group-hover:scale-110 transition-all duration-300 ease-in-out w-36 h-[120px] object-contain"
                   src={category.categoryImage}
                   alt="category-img"
                 />

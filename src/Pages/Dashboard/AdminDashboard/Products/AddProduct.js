@@ -32,7 +32,7 @@ const AddProduct = () => {
     sendAddProduct({
       ...productInfo,
       productImages,
-    });
+    })
     e.target.reset();
   };
   useEffect(() => {
@@ -42,6 +42,12 @@ const AddProduct = () => {
       });
     }
   }, [result?.isSuccess]);
+    useEffect(() => {
+    toast.error(result?.error?.data?.error?.shortDescription, {
+      theme: "colored",
+    });
+  }, [result?.isError]);
+  console.log(result)
   return (
     <>
       <h2 className="text-2xl font-bold mb-4">Add Product</h2>

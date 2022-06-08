@@ -3,7 +3,7 @@ import {
   useAllUsersQuery,
   useUpdateUserRoleMutation,
   useDeleteUserMutation,
-} from "../../../../store/services/authServices";
+} from "../../../../store/services/userServices";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 
