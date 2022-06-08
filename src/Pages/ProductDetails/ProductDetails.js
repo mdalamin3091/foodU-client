@@ -31,7 +31,7 @@ const ProductDetails = () => {
             <div className="border-2 border-gray-200 rounded-2xl p-2 h-auto">
               <div className="bg-light-gray h-full overflow-hidden">
                 <img
-                  className="h-full hover:scale-115 transition-all ease-linear duration-300 w-full"
+                  className="h-full hover:scale-125 transition-all ease-linear duration-300 w-full"
                   src={data?.getProduct?.images[0]}
                   alt="single food"
                 />
