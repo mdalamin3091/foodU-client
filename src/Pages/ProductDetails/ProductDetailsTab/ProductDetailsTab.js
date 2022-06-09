@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReviewTabContent from "./ReviewTabContent";
 
-const ProductDetailsTab = ({data}) => {
+const ProductDetailsTab = ({ data }) => {
   const [selectTab, setSelectTab] = useState("Description");
   return (
     <div className="font-JosefinSans section-padding pt-0">
@@ -25,18 +25,20 @@ const ProductDetailsTab = ({data}) => {
           }
           onClick={() => setSelectTab("Review")}
         >
-          Reviews (2)
+          Reviews (
+          {data?.getProduct?.review?.length
+            ? data?.getProduct?.review?.length
+            : 0}
+          )
         </button>
       </div>
       {/* Description tab content  */}
-      <div className={selectTab === "Description" ? "block px-16" : "hidden"}>
-        <p className="text-gray-500 text-xl">
-          {data?.getProduct?.description}
-        </p>
+      <div className={selectTab === "Description" ? "block md:px-16 px-4" : "hidden"}>
+        <p className="text-gray-500 text-xl">{data?.getProduct?.description}</p>
       </div>
       {/* Review tab content  */}
       <div className={selectTab === "Review" ? "block" : "hidden"}>
-        <ReviewTabContent />
+        <ReviewTabContent data={data} />
       </div>
     </div>
   );

@@ -87,6 +87,14 @@ const productServices = createApi({
       }),
       invalidatesTags: ["products"],
     }),
+    addReview: builder.mutation({
+      query: (reviewInfo) => ({
+        url: `product/review/${reviewInfo.id}`,
+        method: "POST",
+        body: reviewInfo,
+      }),
+      invalidatesTags: ["products"],
+    }),
   }),
 });
 
@@ -97,6 +105,7 @@ export const {
   useSingleCategoryQuery,
   useSingleProductQuery,
   useUpdateCategoryMutation,
+  useAddReviewMutation,
   useUpdateProductMutation,
   useDeleteCategoryMutation,
   useDeleteProductMutation,

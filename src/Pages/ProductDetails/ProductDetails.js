@@ -20,6 +20,7 @@ const ProductDetails = () => {
   const handleWishlist = () => {
     addProductWishlist({ productId });
   };
+  console.log(data)
   return (
     <div>
       <NavBar />

@@ -16,7 +16,7 @@ const RelatedProduct = ({ data }) => {
         Related Product
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5 lg:px-0">
-        {relatedData.map((product) => (
+        {relatedData.length > 0 && relatedData?.map((product) => (
           <Product gridView={gridView} product={product} />
         ))}
       </div>
