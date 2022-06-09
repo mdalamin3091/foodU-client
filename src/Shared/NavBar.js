@@ -123,7 +123,7 @@ const NavBar = () => {
             >
               <MdOutlineShoppingCart />
               <span className="flex items-center justify-center w-6 h-6 text-sm font-semibold text-white bg-primary rounded-[50%] absolute top-0 right-0 group-hover:bg-primary_hover">
-                1
+                {data?.user?.cart.length ? data?.user?.cart.length : 0}
               </span>
             </span>
             {user?.profilePic ? (

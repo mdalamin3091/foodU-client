@@ -1,10 +1,33 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { showModalTrue } from "../../store/reducers/authSlice";
 import { drawerOpenFalse } from "../../store/reducers/drawerSlice";
+import {
+  useAddToCartMutation,
+  useGetSingleUserQuery,
+} from "../../store/services/userServices";
 import DrawerCart from "./DrawerCart";
 const Drawer = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { drawerOpen } = useSelector((state) => state.drawer);
+  const { user } = useSelector((state) => state.auth);
+  const [productCount, setProductCount] = useState(1);
+  const { data, isSuccess, isLoading } = useGetSingleUserQuery();
+  // const [sendAddtoCart, cartResult] = useAddToCartMutation();
+  // const handleRemoveAddToCat = (id) =>{
+  //   sendAddtoCart(id)
+  // }
+  const handleNavigate = () => {
+    if(user){
+      navigate("/checkout");
+      dispatch(drawerOpenFalse(false));
+    }else{
+      dispatch(drawerOpenFalse(false));
+      dispatch(showModalTrue(true));
+    }
+  };
   return (
     <div
       className={
@@ -33,16 +56,24 @@ const Drawer = () => {
           </div>
           {/* drawer body */}
           <div className="text-black overflow-auto ml-5 mt-2 !mb-[85px]">
-            <DrawerCart />
-            <DrawerCart />
-            <DrawerCart />
-            <DrawerCart />
+            {isLoading
+              ? "Loading..."
+              : data?.user?.cart.map((product) => (
+                  <DrawerCart
+                    productCount={productCount}
+                    product={product}
+                    setProductCount={setProductCount}
+                  />
+                ))}
           </div>
           {/* drawer checkout button */}
           <div class="fixed bottom-5 left-5 right-5 w-[90%]">
             <span>
               <div>
-                <button class="w-full py-3 px-3 rounded-lg bg-primary hover:bg-primary_hover flex items-center justify-between text-sm sm:text-base text-white focus:outline-none transition duration-300">
+                <button
+                  class="w-full py-3 px-3 rounded-lg bg-primary hover:bg-primary_hover flex items-center justify-between text-sm sm:text-base text-white focus:outline-none transition duration-300"
+                  onClick={handleNavigate}
+                >
                   <span class="align-middle font-medium">
                     Proceed To Checkout
                   </span>

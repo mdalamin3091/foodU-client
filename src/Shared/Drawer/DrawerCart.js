@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { MdDelete } from "react-icons/md";
-const DrawerCart = () => {
-  const [productCount, setProductCount] = useState(1);
+
+const DrawerCart = ({ productCount, setProductCount, product }) => {
+  // const [sendAddtoCart, cartResult] = useAddToCartMutation();
+  // const handleRemoveAddToCat = (id) =>{
+  //   sendAddtoCart(id)
+  // }
   return (
     <>
       <div className="flex items-end justify-between border-b-2 border-border mb-2">
@@ -9,13 +13,15 @@ const DrawerCart = () => {
           <div>
             <img
               className="w-[80px] rounded-full"
-              src={require("../../assets/images/food_1.png")}
+              src={product.images[0]}
               alt="food"
             />
           </div>
           <div>
-            <h3 className="text-heading font-bold text-lg">Checkin Burger</h3>
-            <p className="text-gray-500">Price: ${20.00 * productCount}</p>
+            <h3 className="text-heading font-semibold text-lg">{product.title}</h3>
+            <p className="text-gray-500">
+              Price: ${product.price * productCount}
+            </p>
           </div>
         </div>
         <div className="flex items-center justify-between py-4">
@@ -43,7 +49,9 @@ const DrawerCart = () => {
             </div>
           </div>
         </div>
-        <span className="text-2xl text-red-600 cursor-pointer py-5">
+        <span
+          className="text-2xl text-red-600 cursor-pointer py-5" /// onClick={()=>handleRemoveAddToCat(product._id)}
+        >
           <MdDelete />
         </span>
       </div>

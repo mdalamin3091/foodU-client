@@ -27,7 +27,6 @@ const Checkout = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 px-5 lg:px-0 gap-8">
             {/* shipping details */}
             <CheckoutForm />
-
             {/* cart details */}
             <div className="col-span-3 lg:col-span-1">
               <OrderSummary />

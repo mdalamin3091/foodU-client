@@ -8,6 +8,7 @@ import RelatedProduct from "./RelatedProduct";
 import ProductDetailsBottom from "./ProductDetailsBottom";
 import NavBar from "../../Shared/NavBar";
 import Footer from "../../Shared/Footer";
+import ReactStars from "react-rating-stars-component";
 import { useSingleProductQuery } from "../../store/services/productServices";
 import { useAddWishlistMutation } from "../../store/services/userServices";
 const ProductDetails = () => {
@@ -20,11 +21,11 @@ const ProductDetails = () => {
   const handleWishlist = () => {
     addProductWishlist({ productId });
   };
-  console.log(data)
+  console.log(data);
   return (
     <div>
       <NavBar />
-      <Breadcrumb data={data}/>
+      <Breadcrumb data={data} />
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 section-padding font-JosefinSans px-5 lg:px-0">
           <div>
@@ -59,19 +60,21 @@ const ProductDetails = () => {
             </div>
           </div>
           <div>
-            <h2 className="text-3xl md:text-5xl font-bold">
+            <h2 className="text-3xl md:text-5xl font-bold mb-3">
               {data?.getProduct?.title}
             </h2>
             <div className="flex items-center justify-start gap-1 text-primary text-lg mb-4">
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <p
-                className="text-gray-400 hover:text-primary ml-2 "
-              >
-                (5 Customer Reviews)
+              <ReactStars
+                count={5}
+                value={data?.getProduct?.review?.length}
+                size={24}
+                edit={false}
+                isHalf={true}
+                fullIcon={<AiFillStar />}
+                activeColor="#ffd700"
+              />
+              <p className="text-gray-400 ml-2">
+                ({data?.getProduct?.review?.length ? data?.getProduct?.review?.length : 0} Customer Reviews)
               </p>
             </div>
             <p className="text-gray-600 text-xl mb-8">
@@ -110,23 +113,27 @@ const ProductDetails = () => {
                 <button className="btn-primary px-12 lg:px-32 mr-3 whitespace-nowrap">
                   Add to cart
                 </button>
-                <span className="text-xl text-gray-400 cursor-pointer hover:text-black px-4 py-5 rounded-lg bg-light-gray" onClick={()=>handleWishlist(data?.getProduct?._id)}>
+                <span
+                  className="text-xl text-gray-400 cursor-pointer hover:text-black px-4 py-5 rounded-lg bg-light-gray"
+                  onClick={() => handleWishlist(data?.getProduct?._id)}
+                >
                   <BsSuitHeartFill />
                 </span>
               </div>
             </div>
             <h4 className="text-black">
-              Category: <span className="font-bold">{data?.getProduct?.category}</span>
+              Category:{" "}
+              <span className="font-bold">{data?.getProduct?.category}</span>
             </h4>
           </div>
         </div>
         {/* tab */}
-        <ProductDetailsTab data={data}/>
+        <ProductDetailsTab data={data} />
         {/* related product */}
-        <RelatedProduct data={data}/>
+        <RelatedProduct data={data} />
       </div>
       {/* product details bottom */}
-      <ProductDetailsBottom data={data}/>
+      <ProductDetailsBottom data={data} />
       <Footer />
     </div>
   );

@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 import {
   useAddWishlistMutation,
   useGetSingleUserQuery,
+  useAddToCartMutation
 } from "../store/services/userServices";
 const Product = ({ gridView, product }) => {
   const [addProductWishlist, result] = useAddWishlistMutation();
   const { data, isLoading, isSuccess } = useGetSingleUserQuery();
-
+  const [sendAddtoCart, cart] = useAddToCartMutation();
   const navigate = useNavigate();
   const handleWishlist = (productId) => {
     addProductWishlist({ productId });
@@ -16,6 +17,9 @@ const Product = ({ gridView, product }) => {
   const handleNavigate = (id) => {
     navigate(`product/${id}`);
   };
+  const handleAddToCart = (id) =>{
+    sendAddtoCart(id);
+  }
   return (
     <>
       <div
@@ -75,7 +79,7 @@ const Product = ({ gridView, product }) => {
             <h3 className="text-2xl text-primary font-bold">
               £{product?.price}
             </h3>
-            <div className="cart-icon">
+            <div className="cart-icon" onClick={()=>handleAddToCart(product._id)}>
               <BsMinecart />
             </div>
           </div>

@@ -27,40 +27,47 @@ const ReviewTabContent = ({ data }) => {
       id: data?.getProduct?._id,
     });
     e.target.reset();
-    setRatingStar(0)
+    setRatingStar(0);
   };
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-5 lg:px-0">
         {/* display review */}
         <div>
-          {data?.getProduct?.review.map((review) => (
-            <div className="flex items-start justify-center mb-10">
-              <div className="basis-1/6">
-                <img
-                  className="rounded-full w-[50%] mx-auto"
-                  src={require("../../../assets/images/review-avatar.jpeg")}
-                  alt="review avatar"
-                />
-              </div>
-              <div className="basis-5/6 !mt-0">
-                <div className="flex items-center justify-start gap-1 text-primary text-lg mb-2">
-                  <ReactStars
-                    count={5}
-                    value={review?.ratingStar}
-                    size={24}
-                    isHalf={true}
-                    fullIcon={<AiFillStar />}
-                    activeColor="#ffd700"
+          {data?.getProduct?.review.length < 1 ? (
+            <h2 className="text-xl text-black font-bold mb-3">
+              Any review not found
+            </h2>
+          ) : (
+            data?.getProduct?.review.map((review) => (
+              <div className="flex items-start justify-center mb-10">
+                <div className="basis-1/6">
+                  <img
+                    className="rounded-full w-[50%] mx-auto"
+                    src={review?.user?.profilePic}
+                    alt="review avatar"
                   />
                 </div>
-                <h2 className="text-xl text-black font-bold mb-3">
-                  {review?.fullname}
-                </h2>
-                <p className="text-gray-500 text-lg">{review?.reviewText}</p>
+                <div className="basis-5/6 !mt-0">
+                  <div className="flex items-center justify-start gap-1 text-primary text-lg mb-2">
+                    <ReactStars
+                      count={5}
+                      value={review?.ratingStar}
+                      edit={false}
+                      size={24}
+                      isHalf={true}
+                      fullIcon={<AiFillStar />}
+                      activeColor="#ffd700"
+                    />
+                  </div>
+                  <h2 className="text-xl text-black font-bold mb-3">
+                    {review?.fullname}
+                  </h2>
+                  <p className="text-gray-500 text-lg">{review?.reviewText}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
 
         {/* review form */}
@@ -83,6 +90,7 @@ const ReviewTabContent = ({ data }) => {
               name="reviewText"
               rows="10"
               onChange={(e) => handleChange(e)}
+              required
             ></textarea>
             <div className="flex items-center justify-between">
               <div>

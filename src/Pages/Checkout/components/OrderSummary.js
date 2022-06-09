@@ -1,24 +1,32 @@
 import React from "react";
+import { useGetSingleUserQuery } from "../../../store/services/userServices";
 
 const OrderSummary = () => {
+  const { data, isSuccess, isLoading } = useGetSingleUserQuery();
   return (
     <>
       <div className="bg-light-gray p-5 border-2 border-gray-200 rounded-lg">
         <h3 className="text-2xl font-bold text-left">Order Summary</h3>
         <div className="w-full h-[220px] overflow-y-auto hide-scrollbar">
-          <div className="flex items-center justify-start border-b-2 border-border mb-2">
-            <div>
-              <img
-                className="w-[80px] rounded-full "
-                src={require("../../../assets/images/food_1.png")}
-                alt="food"
-              />
-            </div>
-            <div>
-              <h3 className="text-heading font-bold text-lg">Checkin Burger</h3>
-              <p className="text-gray-500">Price: $98.00</p>
-            </div>
-          </div>
+          {isLoading
+            ? "Loading..."
+            : data?.user?.cart.map((product) => (
+                <div className="flex items-center justify-start border-b-2 border-border mb-2">
+                  <div>
+                    <img
+                      className="w-[80px] rounded-full "
+                      src={product.images[0]}
+                      alt="food"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-heading font-bold text-lg">
+                      {product.title}
+                    </h3>
+                    <p className="text-gray-500">Price: ${product.price}</p>
+                  </div>
+                </div>
+              ))}
         </div>
         {/* coupon */}
         <div className="flex items-center justify-between gap-3">

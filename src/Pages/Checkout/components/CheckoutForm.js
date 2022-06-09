@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   personalInfo,
@@ -9,9 +9,18 @@ import {
 import { IoReturnUpBackOutline } from "react-icons/io5";
 import { BsArrowRight } from "react-icons/bs";
 const CheckoutForm = () => {
+  const [shippingAddres, setShippingAddress] = useState({});
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setShippingAddress({ ...shippingAddres, [name]: value });
+    console.log({[name]:value})
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <>
-      <div className="col-span-3 lg:col-span-2">
+      <form onSubmit={handleSubmit} className="col-span-3 lg:col-span-2">
         {/* personal info */}
         <h2 className="text-xl text-black mb-3">01. Personal Details</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-5">
@@ -23,13 +32,15 @@ const CheckoutForm = () => {
               <br />
               <input
                 className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+                name={item.name}
                 type={item.type}
                 placeholder={item.placeholder}
+                onChange={handleChange}
               />
             </div>
           ))}
         </div>
-        {/* shipping info */}
+        {/* shipping details */}
         <h2 className="text-xl text-black mb-3">02. Shipping Details</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-5">
           {shippingInfo.map((item, index) => (
@@ -40,8 +51,10 @@ const CheckoutForm = () => {
               <br />
               <input
                 className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+                name={item.name}
                 type={item.type}
                 placeholder={item.placeholder}
+                onChange={handleChange}
               />
             </div>
           ))}
@@ -71,6 +84,7 @@ const CheckoutForm = () => {
                 name={item.name}
                 type={item.type}
                 placeholder={item.placeholder}
+                onChange={handleChange}
               />
             </div>
           ))}
@@ -81,7 +95,9 @@ const CheckoutForm = () => {
           <input
             className="col-span-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             type="text"
+            name="cardNumber"
             placeholder="Card Number"
+            onChange={handleChange}
           />
           {paymentInfo.map((item, index) => (
             <div className="col-span-2 lg:col-span-1">
@@ -102,6 +118,7 @@ const CheckoutForm = () => {
                   className=" bg-light-gray w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
                   name={item.name}
                   type={item.type}
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -118,14 +135,14 @@ const CheckoutForm = () => {
             </span>
             Continue Shopping
           </Link>
-          <button className="bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white">
+          <button className="bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white" type="submit">
             Confirm Order
             <span className="text-xl ml-2">
               <BsArrowRight />
             </span>
           </button>
         </div>
-      </div>
+      </form>
     </>
   );
 };
