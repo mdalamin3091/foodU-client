@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { MdDelete } from "react-icons/md";
-
-const DrawerCart = ({ productCount, setProductCount, product }) => {
-  // const [sendAddtoCart, cartResult] = useAddToCartMutation();
-  // const handleRemoveAddToCat = (id) =>{
-  //   sendAddtoCart(id)
-  // }
+import { useAddToCartMutation } from "../../store/services/userServices";
+const DrawerCart = ({ product }) => {
+  const [sendAddtoCart] = useAddToCartMutation();
+  const [productCount, setProductCount] = useState(1);
+  const handleRemoveAddToCat = (id) => {
+    sendAddtoCart(id);
+  };
   return (
     <>
       <div className="flex items-end justify-between border-b-2 border-border mb-2">
@@ -18,10 +19,10 @@ const DrawerCart = ({ productCount, setProductCount, product }) => {
             />
           </div>
           <div>
-            <h3 className="text-heading font-semibold text-lg">{product.title}</h3>
-            <p className="text-gray-500">
-              Price: ${product.price * productCount}
-            </p>
+            <h3 className="text-heading font-semibold text-lg">
+              {product.title}
+            </h3>
+            <p className="text-gray-500">Price: ${product.price * productCount}</p>
           </div>
         </div>
         <div className="flex items-center justify-between py-4">
@@ -29,11 +30,11 @@ const DrawerCart = ({ productCount, setProductCount, product }) => {
             <div>
               <p
                 className="w-8 h-8 rounded-full bg-light-gray text-black flex items-center justify-center text-3xl cursor-pointer"
-                onClick={() =>
+                onClick={() => {
                   setProductCount((prevCount) =>
                     prevCount > 1 ? prevCount - 1 : prevCount
-                  )
-                }
+                  );
+                }}
               >
                 -
               </p>
@@ -42,7 +43,9 @@ const DrawerCart = ({ productCount, setProductCount, product }) => {
             <div>
               <p
                 className="w-8 h-8 rounded-full bg-light-gray text-black flex items-center justify-center text-3xl cursor-pointer"
-                onClick={() => setProductCount((prevCount) => prevCount + 1)}
+                onClick={() => {
+                  setProductCount((prevCount) => prevCount + 1);
+                }}
               >
                 +
               </p>
@@ -50,7 +53,8 @@ const DrawerCart = ({ productCount, setProductCount, product }) => {
           </div>
         </div>
         <span
-          className="text-2xl text-red-600 cursor-pointer py-5" /// onClick={()=>handleRemoveAddToCat(product._id)}
+          className="text-2xl text-red-600 cursor-pointer py-5"
+          onClick={() => handleRemoveAddToCat(product._id)}
         >
           <MdDelete />
         </span>

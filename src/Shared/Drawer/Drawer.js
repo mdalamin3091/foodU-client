@@ -3,27 +3,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { showModalTrue } from "../../store/reducers/authSlice";
 import { drawerOpenFalse } from "../../store/reducers/drawerSlice";
-import {
-  useAddToCartMutation,
-  useGetSingleUserQuery,
-} from "../../store/services/userServices";
+import { useGetSingleUserQuery } from "../../store/services/userServices";
 import DrawerCart from "./DrawerCart";
 const Drawer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { drawerOpen } = useSelector((state) => state.drawer);
   const { user } = useSelector((state) => state.auth);
-  const [productCount, setProductCount] = useState(1);
   const { data, isSuccess, isLoading } = useGetSingleUserQuery();
-  // const [sendAddtoCart, cartResult] = useAddToCartMutation();
-  // const handleRemoveAddToCat = (id) =>{
-  //   sendAddtoCart(id)
-  // }
+  const [totalPrice, setTotalPrice] = useState(0);
   const handleNavigate = () => {
-    if(user){
+    if (user) {
       navigate("/checkout");
       dispatch(drawerOpenFalse(false));
-    }else{
+    } else {
       dispatch(drawerOpenFalse(false));
       dispatch(showModalTrue(true));
     }
@@ -58,13 +51,11 @@ const Drawer = () => {
           <div className="text-black overflow-auto ml-5 mt-2 !mb-[85px]">
             {isLoading
               ? "Loading..."
-              : data?.user?.cart.map((product) => (
-                  <DrawerCart
-                    productCount={productCount}
-                    product={product}
-                    setProductCount={setProductCount}
-                  />
-                ))}
+              : data?.user?.cart.map((product) => {
+                  return (
+                    <DrawerCart product={product} />
+                  );
+                })}
           </div>
           {/* drawer checkout button */}
           <div class="fixed bottom-5 left-5 right-5 w-[90%]">
@@ -78,7 +69,7 @@ const Drawer = () => {
                     Proceed To Checkout
                   </span>
                   <span class="rounded-lg font-bold py-2 px-3 bg-white text-secondary">
-                    $14.00
+                    ${totalPrice}
                   </span>
                 </button>
               </div>
