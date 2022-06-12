@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ScreenHeader from "../../Shared/ScreenHeader";
 import Product from "../../Shared/Product";
 import { Link } from "react-router-dom";
@@ -11,6 +11,7 @@ import { useAllProductQuery } from "../../store/services/productServices";
 
 const Shop = () => {
   const [gridView, setGridView] = useState(true);
+  const [selectCate, setSelectTCate] = useState("");
   const { data, isLoading, isSuccess } = useAllProductQuery();
   return (
     <>
@@ -91,7 +92,7 @@ const Shop = () => {
                     .reverse()}
             </div>
           </div>
-          <Sidebar />
+          <Sidebar selectCate={selectCate} setSelectTCate={setSelectTCate} />
         </div>
       </div>
       <Footer />

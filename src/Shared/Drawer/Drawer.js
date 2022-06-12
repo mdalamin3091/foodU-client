@@ -69,7 +69,7 @@ const Drawer = () => {
                     Proceed To Checkout
                   </span>
                   <span class="rounded-lg font-bold py-2 px-3 bg-white text-secondary">
-                    ${totalPrice}
+                    $ 100
                   </span>
                 </button>
               </div>

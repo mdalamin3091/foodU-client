@@ -1,37 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { BiDrink } from "react-icons/bi";
 import { GiFullPizza } from "react-icons/gi";
 import { AiFillStar } from "react-icons/ai";
 import { FaHamburger, FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
-const Sidebar = () => {
-  const categories = [
-    {
-      icon: <FaHamburger />,
-      text: "Burgers",
-    },
-    {
-      icon: <BiDrink />,
-      text: "Cold Drinks",
-    },
-    {
-      icon: <GiFullPizza />,
-      text: "Pizza",
-    },
-  ];
+import { useAllCategoryQuery, useByCategoryProductQuery } from "../../../store/services/productServices";
+const Sidebar = ({selectCate, setSelectTCate}) => {
+  // const [search, setSearch] = useState("");
+  const { data, isLoading, isSuccess } = useAllCategoryQuery();
+  // const result = useByCategoryProductQuery({
+  //   category:selectCate
+  // });
+  const handleChange = (e) => {
+    // setSearch(e.target.value);
+  };
+  const filterByCategory = (categoryName) =>{
+      setSelectTCate(categoryName)
+  }
   return (
     <>
       {/* sidebar  */}
       <div className="col-span-1">
         <div className="border-2 border-gray-200 rounded-2xl p-2 pt-5 mb-7">
           <h3 className="text-xl font-bold mb-3 pl-2">Categories</h3>
-          <div className="bg-light-gray p-4 rounded-xl space-y-4">
-            {categories.map((category, index) => (
-              <div className="flex items-start justify-start text-lg text-gray-500 hover:text-primary border-b-[1px] border-dashed border-gray-300 w-full cursor-pointer">
-                <span className="text-xl" key={index}>
-                  {category.icon}
-                </span>
-                <p className="ml-2">{category.text}</p>
+          <div className="bg-light-gray p-4 rounded-xl">
+            {data?.allCategory.map((category, index) => (
+              <div
+                className={
+                  selectCate === category.categoryName
+                    ? "flex items-start justify-start text-lg border-gray-300 w-full cursor-pointer bg-primary text-white py-2 rounded-lg"
+                    : "flex items-start justify-start text-lg text-gray-500 hover:text-primary border-b-[1px] border-dashed border-gray-300 w-full cursor-pointer  py-2 rounded-lg"
+                }
+              >
+                <p
+                  className="ml-2"
+                  onClick={()=>filterByCategory(category.categoryName)}
+                >
+                  {category.categoryName}
+                </p>
               </div>
             ))}
           </div>
@@ -44,6 +50,7 @@ const Sidebar = () => {
             name="search"
             placeholder="Search product"
             className="outline-none py-3 w-full bg-transparent"
+            onChange={handleChange}
           />
           <span className="absolute right-3 text-xl text-gray-400 top-8 cursor-pointer">
             <FaSearch />
