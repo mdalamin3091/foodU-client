@@ -11,7 +11,7 @@ const AllProducts = () => {
           <div className="flex flex-wrap -mx-4">
             {isLoading
               ? "Loading..."
-              : data?.allProducts
+              : !data?.allProducts.length && "Product Not Found" || data?.allProducts
                   ?.map((product) => <SingleProduct product={product} />)
                   .reverse()}
           </div>

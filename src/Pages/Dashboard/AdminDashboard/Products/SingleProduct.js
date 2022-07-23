@@ -24,6 +24,7 @@ const SingleProduct = ({ product }) => {
   const handleViewProduct = (id) => {
     setShowModal(true)
   };
+  console.log(product)
   return (
     <>
       <div className="w-full sm:w-1/2 lg:w-1/3 p-4">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import {
   useSingleProductQuery,
@@ -11,23 +11,28 @@ const UpdateProduct = () => {
   const navigate = useNavigate();
   const { data: categories, isSuccess } = useAllCategoryQuery();
   const [sendUpdateProductInfo, result] = useUpdateProductMutation();
-  const { data } = useSingleProductQuery({
+  const { data, isFetching } = useSingleProductQuery({
     productId,
   });
-  const [productImage, setProductImage] = useState(data?.getProduct?.images[0]);
+  const [productImage, setProductImage] = useState();
   const [uploadImages] = useUploadImagesMutation();
   const [productInfo, setProductInfo] = useState({
-    title: data?.getProduct?.title,
-    price: data?.getProduct?.price,
-    category: data?.getProduct?.category,
-    shortDescription: data?.getProduct?.shortDescription,
-    description: data?.getProduct?.description,
+    title: "",
+    price: "",
+    category: "",
+    shortDescription: "",
+    description: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProductInfo({ ...productInfo, [name]: value });
   };
-
+  useEffect(() => {
+    if (!isFetching) {
+      setProductInfo(data.getProduct);
+      setProductImage(data?.getProduct?.images[0])
+    }
+  }, [data]);
   // image upload
   const handleImage = (pics) => {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
@@ -37,29 +42,25 @@ const UpdateProduct = () => {
       data.append("cloud_name", "online-poco");
       uploadImages(data).then((result) =>
         setProductImage(result.data.url.toString())
-      );
+        // console.log(result.data.url.toString())
+        );
     }
   };
-
   const handleUpdate = () => {
     sendUpdateProductInfo({
       ...productInfo,
-      productImage,
+      images:productImage,
       id: productId,
-    }).then(res => {
-      if(res.data){
+    }).then((res) => {
+      if (res.data) {
         navigate("../allProducts");
       }
-    })
+    });
   };
-  console.log("productInfo", productInfo);
-  console.log(data?.getProduct);
   return (
     <>
       <h2 className="text-2xl font-bold mb-4">Update Product</h2>
-      <div
-        className="grid grid-cols-1 bg-white shadow-md p-6 rounded-md mx-0 lg:mx-16"
-      >
+      <div className="grid grid-cols-1 bg-white shadow-md p-6 rounded-md mx-0 lg:mx-16">
         <div className="mb-4">
           <label htmlFor="title" className="text-xl font-bold">
             Product Title
@@ -70,7 +71,7 @@ const UpdateProduct = () => {
             name="title"
             className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder="Product title"
-            defaultValue={data?.getProduct.title}
+            value={productInfo.title}
             onChange={handleChange}
           />
         </div>
@@ -84,7 +85,7 @@ const UpdateProduct = () => {
             name="price"
             className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder="Product Price"
-            defaultValue={data?.getProduct?.price}
+            value={productInfo.price}
             onChange={handleChange}
           />
         </div>
@@ -101,11 +102,9 @@ const UpdateProduct = () => {
             {isSuccess &&
               categories.allCategory.map((category) => (
                 <option
-                  defaultValue={category.categoryName}
+                  value={category.categoryName}
                   key={category._id}
-                  selected={
-                    category.categoryName === data?.getProduct?.category
-                  }
+                  selected={category.categoryName === productInfo.category}
                 >
                   {category.categoryName}
                 </option>
@@ -138,9 +137,7 @@ const UpdateProduct = () => {
             className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder=" Product Short Description"
             rows="5"
-            defaultValue={
-              data?.getProduct?.shortDescription
-            }
+            value={productInfo.shortDescription}
             onChange={handleChange}
           ></textarea>
         </div>
@@ -154,9 +151,7 @@ const UpdateProduct = () => {
             className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder=" Product Description"
             rows="5"
-            defaultValue={
-            data?.getProduct?.description
-            }
+            value={productInfo.description}
             onChange={handleChange}
           ></textarea>
         </div>

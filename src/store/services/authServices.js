@@ -4,6 +4,12 @@ const authServices = createApi({
   reducerPath: "authentication",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/api/v1",
+    prepareHeaders: (headers, { getState }) => {
+      const reducers = getState();
+      const token = reducers?.auth?.token;
+      headers.set("authorization", token ? `Bearer ${token}` : "");
+      return headers;
+    },
   }),
   tagTypes: ["user"],
   endpoints: (builder) => ({
