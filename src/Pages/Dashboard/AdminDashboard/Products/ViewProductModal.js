@@ -1,7 +1,6 @@
 import React from "react";
 
 const ViewProductModal = ({ product, showModal, setShowModal }) => {
-  console.log("product", product);
   return (
     <>
       {showModal ? (

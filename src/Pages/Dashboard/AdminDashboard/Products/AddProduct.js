@@ -14,7 +14,12 @@ const AddProduct = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProductInfo({ ...productInfo, [name]: value });
+    // console.log(productInfo)
   };
+  const handleCategoryChange = (e) =>{
+    const { name, value } = e.target;
+    setProductInfo({ ...productInfo, [name]: value });
+  }
   // image upload
   const handleImage = (pics) => {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
@@ -42,6 +47,7 @@ const AddProduct = () => {
       });
     }
   }, [result?.isSuccess]);
+  console.log(productInfo)
   return (
     <>
       <h2 className="text-2xl font-bold mb-4">Add Product</h2>
@@ -86,7 +92,7 @@ const AddProduct = () => {
             name="category"
             className="bg-light-gray border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 outline-none"
             required
-            onChange={handleChange}
+            onChange={handleCategoryChange}
           >
             {isSuccess &&
               categories.allCategory.map((category) => (

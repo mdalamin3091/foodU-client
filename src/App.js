@@ -54,9 +54,15 @@ function App() {
             <Route index element={<AdminDashboardIndex />} />
             <Route path="dashboard" element={<AdminDashboardIndex />} />
             <Route path="allProducts" element={<AllProducts />} />
-            <Route path="allProducts/updateProduct/:productId" element={<UpdateProduct />} />
+            <Route
+              path="allProducts/updateProduct/:productId"
+              element={<UpdateProduct />}
+            />
             <Route path="allCategories" element={<AllCategory />} />
-            <Route path="allCategories/updateCategory/:categoryId" element={<UpdateCateogory />} />
+            <Route
+              path="allCategories/updateCategory/:categoryId"
+              element={<UpdateCateogory />}
+            />
             <Route path="allUsers" element={<AllUsers />} />
             <Route path="allOrders" element={<AllOrders />} />
             <Route path="addProduct" element={<AddProduct />} />

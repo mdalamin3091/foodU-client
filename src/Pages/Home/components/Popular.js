@@ -23,7 +23,8 @@ const Popular = () => {
                     <Product gridView={gridView}/>
                     <Product gridView={gridView}/>
                 </div>
-                <div className="flex items-center justify-center mt-12">
+                <div className="flex items-center 
+                -center mt-12">
                     <Link to="/shop" className="btn-primary">All Products</Link>
                 </div>
             </div>

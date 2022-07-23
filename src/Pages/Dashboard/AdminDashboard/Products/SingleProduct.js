@@ -28,7 +28,7 @@ const SingleProduct = ({ product }) => {
     <>
       <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
         <div
-          className="product border-2 border-gray-200 bg-white rounded-2xl p-2 relative group font-JosefinSans"
+          className="product border-2 border-gray-200 bg-white rounded-2xl p-2 relative group font-JosefinSans overflow-hidden"
         >
           {/* image */}
           <div className="product-image basis-2/6" onClick={() => handleViewProduct(product._id)}>
