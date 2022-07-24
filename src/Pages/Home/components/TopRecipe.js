@@ -29,7 +29,7 @@ const TopRecipe = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-5 md:px-0">
             {isLoading
               ? "Loading..."
-              : data?.allProducts?.map((product) => (
+              : data?.allProducts?.slice(0, 6).map((product) => (
                   <>
                     <div
                       className="recipe border-2 border-gray-200 rounded-3xl p-2"

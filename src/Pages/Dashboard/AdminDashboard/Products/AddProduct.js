@@ -43,8 +43,6 @@ const AddProduct = () => {
         navigate("../allProducts");
       }
     })
-    // e.target.reset();
-
   };
   useEffect(() => {
     if (result?.isSuccess) {

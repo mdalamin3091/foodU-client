@@ -67,7 +67,7 @@ const Product = ({ gridView, product }) => {
         </span>
 
         {/* product content */}
-        <div className="content text-left p-4 pt-5 basis-4/6">
+        <div className="content relative text-left p-4 pt-5 mb-12">
           <h3
             onClick={() => handleNavigate(product?._id)}
             className="text-2xl font-bold text-heading hover:text-primary_hover cursor-pointer"
@@ -75,7 +75,8 @@ const Product = ({ gridView, product }) => {
             {product?.title}
           </h3>
           <p className="text-lg text-gray-500 ">{product?.shortDescription}</p>
-          <div className="flex items-center justify-between mt-3">
+        </div>
+        <div className="flex items-center justify-between mt-3 absolute bottom-0 left-0 right-0 p-4">
             <h3 className="text-2xl text-primary font-bold">
               £{product?.price}
             </h3>
@@ -83,7 +84,6 @@ const Product = ({ gridView, product }) => {
               <BsMinecart />
             </div>
           </div>
-        </div>
       </div>
     </>
   );

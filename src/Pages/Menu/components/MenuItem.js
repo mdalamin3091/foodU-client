@@ -29,7 +29,7 @@ const MenuItem = ({product}) => {
               {product.shortDescription}
             </p>
             <span className="text-primary text-lg font-bold">${" "}{product.price}</span>
-            <span className="cart-icon absolute right-2 bottom-[-8px]" onClick={()=>handleAddToCart(product._id)}>
+            <span className="cart-icon absolute right-3 bottom-[-20px]" onClick={()=>handleAddToCart(product._id)}>
               <BsMinecart />
             </span>
           </div>

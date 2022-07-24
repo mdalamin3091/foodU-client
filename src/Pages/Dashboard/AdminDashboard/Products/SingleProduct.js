@@ -67,7 +67,6 @@ const SingleProduct = ({ product }) => {
               <span class="text-lg font-bold">Category:</span>&nbsp;
               <span class="font-semibold text-lg">{product.category}</span>
             </div>
-            <p className="text-lg text-gray-500 ">{product.shortDescription}</p>
           </div>
         </div>
       </div>
