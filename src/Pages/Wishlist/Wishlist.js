@@ -1,15 +1,24 @@
 import React from "react";
 import ScreenHeader from "../../Shared/ScreenHeader";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdDelete } from "react-icons/md";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import NavBar from "../../Shared/NavBar";
 import Footer from "../../Shared/Footer";
-
+import {
+  useAddWishlistMutation,
+  useGetSingleUserQuery,
+} from "../../store/services/userServices";
 const Wishlist = () => {
+  const { data, isLoading, isSuccess } = useGetSingleUserQuery();
+  const [addProductWishlist, result] = useAddWishlistMutation();
+  const navigate = useNavigate();
+  const handleWishlist = (productId) => {
+    addProductWishlist({ productId });
+  };
   return (
     <>
-    <NavBar />
+      <NavBar />
       <ScreenHeader>
         <div>
           <h1 className="font-JosefinSans font-bold text-5xl text-center">
@@ -26,61 +35,42 @@ const Wishlist = () => {
         <table className="w-full">
           <tbody>
             {/* 1 */}
-            <tr className="w-full">
-              <td className="border border-gray-400 w-1/6">
-                <img
-                  className="w-36 mx-auto"
-                  src={require("../../assets/images/food_1.png")}
-                  alt="food one"
-                />
-              </td>
-              <td className="border border-gray-400 w-3/6 pl-5">
-                <div className="flex flex-col items-start justify-center">
-                  <h3 className="text-primary font-bold hover:text-primary_hover">
-                    Primo Meat
-                  </h3>
-                  <p className="text-gray-600 font-bold"> £9.00</p>
-                </div>
-              </td>
-              <td className="border border-gray-400 w-2/6">
-                <div className="flex items-center justify-center">
-                  <span className="text-3xl cursor-pointer font-bold text-primary hover:text-primary_hover">
-                    <AiOutlineShoppingCart />
-                  </span>
-                  <span className="text-3xl cursor-pointer font-bold text-red-500 hover;text-red-600">
-                    <MdDelete />
-                  </span>
-                </div>
-              </td>
-            </tr>
-            {/* 2 */}
-            <tr className="w-full">
-              <td className="border border-gray-400 w-1/6">
-                <img
-                  className="w-36 mx-auto"
-                  src={require("../../assets/images/food_1.png")}
-                  alt="food one"
-                />
-              </td>
-              <td className="border border-gray-400 w-3/6 pl-5">
-                <div className="flex flex-col items-start justify-center">
-                  <h3 className="text-primary font-bold hover:text-primary_hover">
-                    Primo Meat
-                  </h3>
-                  <p className="text-gray-600 font-bold"> £9.00</p>
-                </div>
-              </td>
-              <td className="border border-gray-400 w-2/6">
-                <div className="flex items-center justify-center">
-                  <span className="text-3xl cursor-pointer font-bold text-primary hover:text-primary_hover">
-                    <AiOutlineShoppingCart />
-                  </span>
-                  <span className="text-3xl cursor-pointer font-bold text-red-500 hover;text-red-600">
-                    <MdDelete />
-                  </span>
-                </div>
-              </td>
-            </tr>
+            {isLoading
+              ? "Loading..."
+              : data?.user?.wishlist?.map((product) => (
+                  <tr className="w-full" key={product._id}>
+                    <td className="border border-gray-400 w-1/6">
+                      <img
+                        className="w-36 mx-auto"
+                        src={product?.images[0]}
+                        alt="food one"
+                      />
+                    </td>
+                    <td className="border border-gray-400 w-3/6 pl-5">
+                      <div className="flex flex-col items-start justify-center">
+                        <h3 className="text-primary font-bold hover:text-primary_hover">
+                          {product.title}
+                        </h3>
+                        <p className="text-gray-600 font-bold">
+                          £{product.price}
+                        </p>
+                      </div>
+                    </td>
+                    <td className="border border-gray-400 w-2/6">
+                      <div className="flex items-center justify-center">
+                        <span className="text-3xl cursor-pointer font-bold text-primary hover:text-primary_hover">
+                          <AiOutlineShoppingCart />
+                        </span>
+                        <span
+                          className="text-3xl cursor-pointer font-bold text-red-500 hover;text-red-600"
+                          onClick={() => handleWishlist(product._id)}
+                        >
+                          <MdDelete />
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
           </tbody>
         </table>
       </div>

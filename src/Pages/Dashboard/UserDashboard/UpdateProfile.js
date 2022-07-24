@@ -30,7 +30,6 @@ const UpdateProfile = () => {
       );
     }
   };
-
   // update function
   const handleUpdateProfile = async () => {
     await updateProfileInfo({
@@ -40,6 +39,10 @@ const UpdateProfile = () => {
     });
   };
 
+  // useEffect(()=>{
+  //   setProfileInfo(user)
+  // }, [user])
+  console.log(profileInfo)
   useEffect(() => {
     if (result?.isSuccess){
       localStorage.setItem("user", JSON.stringify(result?.data?.updateUser));
@@ -77,7 +80,7 @@ const UpdateProfile = () => {
             type="text"
             name="fullname"
             placeholder="Full Name"
-            value={user?.fullname}
+            value={profileInfo?.fullname}
             onChange={(e) => handleChange(e)}
           />
         </div>
@@ -91,7 +94,7 @@ const UpdateProfile = () => {
             type="email"
             name="email"
             placeholder="Email"
-            value={user?.email}
+            value={profileInfo?.email}
             onChange={(e) => handleChange(e)}
           />
         </div>

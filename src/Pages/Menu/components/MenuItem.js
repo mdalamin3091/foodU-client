@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsMinecart } from "react-icons/bs";
-const MenuItem = () => {
+import { useAddToCartMutation } from "../../../store/services/userServices";
+const MenuItem = ({product}) => {
+  const [sendAddtoCart, cart] = useAddToCartMutation();
+  const handleAddToCart = id =>{
+    sendAddtoCart(id)
+  }
   return (
     <>
       <div className="recipe border-2 border-gray-200 rounded-3xl p-2">
@@ -9,7 +14,7 @@ const MenuItem = () => {
           <div className="basis-1/3">
             <img
               className="w-full"
-              src={require("../../../assets/images/food_2.png")}
+              src={product.images[0]}
               alt="food"
             />
           </div>
@@ -18,13 +23,13 @@ const MenuItem = () => {
               to="/shop"
               className="text-2xl font-bold text-heading hover:text-primary cursor-pointer"
             >
-              BBQ chicken breast
+              {product.title}
             </Link>
             <p className="text-gray-500 text-lg">
-              A mighty meaty double helping of all the reasons you love our burger.
+              {product.shortDescription}
             </p>
-            <span className="text-primary text-lg font-bold">£8.00</span>
-            <span className="cart-icon absolute right-2 bottom-[-8px]">
+            <span className="text-primary text-lg font-bold">${" "}{product.price}</span>
+            <span className="cart-icon absolute right-2 bottom-[-8px]" onClick={()=>handleAddToCart(product._id)}>
               <BsMinecart />
             </span>
           </div>

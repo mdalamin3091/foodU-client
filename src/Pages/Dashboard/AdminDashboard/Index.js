@@ -62,19 +62,23 @@ const Index = () => {
               {item.icon}
             </div>
             <div>
-              <p className="text-xl font-medium  text-gray-600 ">{item.title}</p>
-              <p className="text-xl font-semibold text-gray-700">{item.numbers}</p>
+              <p className="text-xl font-medium  text-gray-600 ">
+                {item.title}
+              </p>
+              <p className="text-xl font-semibold text-gray-700">
+                {item.numbers}
+              </p>
             </div>
           </div>
         ))}
       </div>
       <h2 className="text-3xl font-bold mb-4">Dashboard Summary</h2>
       <h2 className="text-xl font-bold mb-4">Some Products</h2>
-      <div className="flex flex-wrap -mx-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 -mx-4">
         {isLoading
           ? "Loading..."
           : allProducts?.allProducts
-              ?.slice(0, 3)
+              ?.slice(0, 4)
               .map((product) => <SingleProduct product={product} />)
               .reverse()}
       </div>

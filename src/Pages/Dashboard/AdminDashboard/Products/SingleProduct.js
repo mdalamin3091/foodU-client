@@ -20,19 +20,19 @@ const SingleProduct = ({ product }) => {
         });
       }
     });
-  }; 
-  const handleViewProduct = (id) => {
-    setShowModal(true)
   };
-  console.log(product)
+  const handleViewProduct = () => {
+    setShowModal(true);
+  };
   return (
     <>
-      <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
-        <div
-          className="product border-2 border-gray-200 bg-white rounded-2xl p-2 relative group font-JosefinSans overflow-hidden"
-        >
+      <div className="w-full p-4">
+        <div className="product border-2 border-gray-200 bg-white rounded-2xl p-2 relative group font-JosefinSans">
           {/* image */}
-          <div className="product-image basis-2/6" onClick={() => handleViewProduct(product._id)}>
+          <div
+            className="product-image basis-2/6"
+            onClick={() => handleViewProduct(product._id)}
+          >
             <img
               className="group-hover:scale-110 transition-all ease-linear duration-200 w-full"
               src={product.images[0]}
@@ -57,7 +57,10 @@ const SingleProduct = ({ product }) => {
 
           {/* product content */}
           <div className="content text-left p-4 pt-5 basis-4/6">
-            <div className="text-2xl font-bold text-heading hover:text-primary_hover cursor-pointer" onClick={() => handleViewProduct(product._id)}>
+            <div
+              className="text-2xl font-bold text-heading hover:text-primary_hover cursor-pointer"
+              onClick={() => handleViewProduct(product._id)}
+            >
               {product.title}
             </div>
             <div class="mt-2 flex items-center">
@@ -68,7 +71,13 @@ const SingleProduct = ({ product }) => {
           </div>
         </div>
       </div>
-      {<ViewProductModal product={product} showModal={showModal} setShowModal={setShowModal} />}
+      {
+        <ViewProductModal
+          product={product}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+      }
     </>
   );
 };

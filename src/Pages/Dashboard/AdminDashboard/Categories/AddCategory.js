@@ -27,7 +27,6 @@ const AddCategory = () => {
       categoryName,
       categoryImage,
     }).then((res) => {
-      console.log(res)
       if (res?.data) {
         navigate("../allCategories");
       }

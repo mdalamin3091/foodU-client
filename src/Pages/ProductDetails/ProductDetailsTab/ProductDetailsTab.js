@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ReviewTabContent from "./ReviewTabContent";
 
-const ProductDetailsTab = () => {
+const ProductDetailsTab = ({ data }) => {
   const [selectTab, setSelectTab] = useState("Description");
   return (
     <div className="font-JosefinSans section-padding pt-0">
@@ -25,22 +25,20 @@ const ProductDetailsTab = () => {
           }
           onClick={() => setSelectTab("Review")}
         >
-          Reviews (2)
+          Reviews (
+          {data?.getProduct?.review?.length
+            ? data?.getProduct?.review?.length
+            : 0}
+          )
         </button>
       </div>
       {/* Description tab content  */}
-      <div className={selectTab === "Description" ? "block px-16" : "hidden"}>
-        <p className="text-gray-500 text-xl">
-          Although the legendary Double Burger really needs no introduction,
-          please allow us… Tucked in between three soft buns are two all-beef
-          patties, cheddar cheese, ketchup, onion, pickles and iceberg lettuce.
-          Hesburger’s own paprika and cucumber mayonnaise add the crowning
-          touch. Oh baby!
-        </p>
+      <div className={selectTab === "Description" ? "block md:px-16 px-4" : "hidden"}>
+        <p className="text-gray-500 text-xl">{data?.getProduct?.description}</p>
       </div>
       {/* Review tab content  */}
       <div className={selectTab === "Review" ? "block" : "hidden"}>
-        <ReviewTabContent />
+        <ReviewTabContent data={data} />
       </div>
     </div>
   );

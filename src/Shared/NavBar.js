@@ -9,6 +9,7 @@ import Drawer from "./Drawer/Drawer";
 import { showModalTrue, logout } from "../store/reducers/authSlice";
 import { drawerOpenTrue } from "../store/reducers/drawerSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { useGetSingleUserQuery } from "../store/services/userServices";
 const NavBar = () => {
   const menus = [
     {
@@ -33,6 +34,7 @@ const NavBar = () => {
     },
   ];
   const [scrollPosition, setScrollPosition] = useState(false);
+  const { data, isLoading, isSuccess } = useGetSingleUserQuery();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
@@ -59,8 +61,9 @@ const NavBar = () => {
   return (
     <>
       <nav
-        className={`bg-white shadow-lg font-JosefinSans sticky ${!scrollPosition ? "py-7" : "py-2"
-          } top-0 transition-all duration-100 z-[38]`}
+        className={`bg-white shadow-lg font-JosefinSans sticky ${
+          !scrollPosition ? "py-7" : "py-2"
+        } top-0 transition-all duration-100 z-[38]`}
       >
         <div className="container flex justify-between">
           <div className="lg:hidden text-2xl text-left flex items-center justify-center !ml-[15px]">
@@ -111,7 +114,7 @@ const NavBar = () => {
             <Link to="/wishlist" className="navbar-icon relative group">
               <BsFillSuitHeartFill />
               <span className="flex items-center justify-center w-6 h-6 text-sm font-semibold text-white bg-primary rounded-[50%] absolute top-0 right-0 group-hover:bg-primary_hover">
-                1
+                {data?.user?.wishlist.length ? data?.user?.wishlist.length : 0}
               </span>
             </Link>
             <span
@@ -120,7 +123,7 @@ const NavBar = () => {
             >
               <MdOutlineShoppingCart />
               <span className="flex items-center justify-center w-6 h-6 text-sm font-semibold text-white bg-primary rounded-[50%] absolute top-0 right-0 group-hover:bg-primary_hover">
-                1
+                {data?.user?.cart.length ? data?.user?.cart.length : 0}
               </span>
             </span>
             {user?.profilePic ? (

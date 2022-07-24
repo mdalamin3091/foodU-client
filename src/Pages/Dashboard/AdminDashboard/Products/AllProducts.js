@@ -8,7 +8,7 @@ const AllProducts = () => {
       <h2 className="text-2xl font-bold mb-4">All Products</h2>
       <body className="antialiased text-gray-900 font-JosefinSans">
         <div className="container mx-auto">
-          <div className="flex flex-wrap -mx-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 -mx-4">
             {isLoading
               ? "Loading..."
               : !data?.allProducts.length && "Product Not Found" || data?.allProducts

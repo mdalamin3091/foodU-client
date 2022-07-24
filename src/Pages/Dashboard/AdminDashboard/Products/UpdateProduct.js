@@ -6,6 +6,7 @@ import {
   useUpdateProductMutation,
 } from "../../../../store/services/productServices";
 import { useUploadImagesMutation } from "../../../../store/services/uploadServices";
+import { toast } from "react-toastify";
 const UpdateProduct = () => {
   const { productId } = useParams();
   const navigate = useNavigate();
@@ -52,6 +53,9 @@ const UpdateProduct = () => {
       images:productImage,
       id: productId,
     }).then((res) => {
+      toast.success(res?.data?.msg, {
+        theme: "colored",
+      });
       if (res.data) {
         navigate("../allProducts");
       }

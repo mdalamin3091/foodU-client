@@ -5,21 +5,24 @@ import {
   useUpdateCategoryMutation,
 } from "../../../../store/services/productServices";
 import { useUploadImagesMutation } from "../../../../store/services/uploadServices";
+import { toast } from "react-toastify";
 const UpdateCateogory = () => {
   const { categoryId } = useParams();
-    const { data, isLoading, isSuccess } = useSingleCategoryQuery({
+  const { data, isLoading, isSuccess } = useSingleCategoryQuery({
     categoryId,
   });
-  const [categoryName, setCategoryName] = useState(data?.category?.categoryName);
+  const [categoryName, setCategoryName] = useState(
+    data?.category?.categoryName
+  );
   const [categoryImage, setCategoryImage] = useState(
     data?.category?.categoryImage
   );
   const [uploadImages] = useUploadImagesMutation();
   const navigate = useNavigate();
   const [sendUpdateCateInfo, result] = useUpdateCategoryMutation();
-  const handleChange = (e) =>{
+  const handleChange = (e) => {
     setCategoryName(e.target.value);
-  }
+  };
   const handleImage = (pics) => {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
@@ -31,17 +34,24 @@ const UpdateCateogory = () => {
       );
     }
   };
-
   const handleUpdate = () => {
     sendUpdateCateInfo({
       id: categoryId,
       categoryName,
       categoryImage,
+    }).then((res) => {
+      console.log(res);
+      toast.success(res?.data?.msg, {
+        theme: "colored",
+      });
+      if (res.data) {
+        navigate("../allCategories");
+      }
     });
   };
 
-  if(result?.isSuccess){
-    navigate("../allCategories")
+  if (result?.isSuccess) {
+    navigate("../allCategories");
   }
   console.log(categoryName);
   return (

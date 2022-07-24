@@ -3,6 +3,7 @@ import {
   useAddProductMutation,
   useAllCategoryQuery,
 } from "../../../../store/services/productServices";
+import {useNavigate} from "react-router-dom";
 import { useUploadImagesMutation } from "../../../../store/services/uploadServices";
 import { toast } from "react-toastify";
 const AddProduct = () => {
@@ -11,10 +12,10 @@ const AddProduct = () => {
   const [productImages, setProductImages] = useState();
   const [productInfo, setProductInfo] = useState({});
   const [uploadImages] = useUploadImagesMutation();
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProductInfo({ ...productInfo, [name]: value });
-    // console.log(productInfo)
   };
   const handleCategoryChange = (e) =>{
     const { name, value } = e.target;
@@ -37,8 +38,13 @@ const AddProduct = () => {
     sendAddProduct({
       ...productInfo,
       productImages,
-    });
-    e.target.reset();
+    }).then(res =>{
+      if(res.data){
+        navigate("../allProducts");
+      }
+    })
+    // e.target.reset();
+
   };
   useEffect(() => {
     if (result?.isSuccess) {
@@ -47,7 +53,6 @@ const AddProduct = () => {
       });
     }
   }, [result?.isSuccess]);
-  console.log(productInfo)
   return (
     <>
       <h2 className="text-2xl font-bold mb-4">Add Product</h2>
