@@ -92,8 +92,8 @@ const ReviewTabContent = ({ data }) => {
               onChange={(e) => handleChange(e)}
               required
             ></textarea>
-            <div className="flex items-center justify-between">
-              <div>
+            <div className="flex items-center justify-between gap-4 flex-col md:flex-row">
+              <div className="basis-full md:basis-1/2">
                 <label htmlFor="name" className="text-lg text-gray-500">
                   Name *
                 </label>
@@ -105,7 +105,7 @@ const ReviewTabContent = ({ data }) => {
                   value={user?.fullname}
                 />
               </div>
-              <div>
+              <div className="basis-full md:basis-1/2">
                 <label htmlFor="email" className="text-lg text-gray-500">
                   Email *
                 </label>

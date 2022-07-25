@@ -13,8 +13,12 @@ const Shop = () => {
   const [gridView, setGridView] = useState(true);
   const [selectCate, setSelectCate] = useState(null);
   const { data, isLoading, isSuccess } = useAllProductQuery();
-  const [allProducts, setAllProducts] = useState(data?.allProducts)
-
+  // const [matchProduct, setMatchProduct] = useState(data?.allProducts);
+  const [allProducts, setAllProducts] = useState(data?.allProducts);
+  const filteredProduct = data?.allProducts?.filter(
+    (product) => product.category === selectCate
+  );
+  console.log(filteredProduct)
   return (
     <>
       <NavBar />
@@ -89,7 +93,11 @@ const Shop = () => {
                 ? "Loading..."
                 : data?.allProducts
                     ?.map((product) => (
-                      <Product gridView={gridView} product={product} />
+                      <Product
+                        key={product._id}
+                        gridView={gridView}
+                        product={product}
+                      />
                     ))
                     .reverse()}
             </div>

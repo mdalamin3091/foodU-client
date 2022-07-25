@@ -1,6 +1,6 @@
 import React from "react";
 import { BsSuitHeartFill, BsMinecart } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   useAddWishlistMutation,
   useGetSingleUserQuery,
@@ -10,6 +10,7 @@ const Product = ({ gridView, product }) => {
   const [addProductWishlist, result] = useAddWishlistMutation();
   const { data, isLoading, isSuccess } = useGetSingleUserQuery();
   const [sendAddtoCart, cart] = useAddToCartMutation();
+  const {productId} = useParams();
   const navigate = useNavigate();
   const handleWishlist = (productId) => {
     addProductWishlist({ productId });

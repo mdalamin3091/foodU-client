@@ -20,7 +20,7 @@ const MenuItem = ({product}) => {
           </div>
           <div className="content basis-2/3 text-left mt-5 relative">
             <Link
-              to="/shop"
+              to={`../product/${product._id}`}
               className="text-2xl font-bold text-heading hover:text-primary cursor-pointer"
             >
               {product.title}

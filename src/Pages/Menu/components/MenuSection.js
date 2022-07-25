@@ -5,7 +5,8 @@ import MenuItem from "./MenuItem";
 const MenuSection = () => {
   const [openTab, setOpenTab] = useState("Pizza");
   const { data, isLoading, isSuccess } = useAllProductQuery();
-
+  const filteredData = data?.allProducts.filter(product => product.category === openTab);
+  console.log(filteredData)
   return (
     <div className="container section-padding font-JosefinSans">
       <h2 className="section-title text-center text-4xl">Menus Of The Day</h2>
@@ -14,7 +15,7 @@ const MenuSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 lg:p-0">
         {isLoading
           ? "Loading..."
-          : data?.allProducts?.map((product) => <MenuItem product={product} />)}
+          : filteredData?.slice(0, 6).map((product) => <MenuItem product={product} />)}
       </div>
     </div>
   );

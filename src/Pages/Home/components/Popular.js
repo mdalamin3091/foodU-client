@@ -5,9 +5,13 @@ import { Link } from "react-router-dom";
 import { useAllProductQuery } from "../../../store/services/productServices";
 
 const Popular = () => {
-  const [openTab, setOpenTab] = useState(null);
+  const [openTab, setOpenTab] = useState("Pizza");
   const [gridView, setGridView] = useState(true);
   const { data, isLoading, isSuccess } = useAllProductQuery();
+  const filteredData = data?.allProducts.filter(
+    (product) => product.category === openTab
+  );
+  console.log(filteredData);
   return (
     <div className="bg-white font-JosefinSans section-padding">
       <div className="container">
@@ -18,8 +22,9 @@ const Popular = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5 lg:px-0">
           {isLoading
             ? "Loading..."
-            : data?.allProducts
-                ?.map((product) => (
+            : filteredData
+                ?.slice(0, 6)
+                .map((product) => (
                   <Product gridView={gridView} product={product} />
                 ))
                 .reverse()}
