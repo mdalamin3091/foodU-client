@@ -3,11 +3,18 @@ import { Link } from "react-router-dom";
 import { BsMinecart } from "react-icons/bs";
 import { useAllProductQuery } from "../../../store/services/productServices";
 import { useAddToCartMutation } from "../../../store/services/userServices";
+import { toast } from "react-toastify";
 const TopRecipe = () => {
   const { data, isLoading, isSuccess } = useAllProductQuery();
   const [sendAddtoCart, cart] = useAddToCartMutation();
   const handleAddToCart = (id) => {
-    sendAddtoCart(id);
+    sendAddtoCart(id).then((res) => {
+      toast.success(res?.data?.msg, {
+        theme: "colored",
+        closeOnClick: true,
+        hideProgressBar: false,
+      });
+    });
   };
   return (
     <div className="section-padding font-JosefinSans">

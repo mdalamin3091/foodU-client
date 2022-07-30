@@ -6,16 +6,22 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import NavBar from "../../Shared/NavBar";
 import Footer from "../../Shared/Footer";
 import {
+  useAddToCartMutation,
   useAddWishlistMutation,
   useGetSingleUserQuery,
 } from "../../store/services/userServices";
 const Wishlist = () => {
   const { data, isLoading, isSuccess } = useGetSingleUserQuery();
   const [addProductWishlist, result] = useAddWishlistMutation();
+  const [sendAddtoCart, cart] = useAddToCartMutation();
   const navigate = useNavigate();
   const handleWishlist = (productId) => {
     addProductWishlist({ productId });
   };
+  const handleAddToCart = (id) => {
+    sendAddtoCart(id);
+  };
+  
   return (
     <>
       <NavBar />
@@ -58,7 +64,10 @@ const Wishlist = () => {
                     </td>
                     <td className="border border-gray-400 w-2/6">
                       <div className="flex items-center justify-center">
-                        <span className="text-3xl cursor-pointer font-bold text-primary hover:text-primary_hover">
+                        <span
+                          className="text-3xl cursor-pointer font-bold text-primary hover:text-primary_hover"
+                          onClick={() => handleAddToCart(product._id)}
+                        >
                           <AiOutlineShoppingCart />
                         </span>
                         <span

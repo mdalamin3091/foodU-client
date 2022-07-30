@@ -1,9 +1,4 @@
 import React from "react";
-import {
-  MdOutlineKeyboardArrowLeft,
-  MdOutlineKeyboardArrowRight,
-} from "react-icons/md";
-
 const Pagination = ({
   currentPage,
   productPerPage,

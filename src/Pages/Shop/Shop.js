@@ -13,17 +13,16 @@ import Pagination from "./components/Pagination";
 const Shop = () => {
   const [gridView, setGridView] = useState(true);
   const [selectCate, setSelectCate] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1);
   const [searchProducts, setSearchProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
   const [productPerPage, setProductPerPage] = useState(2);
-  const { data, isLoading, isSuccess } = useAllProductQuery();
-  const indexOfLastPost = currentPage * productPerPage;
-  const indexOfFirstPost = indexOfLastPost - productPerPage;
+  const { data, isLoading } = useAllProductQuery();
+  const indexOfLastProduct = currentPage * productPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productPerPage;
   const currentProducts = data?.allProducts?.slice(
-    indexOfFirstPost,
-    indexOfLastPost
+    indexOfFirstProduct,
+    indexOfLastProduct
   );
-
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };

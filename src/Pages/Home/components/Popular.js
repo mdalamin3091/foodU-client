@@ -11,7 +11,6 @@ const Popular = () => {
   const filteredData = data?.allProducts.filter(
     (product) => product.category === openTab
   );
-  console.log(filteredData);
   return (
     <div className="bg-white font-JosefinSans section-padding">
       <div className="container">

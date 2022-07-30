@@ -1,6 +1,7 @@
 import React from "react";
 import { BsSuitHeartFill, BsMinecart } from "react-icons/bs";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import {
   useAddWishlistMutation,
   useGetSingleUserQuery,
@@ -13,13 +14,25 @@ const Product = ({ gridView, product }) => {
   const { productId } = useParams();
   const navigate = useNavigate();
   const handleWishlist = (productId) => {
-    addProductWishlist({ productId });
+    addProductWishlist({ productId }).then((res) => {
+      toast.success(res?.data?.msg, {
+        theme: "colored",
+        closeOnClick: true,
+        hideProgressBar: false,
+      });
+    });
   };
   const handleNavigate = (id) => {
     navigate(`product/${id}`);
   };
   const handleAddToCart = (id) => {
-    sendAddtoCart(id);
+    sendAddtoCart(id).then((res) => {
+      toast.success(res?.data?.msg, {
+        theme: "colored",
+        closeOnClick: true,
+        hideProgressBar: false,
+      });
+    });
   };
   return (
     <>
@@ -32,7 +45,7 @@ const Product = ({ gridView, product }) => {
       >
         {/* image */}
         <div
-          className="product-image basis-2/6"
+          className="product-image basis-2/6 overflow-hidden"
           onClick={() => handleNavigate(product?._id)}
         >
           <img

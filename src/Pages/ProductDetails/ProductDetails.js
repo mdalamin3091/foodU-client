@@ -10,21 +10,37 @@ import NavBar from "../../Shared/NavBar";
 import Footer from "../../Shared/Footer";
 import ReactStars from "react-rating-stars-component";
 import { useSingleProductQuery } from "../../store/services/productServices";
-import { useAddToCartMutation, useAddWishlistMutation } from "../../store/services/userServices";
+import { toast } from "react-toastify";
+import {
+  useAddToCartMutation,
+  useAddWishlistMutation,
+} from "../../store/services/userServices";
 const ProductDetails = () => {
   const [productCount, setProductCount] = useState(1);
   const { productId } = useParams();
   const { data, isSuccess, isLoading } = useSingleProductQuery({
     productId,
   });
-  const [addProductWishlist, result] = useAddWishlistMutation();
-  const [sendAddtoCart, cart] = useAddToCartMutation();
+  const [addProductWishlist] = useAddWishlistMutation();
+  const [sendAddtoCart] = useAddToCartMutation();
   const handleWishlist = () => {
-    addProductWishlist({ productId });
+    addProductWishlist({ productId }).then((res) => {
+      toast.success(res?.data?.msg, {
+        theme: "colored",
+        closeOnClick: true,
+        hideProgressBar: false,
+      });
+    });
   };
-  const handleAddToCart = id =>{
-    sendAddtoCart(id)
-  }
+  const handleAddToCart = (id) => {
+    sendAddtoCart(id).then((res) => {
+      toast.success(res?.data?.msg, {
+        theme: "colored",
+        closeOnClick: true,
+        hideProgressBar: false,
+      });
+    });
+  };
   return (
     <div>
       <NavBar />
@@ -33,32 +49,13 @@ const ProductDetails = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 section-padding font-JosefinSans px-5 lg:px-0">
           <div>
             {/* big image  */}
-            <div className="border-2 border-gray-200 rounded-2xl p-2 h-auto">
+            <div className="border-2 border-gray-200 rounded-2xl p-2 h-[500px]">
               <div className="bg-light-gray h-full overflow-hidden">
                 <img
-                  className="h-full hover:scale-125 transition-all ease-linear duration-300 w-full"
+                  className="h-full hover:scale-125 transition-all ease-linear duration-300 w-full object-contain object-center"
                   src={data?.getProduct?.images[0]}
                   alt="single food"
                 />
-              </div>
-            </div>
-            {/* small images */}
-            <div className="flex items-start gap-3 mt-4">
-              <div className="border-2 border-gray-200 rounded-2xl p-2">
-                <div className="bg-light-gray cursor-pointer opacity-70 hover:opacity-100">
-                  <img
-                    src={require("../../assets/images/single_food_1.png")}
-                    alt="small food"
-                  />
-                </div>
-              </div>
-              <div className="border-2 border-gray-200 rounded-2xl p-2">
-                <div className="bg-light-gray cursor-pointer opacity-70 hover:opacity-100">
-                  <img
-                    src={require("../../assets/images/single_food_1.png")}
-                    alt="small food"
-                  />
-                </div>
               </div>
             </div>
           </div>
@@ -77,7 +74,11 @@ const ProductDetails = () => {
                 activeColor="#ffc222"
               />
               <p className="text-gray-400 ml-2">
-                ({data?.getProduct?.review?.length ? data?.getProduct?.review?.length : 0} Customer Reviews)
+                (
+                {data?.getProduct?.review?.length
+                  ? data?.getProduct?.review?.length
+                  : 0}{" "}
+                Customer Reviews)
               </p>
             </div>
             <p className="text-gray-600 text-xl mb-8">
@@ -86,7 +87,7 @@ const ProductDetails = () => {
             <p className="text-primary text-4xl font-bold mb-4">
               £{data?.getProduct?.price}
             </p>
-            <div className="flex items-center justify-between border-t-2 border-t-gray-200 border-b-2 border-b-gray-200 py-4 mb-6">
+            <div className="flex items-center justify-between border-t border-t-gray-200 border-b border-b-gray-200 py-4 mb-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p
@@ -113,7 +114,10 @@ const ProductDetails = () => {
                 </div>
               </div>
               <div className="flex items-center justify-between">
-                <button className="btn-primary px-12 lg:px-32 mr-3 whitespace-nowrap" onClick={()=>handleAddToCart(data?.getProduct?._id)}>
+                <button
+                  className="btn-primary px-12 lg:px-32 mr-3 whitespace-nowrap"
+                  onClick={() => handleAddToCart(data?.getProduct?._id)}
+                >
                   Add to cart
                 </button>
                 <span
@@ -124,10 +128,21 @@ const ProductDetails = () => {
                 </span>
               </div>
             </div>
-            <h4 className="text-black">
+            <h4 className="text-black border-b border-border pb-5">
               Category:{" "}
               <span className="font-bold">{data?.getProduct?.category}</span>
             </h4>
+            <ul className="mt-5">
+              <li className="text-gray-500 relative before:absolute before:w-1.5 before:h-1.5 before:rounded-full before:bg-gray-600 before:mt-1.5 pl-4 before:left-0">
+                Free global shipping on all orders
+              </li>
+              <li className="text-gray-500 relative before:absolute before:w-1.5 before:h-1.5 before:rounded-full before:bg-gray-600 before:mt-1.5 pl-4 before:left-0">
+                30 days easy returns if you change your mind
+              </li>
+              <li className="text-gray-500 relative before:absolute before:w-1.5 before:h-1.5 before:rounded-full before:bg-gray-600 before:mt-1.5 pl-4 before:left-0">
+                Order before noon for same day dispatch
+              </li>{" "}
+            </ul>
           </div>
         </div>
         {/* tab */}
