@@ -14,6 +14,7 @@ const Shop = () => {
   const [gridView, setGridView] = useState(true);
   const [selectCate, setSelectCate] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchProducts, setSearchProducts] = useState([]);
   const [productPerPage, setProductPerPage] = useState(2);
   const { data, isLoading, isSuccess } = useAllProductQuery();
   const indexOfLastPost = currentPage * productPerPage;
@@ -118,7 +119,13 @@ const Shop = () => {
               paginate={paginate}
             />
           </div>
-          <Sidebar selectCate={selectCate} setSelectCate={setSelectCate} />
+          <Sidebar
+            selectCate={selectCate}
+            setSelectCate={setSelectCate}
+            searchProducts={searchProducts}
+            setSearchProducts={setSearchProducts}
+            products={data?.allProducts}
+          />
         </div>
       </div>
       <Footer />
