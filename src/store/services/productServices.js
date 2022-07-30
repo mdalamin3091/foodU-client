@@ -62,7 +62,6 @@ const productServices = createApi({
       query: () => ({
         url: `product`,
         method: "GET",
-        // params:{category}
       }),
       providesTags: ["products"],
     }),

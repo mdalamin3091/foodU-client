@@ -30,7 +30,7 @@ const SingleProduct = ({ product }) => {
         <div className="product border-2 border-gray-200 bg-white rounded-2xl p-2 relative group font-JosefinSans">
           {/* image */}
           <div
-            className="product-image basis-2/6"
+            className="product-image basis-2/6 overflow-hidden"
             onClick={() => handleViewProduct(product._id)}
           >
             <img

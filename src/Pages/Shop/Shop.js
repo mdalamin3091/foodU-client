@@ -8,17 +8,24 @@ import Sidebar from "./components/Sidebar";
 import NavBar from "../../Shared/NavBar";
 import Footer from "../../Shared/Footer";
 import { useAllProductQuery } from "../../store/services/productServices";
+import Pagination from "./components/Pagination";
 
 const Shop = () => {
   const [gridView, setGridView] = useState(true);
   const [selectCate, setSelectCate] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productPerPage, setProductPerPage] = useState(2);
   const { data, isLoading, isSuccess } = useAllProductQuery();
-  // const [matchProduct, setMatchProduct] = useState(data?.allProducts);
-  const [allProducts, setAllProducts] = useState(data?.allProducts);
-  const filteredProduct = data?.allProducts?.filter(
-    (product) => product.category === selectCate
+  const indexOfLastPost = currentPage * productPerPage;
+  const indexOfFirstPost = indexOfLastPost - productPerPage;
+  const currentProducts = data?.allProducts?.slice(
+    indexOfFirstPost,
+    indexOfLastPost
   );
-  console.log(filteredProduct)
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
   return (
     <>
       <NavBar />
@@ -40,7 +47,8 @@ const Shop = () => {
             {/* sorting product part */}
             <div className="flex items-center justify-center md:justify-between mb-12">
               <p className="text-black text-lg hidden md:block">
-                Showing results 25
+                Showing results 10
+                {/* Showing results {filteredProduct?.length || 0} */}
               </p>
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center justify-between gap-3">
@@ -91,7 +99,9 @@ const Shop = () => {
             >
               {isLoading
                 ? "Loading..."
-                : data?.allProducts
+                : !data?.allProducts
+                ? "Product Not Found"
+                : currentProducts
                     ?.map((product) => (
                       <Product
                         key={product._id}
@@ -101,6 +111,12 @@ const Shop = () => {
                     ))
                     .reverse()}
             </div>
+            <Pagination
+              currentPage={currentPage}
+              productPerPage={productPerPage}
+              totalProducts={data?.allProducts.length}
+              paginate={paginate}
+            />
           </div>
           <Sidebar selectCate={selectCate} setSelectCate={setSelectCate} />
         </div>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useAllCategoryQuery } from "../../../store/services/productServices";
 
 const Menus = () => {
-  const { data, isSuccess, isLoading } = useAllCategoryQuery();
+  const { data, isSuccess, isLoading } = useAllCategoryQuery({});
   return (
     <div className="font-JosefinSans bg-white py-20">
       <div className="container relative">

@@ -4,13 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import {
   useAddWishlistMutation,
   useGetSingleUserQuery,
-  useAddToCartMutation
+  useAddToCartMutation,
 } from "../store/services/userServices";
 const Product = ({ gridView, product }) => {
   const [addProductWishlist, result] = useAddWishlistMutation();
   const { data, isLoading, isSuccess } = useGetSingleUserQuery();
   const [sendAddtoCart, cart] = useAddToCartMutation();
-  const {productId} = useParams();
+  const { productId } = useParams();
   const navigate = useNavigate();
   const handleWishlist = (productId) => {
     addProductWishlist({ productId });
@@ -18,9 +18,9 @@ const Product = ({ gridView, product }) => {
   const handleNavigate = (id) => {
     navigate(`product/${id}`);
   };
-  const handleAddToCart = (id) =>{
+  const handleAddToCart = (id) => {
     sendAddtoCart(id);
-  }
+  };
   return (
     <>
       <div
@@ -78,13 +78,14 @@ const Product = ({ gridView, product }) => {
           <p className="text-lg text-gray-500 ">{product?.shortDescription}</p>
         </div>
         <div className="flex items-center justify-between mt-3 absolute bottom-0 left-0 right-0 p-4">
-            <h3 className="text-2xl text-primary font-bold">
-              £{product?.price}
-            </h3>
-            <div className="cart-icon" onClick={()=>handleAddToCart(product._id)}>
-              <BsMinecart />
-            </div>
+          <h3 className="text-2xl text-primary font-bold">£{product?.price}</h3>
+          <div
+            className="cart-icon"
+            onClick={() => handleAddToCart(product._id)}
+          >
+            <BsMinecart />
           </div>
+        </div>
       </div>
     </>
   );
