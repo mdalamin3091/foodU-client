@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Breadcrumb from "./Breadcrumb";
 import { AiFillStar } from "react-icons/ai";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { BsSuitHeartFill } from "react-icons/bs";
 import ProductDetailsTab from "./ProductDetailsTab/ProductDetailsTab";
 import RelatedProduct from "./RelatedProduct";
