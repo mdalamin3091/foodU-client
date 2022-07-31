@@ -1,24 +1,21 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import DrawerCart from "../../../Shared/Drawer/DrawerCart";
 
 const OrderSummary = () => {
+  const { cart } = useSelector((state) => state);
+
   return (
     <>
       <div className="bg-light-gray p-5 border-2 border-gray-200 rounded-lg">
         <h3 className="text-2xl font-bold text-left">Order Summary</h3>
         <div className="w-full h-[220px] overflow-y-auto hide-scrollbar">
-          <div className="flex items-center justify-start border-b-2 border-border mb-2">
-            <div>
-              <img
-                className="w-[80px] rounded-full "
-                src={require("../../../assets/images/food_1.png")}
-                alt="food"
-              />
-            </div>
-            <div>
-              <h3 className="text-heading font-bold text-lg">Checkin Burger</h3>
-              <p className="text-gray-500">Price: $98.00</p>
-            </div>
-          </div>
+          {/* <DrawperCart /> */}
+          {cart.cartItems.length === 0
+            ? "Product Not Found"
+            : cart.cartItems.map((product) => {
+                return <DrawerCart key={product._id} product={product} />;
+              })}
         </div>
         {/* coupon */}
         <div className="flex items-center justify-between gap-3">
@@ -32,7 +29,7 @@ const OrderSummary = () => {
         <div className="py-5 border-b-2 border-border">
           <div className="flex items-center justify-between text-lg">
             <h5>Subtotal</h5>
-            <span> $90.00</span>
+            <span> ${cart.totalAmount}</span>
           </div>
           <div className="flex items-center justify-between text-lg">
             <h5>Shipping Cost</h5>

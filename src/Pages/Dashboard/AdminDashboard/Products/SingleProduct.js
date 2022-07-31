@@ -63,9 +63,9 @@ const SingleProduct = ({ product }) => {
             >
               {product.title}
             </div>
-            <div class="mt-2 flex items-center">
-              <span class="text-lg font-bold">Category:</span>&nbsp;
-              <span class="font-semibold text-lg">{product.category}</span>
+            <div className="mt-2 flex items-center">
+              <span className="text-lg font-bold">Category:</span>&nbsp;
+              <span className="font-semibold text-lg">{product.category}</span>
             </div>
           </div>
         </div>

@@ -2,18 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { BsMinecart } from "react-icons/bs";
 import { useAllProductQuery } from "../../../store/services/productServices";
-import { useAddToCartMutation } from "../../../store/services/userServices";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../../store/reducers/cartSlice";
 const TopRecipe = () => {
   const { data, isLoading, isSuccess } = useAllProductQuery();
-  const [sendAddtoCart, cart] = useAddToCartMutation();
-  const handleAddToCart = (id) => {
-    sendAddtoCart(id).then((res) => {
-      toast.success(res?.data?.msg, {
-        theme: "colored",
-        closeOnClick: true,
-        hideProgressBar: false,
-      });
+  const dispatch = useDispatch();
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product))
+    toast.success("Product added your cart", {
+      theme: "colored",
+      closeOnClick: true,
+      hideProgressBar: false,
     });
   };
   return (
@@ -63,7 +63,7 @@ const TopRecipe = () => {
                           </span>
                           <span
                             className="cart-icon absolute right-3 bottom-3"
-                            onClick={() => handleAddToCart(product._id)}
+                            onClick={() => handleAddToCart(product)}
                           >
                             <BsMinecart />
                           </span>

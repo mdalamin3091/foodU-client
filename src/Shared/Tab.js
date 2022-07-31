@@ -8,8 +8,9 @@ const Tab = ({ openTab, setOpenTab }) => {
       <div className="tab-wrapper flex flex-wrap items-center justify-center gap-4 mb-12">
         {isLoading
           ? "Loading..."
-          : data?.allCategory.slice(0, 6).map((category) => (
+          : data?.allCategory.slice(0, 6).map((category, index) => (
               <button
+                key={index}
                 className={
                   openTab === category.categoryName
                     ? "btn-tab bg-primary border-primary text-white"

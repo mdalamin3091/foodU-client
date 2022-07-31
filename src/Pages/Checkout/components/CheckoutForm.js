@@ -9,6 +9,9 @@ import {
 import { IoReturnUpBackOutline } from "react-icons/io5";
 import { BsArrowRight } from "react-icons/bs";
 const CheckoutForm = () => {
+  const handleNavigate = () =>{
+    
+  }
   return (
     <>
       <div className="col-span-3 lg:col-span-2">
@@ -118,7 +121,7 @@ const CheckoutForm = () => {
             </span>
             Continue Shopping
           </Link>
-          <button className="bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white">
+          <button onClick={handleNavigate} className="bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white">
             Confirm Order
             <span className="text-xl ml-2">
               <BsArrowRight />

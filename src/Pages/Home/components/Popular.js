@@ -24,7 +24,7 @@ const Popular = () => {
             : filteredData
                 ?.slice(0, 6)
                 .map((product) => (
-                  <Product gridView={gridView} product={product} />
+                  <Product key={product._id} gridView={gridView} product={product} />
                 ))
                 .reverse()}
         </div>

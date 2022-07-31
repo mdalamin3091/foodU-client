@@ -6,7 +6,6 @@ const MenuSection = () => {
   const [openTab, setOpenTab] = useState("Pizza");
   const { data, isLoading, isSuccess } = useAllProductQuery();
   const filteredData = data?.allProducts.filter(product => product.category === openTab);
-  console.log(filteredData)
   return (
     <div className="container section-padding font-JosefinSans">
       <h2 className="section-title text-center text-4xl">Menus Of The Day</h2>

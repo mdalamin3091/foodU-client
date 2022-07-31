@@ -38,6 +38,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+  const { cart } = useSelector((state) => state);
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -123,7 +124,7 @@ const NavBar = () => {
             >
               <MdOutlineShoppingCart />
               <span className="flex items-center justify-center w-6 h-6 text-sm font-semibold text-white bg-primary rounded-[50%] absolute top-0 right-0 group-hover:bg-primary_hover">
-                {data?.user?.cart.length ? data?.user?.cart.length : 0}
+                {cart.totalQuantity}
               </span>
             </span>
             {user?.profilePic ? (

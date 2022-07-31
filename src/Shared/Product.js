@@ -7,11 +7,14 @@ import {
   useGetSingleUserQuery,
   useAddToCartMutation,
 } from "../store/services/userServices";
+import { removeFromCart, addToCart } from "../store/reducers/cartSlice";
+import { useDispatch } from "react-redux";
 const Product = ({ gridView, product }) => {
   const [addProductWishlist, result] = useAddWishlistMutation();
   const { data, isLoading, isSuccess } = useGetSingleUserQuery();
   const [sendAddtoCart, cart] = useAddToCartMutation();
   const { productId } = useParams();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleWishlist = (productId) => {
     addProductWishlist({ productId }).then((res) => {
@@ -25,13 +28,12 @@ const Product = ({ gridView, product }) => {
   const handleNavigate = (id) => {
     navigate(`product/${id}`);
   };
-  const handleAddToCart = (id) => {
-    sendAddtoCart(id).then((res) => {
-      toast.success(res?.data?.msg, {
-        theme: "colored",
-        closeOnClick: true,
-        hideProgressBar: false,
-      });
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product))
+    toast.success("Product added your cart", {
+      theme: "colored",
+      closeOnClick: true,
+      hideProgressBar: false,
     });
   };
   return (
@@ -94,7 +96,7 @@ const Product = ({ gridView, product }) => {
           <h3 className="text-2xl text-primary font-bold">£{product?.price}</h3>
           <div
             className="cart-icon"
-            onClick={() => handleAddToCart(product._id)}
+            onClick={() => handleAddToCart(product)}
           >
             <BsMinecart />
           </div>
