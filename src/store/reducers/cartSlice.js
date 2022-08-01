@@ -28,7 +28,6 @@ export const cartSlice = createSlice({
         (total, item) => total + item.price * item.quantity,
         0
       );
-      localStorage.setItem("cart", JSON.stringify(state));
     },
     removeFromCart: (state, { payload }) => {
       const id = payload;
@@ -44,7 +43,6 @@ export const cartSlice = createSlice({
         (total, item) => total + item.price * item.quantity,
         0
       );
-      localStorage.setItem("cart", JSON.stringify(state));
     },
 
     deleteProduct: (state, { payload }) => {
@@ -60,7 +58,6 @@ export const cartSlice = createSlice({
         (total, item) => total + item.price * item.quantity,
         0
       );
-      localStorage.setItem("cart", JSON.stringify(state));
     },
   },
 });

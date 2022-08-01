@@ -7,6 +7,7 @@ import NavBar from "../../Shared/NavBar";
 import Footer from "../../Shared/Footer";
 
 const Checkout = () => {
+  const [shippingCost, setShippingCost] = useState(0)
   return (
     <>
     <NavBar />
@@ -26,11 +27,11 @@ const Checkout = () => {
         <div className="container section-padding">
           <div className="grid grid-cols-1 lg:grid-cols-3 px-5 lg:px-0 gap-8">
             {/* shipping details */}
-            <CheckoutForm />
+            <CheckoutForm shippingCost={shippingCost} setShippingCost={setShippingCost}/>
 
             {/* cart details */}
             <div className="col-span-3 lg:col-span-1">
-              <OrderSummary />
+              <OrderSummary shippingCost={shippingCost}/>
             </div>
           </div>
         </div>

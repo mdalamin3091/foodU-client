@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   personalInfo,
@@ -8,13 +8,37 @@ import {
 } from "../userData";
 import { IoReturnUpBackOutline } from "react-icons/io5";
 import { BsArrowRight } from "react-icons/bs";
-const CheckoutForm = () => {
-  const handleNavigate = () =>{
-    
+import { useSelector } from "react-redux";
+const CheckoutForm = ({ shippingCost, setShippingCost }) => {
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const { user } = useSelector((state) => state.auth);
+  const [shippingDetails, setshippingDetails] = useState({});
+  const [cardNumber, setCardNumber] = useState("");
+
+  const handleNavigate = () => {};
+
+  const handlePaymentMethod = (e) => {
+    setPaymentMethod(e.target.value);
+  };
+  const handleCost = (e) => {
+    setShippingCost(e.target.value);
+  };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setshippingDetails({ ...shippingDetails, [name]: value });
+  };
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    const checkOutInfo = {
+      ...shippingDetails,
+      cardNumber,
+      paymentMethod,
+      shippingCost
+    }
   }
   return (
     <>
-      <div className="col-span-3 lg:col-span-2">
+      <form className="col-span-3 lg:col-span-2" onSubmit={handleSubmit}>
         {/* personal info */}
         <h2 className="text-xl text-black mb-3">01. Personal Details</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-5">
@@ -25,9 +49,12 @@ const CheckoutForm = () => {
               </label>
               <br />
               <input
+                onChange={handleChange}
                 className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
                 type={item.type}
                 placeholder={item.placeholder}
+                name={item.name}
+                required
               />
             </div>
           ))}
@@ -45,6 +72,9 @@ const CheckoutForm = () => {
                 className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
                 type={item.type}
                 placeholder={item.placeholder}
+                name={item.name}
+                required
+                onChange={handleChange}
               />
             </div>
           ))}
@@ -70,10 +100,13 @@ const CheckoutForm = () => {
               </div>
               <br />
               <input
-                className=" bg-light-gray w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
+                onChange={handleCost}
+                className="bg-light-gray w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
                 name={item.name}
                 type={item.type}
                 placeholder={item.placeholder}
+                value={item.cost}
+                required
               />
             </div>
           ))}
@@ -81,11 +114,16 @@ const CheckoutForm = () => {
         {/* payment method */}
         <h2 className="text-xl text-black mb-3">04. Payment Details</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-5">
-          <input
-            className="col-span-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
-            type="text"
-            placeholder="Card Number"
-          />
+          {paymentMethod === "Credit Card" ? (
+            <input
+              className="col-span-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+              type="text"
+              placeholder="Card Number"
+              name="cardNumber"
+              required
+              onChange={(e) => setCardNumber(e.target.value)}
+            />
+          ) : null}
           {paymentInfo.map((item, index) => (
             <div className="col-span-2 lg:col-span-1">
               {/* select method */}
@@ -93,7 +131,7 @@ const CheckoutForm = () => {
                 key={index}
                 className="mb-3 border-2 border-gray-200 bg-light-gray rounded-md p-3 flex items-center justify-between"
               >
-                <div className="flex items-center ">
+                <div className="flex items-center">
                   <span className="text-4xl color-gray-300 mr-3">
                     {item.icon}
                   </span>
@@ -102,9 +140,12 @@ const CheckoutForm = () => {
                   </div>
                 </div>
                 <input
+                  onChange={handlePaymentMethod}
                   className=" bg-light-gray w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
                   name={item.name}
                   type={item.type}
+                  value={item.text}
+                  required
                 />
               </div>
             </div>
@@ -121,14 +162,18 @@ const CheckoutForm = () => {
             </span>
             Continue Shopping
           </Link>
-          <button onClick={handleNavigate} className="bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white">
+          <button
+            type="submit"
+            onClick={handleNavigate}
+            className="bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white"
+          >
             Confirm Order
             <span className="text-xl ml-2">
               <BsArrowRight />
             </span>
           </button>
         </div>
-      </div>
+      </form>
     </>
   );
 };

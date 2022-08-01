@@ -12,17 +12,18 @@ import ReactStars from "react-rating-stars-component";
 import { useSingleProductQuery } from "../../store/services/productServices";
 import { toast } from "react-toastify";
 import {
-  useAddToCartMutation,
   useAddWishlistMutation,
 } from "../../store/services/userServices";
+import { addToCart } from "../../store/reducers/cartSlice";
+import { useDispatch } from "react-redux";
 const ProductDetails = () => {
   const [productCount, setProductCount] = useState(1);
   const { productId } = useParams();
+  const dispatch = useDispatch();
   const { data, isSuccess, isLoading } = useSingleProductQuery({
     productId,
   });
   const [addProductWishlist] = useAddWishlistMutation();
-  const [sendAddtoCart] = useAddToCartMutation();
   const handleWishlist = () => {
     addProductWishlist({ productId }).then((res) => {
       toast.success(res?.data?.msg, {
@@ -32,13 +33,12 @@ const ProductDetails = () => {
       });
     });
   };
-  const handleAddToCart = (id) => {
-    sendAddtoCart(id).then((res) => {
-      toast.success(res?.data?.msg, {
-        theme: "colored",
-        closeOnClick: true,
-        hideProgressBar: false,
-      });
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product))
+    toast.success("Product added your cart", {
+      theme: "colored",
+      closeOnClick: true,
+      hideProgressBar: false,
     });
   };
   return (
@@ -116,7 +116,7 @@ const ProductDetails = () => {
               <div className="flex items-center justify-between">
                 <button
                   className="btn-primary px-12 lg:px-32 mr-3 whitespace-nowrap"
-                  onClick={() => handleAddToCart(data?.getProduct?._id)}
+                  onClick={() => handleAddToCart(data?.getProduct)}
                 >
                   Add to cart
                 </button>

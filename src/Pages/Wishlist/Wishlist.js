@@ -49,6 +49,8 @@ const Wishlist = () => {
             {/* 1 */}
             {isLoading
               ? "Loading..."
+              : !data?.user?.wishlist.length
+              ? "You are not wishlist any product"
               : data?.user?.wishlist?.map((product) => (
                   <tr className="w-full" key={product._id}>
                     <td className="border border-gray-400 w-1/6">

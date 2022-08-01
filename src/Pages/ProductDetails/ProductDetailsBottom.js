@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useAddToCartMutation } from "../../store/services/userServices";
-
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/reducers/cartSlice";
+import { toast } from "react-toastify";
 const ProductDetailsBottom = ({ data }) => {
   const [showProduct, setShowProduct] = useState(null);
-  const [sendAddtoCart, cart] = useAddToCartMutation();
+  const dispatch = useDispatch();
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 600) {
@@ -14,9 +15,14 @@ const ProductDetailsBottom = ({ data }) => {
     };
     window.addEventListener("scroll", handleScroll);
   }, []);
-  const handleAddToCart = id =>{
-    sendAddtoCart(id)
-  }
+  const handleAddToCart = () => {
+    dispatch(addToCart(data.getProduct));
+    toast.success("Product added your cart", {
+      theme: "colored",
+      closeOnClick: true,
+      hideProgressBar: false,
+    });
+  };
   return (
     <>
       <div
@@ -37,7 +43,7 @@ const ProductDetailsBottom = ({ data }) => {
             </div>
             <div>
               <p className="text-gray-500 text-xl mb-2">
-                You're viewing: 
+                You're viewing:
                 <span className="text-black font-bold ml-2">
                   {data?.getProduct?.title}
                 </span>
@@ -47,7 +53,13 @@ const ProductDetailsBottom = ({ data }) => {
               </h3>
             </div>
           </div>
-          <button className="btn-primary" onClick={()=>handleAddToCart(data?.getProduct?._id)}> Add to cart</button>
+          <button
+            className="btn-primary"
+            onClick={() => handleAddToCart(data?.getProduct?._id)}
+          >
+            {" "}
+            Add to cart
+          </button>
         </div>
       </div>
     </>

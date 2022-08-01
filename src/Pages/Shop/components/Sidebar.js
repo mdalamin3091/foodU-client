@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { BiDrink } from "react-icons/bi";
-import { GiFullPizza } from "react-icons/gi";
 import { AiFillStar } from "react-icons/ai";
-import { FaHamburger, FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useAllCategoryQuery } from "../../../store/services/productServices";
 const Sidebar = ({
@@ -17,16 +15,18 @@ const Sidebar = ({
   const navigate = useNavigate();
   const handleSearch = (e) => {
     setSearchText(e.target.value);
-    if (searchText.length > 2) {
+    if (searchText.length > 1) {
       let filterProducts = products.filter(
         (product) =>
-          product.title.includes(searchText) ||
-          product.shortDescription.includes(searchText) ||
-          product.description.includes(searchText)
+          product.title.toLowerCase().includes(searchText.toLowerCase()) ||
+          product.shortDescription
+            .toLowerCase()
+            .includes(searchText.toLowerCase()) ||
+          product.description.toLowerCase().includes(searchText.toLowerCase())
       );
       setSearchProducts(filterProducts);
     } else {
-      setSearchProducts([]);
+      setSearchProducts("");
     }
   };
   const filterByCategory = (categoryName) => {

@@ -3,6 +3,8 @@ import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { useAddToCartMutation } from "../../store/services/userServices";
 import { addToCart, removeFromCart, deleteProduct } from "../../store/reducers/cartSlice";
+import { FiMinus } from "react-icons/fi";
+import { BiPlus } from "react-icons/bi";
 const DrawerCart = ({ product }) => {
   const [sendAddtoCart] = useAddToCartMutation();
   const [productCount, setProductCount] = useState(1);
@@ -42,19 +44,19 @@ const DrawerCart = ({ product }) => {
             <div className="flex items-center justify-between">
               <div>
                 <p
-                  className="w-8 h-8 rounded-full bg-light-gray text-black flex items-center justify-center text-3xl cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-light-gray text-black flex items-center justify-center text-lg cursor-pointer"
                   onClick={() => decrementQuantityIncrease()}
                 >
-                  -
+                  <FiMinus />
                 </p>
               </div>
               <p className="text-black px-3 text-xl">{product.quantity}</p>
               <div>
                 <p
-                  className="w-8 h-8 rounded-full bg-light-gray text-black flex items-center justify-center text-3xl cursor-pointer"
+                  className="w-8 h-8 rounded-full bg-light-gray text-black flex items-center justify-center text-lg cursor-pointer"
                   onClick={() => productQuantityIncrease()}
                 >
-                  +
+                  <BiPlus />
                 </p>
               </div>
             </div>
