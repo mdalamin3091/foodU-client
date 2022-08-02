@@ -7,19 +7,19 @@ import { useGetSingleUserQuery } from "../../../store/services/userServices";
 import MyOrderTable from "./MyOrders/MyOrderTable";
 const Index = () => {
   const { data, isLoading, isSuccess } = useGetSingleUserQuery();
-  const pendingOrder = data?.user?.order?.map(
+  const pendingOrder = data?.user?.order?.filter(
     (item) => item.orderStatus === "Pending"
   );
-  const processingOrder = data?.user?.order?.map(
+  const processingOrder = data?.user?.order?.filter(
     (item) => item.orderStatus === "Processing"
   );
-  const completeOrder = data?.user?.order?.map(
+  const completeOrder = data?.user?.order?.filter(
     (item) => item.orderStatus === "Delivered"
   );
-  const cencleOrder = data?.user?.order?.map(
+  const cencleOrder = data?.user?.order?.filter(
     (item) => item.orderStatus === "Cancel"
   );
-  console.log(data?.user?.order);
+  console.log(processingOrder);
   const userOrders = [
     {
       icon: <FaShoppingCart />,

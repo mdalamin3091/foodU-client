@@ -6,13 +6,13 @@ const MyOrders = () => {
   const pendingOrder = data?.user?.order?.map(
     (item) => item.orderStatus === "Pending"
   );
-  const processingOrder = data?.user?.order?.map(
+  const processingOrder = data?.user?.order?.filter(
     (item) => item.orderStatus === "Processing"
   );
-  const completeOrder = data?.user?.order?.map(
+  const completeOrder = data?.user?.order?.filter(
     (item) => item.orderStatus === "Delivered"
   );
-  const cencleOrder = data?.user?.order?.map(
+  const cencleOrder = data?.user?.order?.filter(
     (item) => item.orderStatus === "Cancel"
   );
   return (
@@ -47,7 +47,7 @@ const MyOrders = () => {
               {!data?.user?.order.length
                 ? "Order Not Found"
                 : data?.user?.order?.map((item) => (
-                    <MyOrderTable order={item} />
+                    <MyOrderTable key={item._id} order={item} />
                   ))}
             </tbody>
           </table>
