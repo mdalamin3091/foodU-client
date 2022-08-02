@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   personalInfo,
   shippingInfo,
@@ -9,33 +9,119 @@ import {
 import { IoReturnUpBackOutline } from "react-icons/io5";
 import { BsArrowRight } from "react-icons/bs";
 import { useSelector } from "react-redux";
-const CheckoutForm = ({ shippingCost, setShippingCost }) => {
-  const [paymentMethod, setPaymentMethod] = useState("");
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { toast } from "react-toastify";
+import {
+  useCreateOrderMutation,
+  useSaveOrderInfoMutation,
+} from "../../../store/services/orderService";
+const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
   const { user } = useSelector((state) => state.auth);
   const [shippingDetails, setshippingDetails] = useState({});
-  const [cardNumber, setCardNumber] = useState("");
-
-  const handleNavigate = () => {};
-
-  const handlePaymentMethod = (e) => {
-    setPaymentMethod(e.target.value);
-  };
+  const [processing, setProcessing] = useState(false);
+  const [createOrder, { data, isLoading, isSuccess }] =
+    useCreateOrderMutation();
+  const [sendOrderInfo, result] = useSaveOrderInfoMutation();
+  const [clientSecret, setClientSecret] = useState(null);
+  const navigate = useNavigate();
+  const stripe = useStripe();
+  const elements = useElements();
+  useEffect(() => {
+    createOrder({ totalCost }).then((res) =>
+      setClientSecret(res.data?.clientSecret)
+    );
+  }, [totalCost]);
   const handleCost = (e) => {
-    setShippingCost(e.target.value);
+    setShippingCost(Number(e.target.value));
   };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setshippingDetails({ ...shippingDetails, [name]: value });
   };
-  const handleSubmit = (e) =>{
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const checkOutInfo = {
-      ...shippingDetails,
-      cardNumber,
-      paymentMethod,
-      shippingCost
+    let checkOutInfo;
+    if (selectedPaymentMethod === "Cash on Delivery") {
+      setProcessing(true);
+      checkOutInfo = {
+        ...shippingDetails,
+        selectedPaymentMethod,
+        shippingCost,
+        totalCost,
+      };
+      console.log(checkOutInfo);
+      await sendOrderInfo({ checkOutInfo });
+      toast.success("Your Order is successfull", {
+        theme: "colored",
+        closeOnClick: true,
+        hideProgressBar: false,
+      });
+      setProcessing(false);
+      navigate("/confirmOrder");
+    } else {
+      checkOutInfo = {
+        ...shippingDetails,
+        selectedPaymentMethod,
+        shippingCost,
+        totalCost,
+      };
+      if (!stripe || !elements) {
+        return;
+      }
+      const card = elements.getElement(CardElement);
+      if (card === null) {
+        return;
+      }
+      setProcessing(true);
+      const { error, paymentMethod } = await stripe.createPaymentMethod({
+        type: "card",
+        card,
+      });
+      if (error) {
+        toast.error(error.message, {
+          theme: "colored",
+          closeOnClick: true,
+          hideProgressBar: false,
+        });
+        setProcessing(false);
+      }
+      const { paymentIntent, error: intentError } =
+        await stripe.confirmCardPayment(clientSecret, {
+          payment_method: {
+            card,
+            billing_details: {
+              name: user.fullname,
+              email: user.email,
+            },
+          },
+        });
+      if (intentError) {
+        toast.error(intentError.message, {
+          theme: "colored",
+          closeOnClick: true,
+          hideProgressBar: false,
+        });
+        setProcessing(false);
+      } else {
+        sendOrderInfo({
+          checkOutInfo,
+          transaction: paymentIntent.client_secret,
+          last4: paymentMethod.card.last4,
+        });
+
+        toast.success("Your Order is successfull", {
+          theme: "colored",
+          closeOnClick: true,
+          hideProgressBar: false,
+        });
+        setProcessing(false);
+        navigate("/confirmOrder");
+      }
     }
-  }
+  };
+  console.log(result);
   return (
     <>
       <form className="col-span-3 lg:col-span-2" onSubmit={handleSubmit}>
@@ -114,14 +200,23 @@ const CheckoutForm = ({ shippingCost, setShippingCost }) => {
         {/* payment method */}
         <h2 className="text-xl text-black mb-3">04. Payment Details</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-5">
-          {paymentMethod === "Credit Card" ? (
-            <input
-              className="col-span-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
-              type="text"
-              placeholder="Card Number"
-              name="cardNumber"
-              required
-              onChange={(e) => setCardNumber(e.target.value)}
+          {selectedPaymentMethod === "Credit Card" ? (
+            <CardElement
+              className="col-span-2 border border-border mb-2 py-3 rounded-md px-3 bg-light-gray focus:border-primary"
+              options={{
+                style: {
+                  base: {
+                    fontSize: "16px",
+                    color: "#424770",
+                    "::placeholder": {
+                      color: "#aab7c4",
+                    },
+                  },
+                  invalid: {
+                    color: "#9e2146",
+                  },
+                },
+              }}
             />
           ) : null}
           {paymentInfo.map((item, index) => (
@@ -140,7 +235,7 @@ const CheckoutForm = ({ shippingCost, setShippingCost }) => {
                   </div>
                 </div>
                 <input
-                  onChange={handlePaymentMethod}
+                  onChange={(e) => setSelectedPaymentMethod(e.target.value)}
                   className=" bg-light-gray w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
                   name={item.name}
                   type={item.type}
@@ -162,16 +257,20 @@ const CheckoutForm = ({ shippingCost, setShippingCost }) => {
             </span>
             Continue Shopping
           </Link>
-          <button
-            type="submit"
-            onClick={handleNavigate}
-            className="bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white"
-          >
-            Confirm Order
-            <span className="text-xl ml-2">
-              <BsArrowRight />
-            </span>
-          </button>
+          {processing ? (
+            "Processing..."
+          ) : (
+            <button
+              type="submit"
+              className="bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white"
+              disabled={!stripe}
+            >
+              Confirm Order
+              <span className="text-xl ml-2">
+                <BsArrowRight />
+              </span>
+            </button>
+          )}
         </div>
       </form>
     </>

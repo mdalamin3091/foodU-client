@@ -6,23 +6,24 @@ import drawerReducer from "./reducers/drawerSlice";
 import cartReducer from "./reducers/cartSlice";
 import userServices from "./services/userServices";
 import productServices from "./services/productServices";
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage' 
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import orderServices from "./services/orderService";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   version: 1,
   storage,
-}
+};
 
-const persistedReducer = persistReducer(persistConfig, cartReducer)
-
+const persistedReducer = persistReducer(persistConfig, cartReducer);
 const Store = configureStore({
   reducer: {
     [authServices.reducerPath]: authServices.reducer,
     [userServices.reducerPath]: userServices.reducer,
     [uploadServices.reducerPath]: uploadServices.reducer,
     [productServices.reducerPath]: productServices.reducer,
+    [orderServices.reducerPath]: orderServices.reducer,
     auth: authReducer,
     drawer: drawerReducer,
     cart: persistedReducer,
@@ -33,6 +34,7 @@ const Store = configureStore({
       uploadServices.middleware,
       userServices.middleware,
       productServices.middleware,
+      orderServices.middleware,
     ]),
 });
 

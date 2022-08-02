@@ -11,9 +11,7 @@ import Footer from "../../Shared/Footer";
 import ReactStars from "react-rating-stars-component";
 import { useSingleProductQuery } from "../../store/services/productServices";
 import { toast } from "react-toastify";
-import {
-  useAddWishlistMutation,
-} from "../../store/services/userServices";
+import { useAddWishlistMutation } from "../../store/services/userServices";
 import { addToCart } from "../../store/reducers/cartSlice";
 import { useDispatch } from "react-redux";
 const ProductDetails = () => {
@@ -34,7 +32,7 @@ const ProductDetails = () => {
     });
   };
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product))
+    dispatch(addToCart(product));
     toast.success("Product added your cart", {
       theme: "colored",
       closeOnClick: true,

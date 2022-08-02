@@ -55,7 +55,6 @@ const LoginModal = ({ setIsSignUpModal }) => {
       }
     }
   }, [result?.isError]);
-  console.log(result)
   return (
     <>
       <div className="relative my-6 mx-auto w-full max-w-lg">

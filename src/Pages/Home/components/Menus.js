@@ -24,7 +24,7 @@ const Menus = () => {
                   key={index}
                   className="flex items-center justify-center flex-col cursor-pointer hover:text-primary transition-all duration-150 group"
                 >
-                  <div className="mx-auto">
+                  <div className="mx-auto overflow-hidden">
                     <img
                       className="group-hover:scale-125 transition-all duration-300 ease-in-out w-24 h-[100px] object-contain"
                       src={category.categoryImage}
