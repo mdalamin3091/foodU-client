@@ -26,7 +26,7 @@ import UpdateProduct from "./Pages/Dashboard/AdminDashboard/Products/UpdateProdu
 import UpdateCateogory from "./Pages/Dashboard/AdminDashboard/Categories/UpdateCategory";
 import Contact from "./Pages/Contact/Contact";
 import About from "./Pages/About/About";
-import AdminProfileUpdate from "./Pages/Dashboard/AdminDashboard/UpdateProfile";
+import AdminProfileUpdate from "./Pages/Dashboard/AdminDashboard/AdminProfileUpdate";
 function App() {
   return (
     <>
