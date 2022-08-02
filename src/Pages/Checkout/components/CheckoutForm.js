@@ -8,22 +8,23 @@ import {
 } from "../userData";
 import { IoReturnUpBackOutline } from "react-icons/io5";
 import { BsArrowRight } from "react-icons/bs";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { toast } from "react-toastify";
 import {
   useCreateOrderMutation,
   useSaveOrderInfoMutation,
 } from "../../../store/services/orderService";
+import { removeAllProduct } from "../../../store/reducers/cartSlice";
 const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
   const { user } = useSelector((state) => state.auth);
   const [shippingDetails, setshippingDetails] = useState({});
   const [processing, setProcessing] = useState(false);
-  const [createOrder, { data, isLoading, isSuccess }] =
-    useCreateOrderMutation();
+  const [createOrder, { data }] = useCreateOrderMutation();
   const [sendOrderInfo, result] = useSaveOrderInfoMutation();
   const [clientSecret, setClientSecret] = useState(null);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
@@ -51,7 +52,6 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
         shippingCost,
         totalCost,
       };
-      console.log(checkOutInfo);
       await sendOrderInfo({ checkOutInfo });
       toast.success("Your Order is successfull", {
         theme: "colored",
@@ -59,6 +59,7 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
         hideProgressBar: false,
       });
       setProcessing(false);
+      dispatch(removeAllProduct())
       navigate("/confirmOrder");
     } else {
       checkOutInfo = {
@@ -117,11 +118,11 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
           hideProgressBar: false,
         });
         setProcessing(false);
+        dispatch(removeAllProduct())
         navigate("/confirmOrder");
       }
     }
   };
-  console.log(result);
   return (
     <>
       <form className="col-span-3 lg:col-span-2" onSubmit={handleSubmit}>

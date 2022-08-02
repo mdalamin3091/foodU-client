@@ -56,13 +56,6 @@ const userServices = createApi({
       }),
       invalidatesTags: ["user"],
     }),
-    addToCart: builder.mutation({
-      query: (id) => ({
-        url: `product/addToCart/${id}`,
-        method: "POST",
-      }),
-      invalidatesTags: ["user"],
-    }),
     getSingleUser: builder.query({
       query: () => ({
         url: `auth/singleUser`,
@@ -78,7 +71,6 @@ export const {
   useChangePasswordMutation,
   useAllUsersQuery,
   useDeleteUserMutation,
-  useAddToCartMutation,
   useUpdateUserRoleMutation,
   useGetSingleUserQuery,
   useAddWishlistMutation,

@@ -5,14 +5,12 @@ import { toast } from "react-toastify";
 import {
   useAddWishlistMutation,
   useGetSingleUserQuery,
-  useAddToCartMutation,
 } from "../store/services/userServices";
 import { removeFromCart, addToCart } from "../store/reducers/cartSlice";
 import { useDispatch } from "react-redux";
 const Product = ({ gridView, product }) => {
   const [addProductWishlist, result] = useAddWishlistMutation();
   const { data, isLoading, isSuccess } = useGetSingleUserQuery();
-  const [sendAddtoCart, cart] = useAddToCartMutation();
   const { productId } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { MdDelete } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { useAddToCartMutation } from "../../store/services/userServices";
 import { addToCart, removeFromCart, deleteProduct } from "../../store/reducers/cartSlice";
 import { FiMinus } from "react-icons/fi";
 import { BiPlus } from "react-icons/bi";
 const DrawerCart = ({ product }) => {
-  const [sendAddtoCart] = useAddToCartMutation();
   const [productCount, setProductCount] = useState(1);
   const dispatch = useDispatch();
   const productQuantityIncrease = () => {
