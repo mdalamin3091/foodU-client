@@ -26,6 +26,7 @@ import UpdateProduct from "./Pages/Dashboard/AdminDashboard/Products/UpdateProdu
 import UpdateCateogory from "./Pages/Dashboard/AdminDashboard/Categories/UpdateCategory";
 import Contact from "./Pages/Contact/Contact";
 import About from "./Pages/About/About";
+import AdminProfileUpdate from "./Pages/Dashboard/AdminDashboard/UpdateProfile";
 function App() {
   return (
     <>
@@ -64,6 +65,7 @@ function App() {
               element={<UpdateCateogory />}
             />
             <Route path="allUsers" element={<AllUsers />} />
+            <Route path="updateProfile" element={<AdminProfileUpdate />} />
             <Route path="allOrders" element={<AllOrders />} />
             <Route path="addProduct" element={<AddProduct />} />
             <Route path="addCategory" element={<AddCategory />} />

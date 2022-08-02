@@ -1,12 +1,9 @@
 import React from "react";
-import { useState } from "react";
 import { useUpdateOrderStatusMutation } from "../../../../store/services/orderService";
 import { toast } from "react-toastify";
 const AllOrderTable = ({ order }) => {
-  // const [selectStatus, setSelectStatus] = useState("");
   const [sendUpdateStatus] = useUpdateOrderStatusMutation();
   const handleChange = (e) => {
-    // setSelectStatus(e.target.value)
     sendUpdateStatus({
       selectStatus: e.target.value,
       _id: order._id,
@@ -62,11 +59,24 @@ const AllOrderTable = ({ order }) => {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary focus:border-primary block lg:w-full w-[150px] p-2.5 outline-none"
             onChange={handleChange}
           >
-            <option value="">Status</option>
-            <option value="Pending">Pending</option>
-            <option value="Delivered">Delivered</option>
-            <option value="Processing">Processing</option>
-            <option value="Cencel">Cencel</option>
+            <option selected={order.orderStatus === "Pending"} value="Pending">
+              Pending
+            </option>
+            <option
+              selected={order.orderStatus === "Delivered"}
+              value="Delivered"
+            >
+              Delivered
+            </option>
+            <option
+              selected={order.orderStatus === "Processing"}
+              value="Processing"
+            >
+              Processing
+            </option>
+            <option selected={order.orderStatus === "Cencel"} value="Cencel">
+              Cencel
+            </option>
           </select>
         </td>
       </tr>
