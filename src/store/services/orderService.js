@@ -15,7 +15,7 @@ const orderServices = createApi({
   endpoints: (builder) => ({
     allOrder: builder.query({
       query: () => ({
-        url: `product`,
+        url: `product/allOrder`,
         method: "GET",
       }),
       providesTags: ["order"],

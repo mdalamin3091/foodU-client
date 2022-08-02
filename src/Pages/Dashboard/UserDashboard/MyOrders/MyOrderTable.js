@@ -1,7 +1,6 @@
 import React from "react";
 
 const MyOrderTable = ({ order }) => {
-  console.log(order);
   return (
     <>
       <tr className="bg-white border-b">

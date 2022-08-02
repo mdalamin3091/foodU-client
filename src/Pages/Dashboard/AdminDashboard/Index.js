@@ -1,6 +1,7 @@
 import React from "react";
 import { FaShoppingCart, FaUsers, FaHeart } from "react-icons/fa";
 import {
+  MdDelete,
   MdOutlineProductionQuantityLimits,
   MdOutlineReviews,
 } from "react-icons/md";
@@ -12,42 +13,47 @@ import { useAllUsersQuery } from "../../../store/services/authServices";
 import {
   useAllCategoryQuery,
   useAllProductQuery,
+  useAllReviewQuery,
 } from "../../../store/services/productServices";
+import { useAllOrderQuery } from "../../../store/services/orderService";
 const Index = () => {
   const { data: userData } = useAllUsersQuery();
   const { data: categories } = useAllCategoryQuery();
-  const { data: allProducts, isLoading, isSuccess } = useAllProductQuery();
-  console.log(allProducts?.allProducts);
+  const { data: allProducts, isLoading } = useAllProductQuery();
+  const { data: allOrders } = useAllOrderQuery();
+  const { data: allReviews } = useAllReviewQuery();
+  const { data } = useAllUsersQuery();
+
   const sidebarMenu = [
     {
       icon: <FaShoppingCart />,
       title: "Total Orders",
-      numbers: 50,
+      numbers: allOrders?.allOrder?.length || 0,
     },
     {
       icon: <FaUsers />,
       title: "Total User",
-      numbers: userData?.allUser ? userData?.allUser.length : 0,
+      numbers: userData?.allUser.length || 0,
     },
     {
       icon: <FaHeart />,
       title: "Total Wishlist",
-      numbers: 10,
+      numbers: userData?.totalWishlist || 0,
     },
     {
       icon: <MdOutlineProductionQuantityLimits />,
       title: "Total Product",
-      numbers: allProducts?.allProducts ? allProducts?.allProducts.length : 0,
+      numbers: allProducts?.allProducts.length || 0,
     },
     {
       icon: <BiCategoryAlt />,
       title: "Total Category",
-      numbers: categories?.allCategory ? categories?.allCategory?.length : 0,
+      numbers: categories?.allCategory?.length || 0,
     },
     {
       icon: <MdOutlineReviews />,
       title: "Total Review",
-      numbers: 10,
+      numbers: allReviews?.allReview?.length || 0,
     },
   ];
   return (
@@ -83,7 +89,35 @@ const Index = () => {
               .reverse()}
       </div>
       <h2 className="text-xl font-bold my-4">Some Users</h2>
-      <AllUserTable />
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-left text-gray-500 dark:text-gray-400 whitespace-nowrap">
+          <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th scope="col" className="px-6 py-3">
+                Full Name
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Email
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Role
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Profile
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody className="text-[16px]">
+            {data?.allUser
+              .slice(0, 6)
+              .map((user) => <AllUserTable key={user._id} user={user} />)
+              .reverse()}
+          </tbody>
+        </table>
+      </div>
       <h2 className="text-xl font-bold my-4">Some Orders</h2>
       <AllOrderTable />
     </>

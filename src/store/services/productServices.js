@@ -20,6 +20,13 @@ const productServices = createApi({
       }),
       providesTags: ["products"],
     }),
+    allReview: builder.query({
+      query: () => ({
+        url: `product/allReview`,
+        method: "GET",
+      }),
+      providesTags: ["products"],
+    }),
     singleCategory: builder.query({
       query: ({ categoryId }) => ({
         url: `category/${categoryId}`,
@@ -69,7 +76,7 @@ const productServices = createApi({
       query: (category) => ({
         url: `/product/search`,
         method: "GET",
-        params:category
+        params: category,
       }),
       providesTags: ["products"],
     }),
@@ -109,6 +116,7 @@ const productServices = createApi({
 export const {
   useAddCategoryMutation,
   useAllCategoryQuery,
+  useAllReviewQuery,
   useAllProductQuery,
   useSingleCategoryQuery,
   useByCategoryProductQuery,
