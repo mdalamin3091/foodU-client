@@ -18,7 +18,7 @@ const ProductDetails = () => {
   const [productCount, setProductCount] = useState(1);
   const { productId } = useParams();
   const dispatch = useDispatch();
-  const { data, isSuccess, isLoading } = useSingleProductQuery({
+  const { data} = useSingleProductQuery({
     productId,
   });
   const [addProductWishlist] = useAddWishlistMutation();
@@ -64,12 +64,12 @@ const ProductDetails = () => {
             <div className="flex items-center justify-start gap-1 text-primary text-lg mb-4">
               <ReactStars
                 count={5}
-                value={data?.getProduct?.review?.length}
-                size={24}
+                value={4}
                 edit={false}
+                size={24}
                 isHalf={true}
                 fullIcon={<AiFillStar />}
-                activeColor="#ffc222"
+                activeColor="#ffd700"
               />
               <p className="text-gray-400 ml-2">
                 (

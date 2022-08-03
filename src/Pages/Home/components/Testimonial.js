@@ -9,10 +9,13 @@ import "swiper/css/pagination";
 
 // import required modules
 import { FreeMode, Pagination } from "swiper";
-
-import { AiFillStar } from "react-icons/ai"
+import { AiFillStar } from "react-icons/ai";
+import { useAllReviewQuery } from "../../../store/services/productServices";
+import ReactStars from "react-rating-stars-component";
 
 const Testimonial = () => {
+  const { data } = useAllReviewQuery();
+  console.log(data?.allReview);
   return (
     <div className="font-JosefinSans section-padding bg-light-gray">
       <div className="container">
@@ -20,7 +23,15 @@ const Testimonial = () => {
 
         {/* slider */}
         <Swiper
-          slidesPerView={window.innerWidth < 768 ? 1 ? window.innerWidth < 1024 : 2 ? window.innerWidth < 1280 : 3 : 3}
+          slidesPerView={
+            window.innerWidth < 768
+              ? 1
+                ? window.innerWidth < 1024
+                : 2
+                ? window.innerWidth < 1280
+                : 3
+              : 3
+          }
           spaceBetween={30}
           freeMode={true}
           pagination={{
@@ -29,145 +40,52 @@ const Testimonial = () => {
           modules={[FreeMode, Pagination]}
           className="mySwiper !px-5 !md:px-0"
         >
-          {/* slider 1 */}
-          <SwiperSlide>
-            {/* 1 */}
-            <div className="bg-white p-7 rounded-xl">
-              <div className="flex items-center justify-between gap-4 mb-8">
-                <div className="basis-1/5">
-                  <img className="w-20 rounded-full" src={require("../../../assets/images/avatar-1.jpg")} alt="avatar" />
-                </div>
-                <div className="text-left basis-4/5">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-xl text-heading font-bold">Jhon Doe</h2>
-                    <div className="flex items-center justify-center gap-1 text-primary text-xl">
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
+          {data?.allReview
+            .slice(0, 8)
+            .map((review) => (
+              <SwiperSlide>
+                <div className="bg-white p-7 rounded-xl" key={review._id}>
+                  <div className="flex items-center justify-between gap-4 mb-8">
+                    <div className="basis-1/5">
+                      <img
+                        className="w-20 rounded-full"
+                        src={review?.user?.profilePic}
+                        alt="avatar"
+                      />
+                    </div>
+                    <div className="text-left basis-4/5">
+                      <div className="flex items-center justify-between">
+                        <h2 className="text-xl text-heading font-bold">
+                          {review?.fullname}
+                        </h2>
+                        <div className="flex items-center justify-center gap-1 text-primary text-xl">
+                          <ReactStars
+                            count={5}
+                            value={review?.ratingStar}
+                            edit={false}
+                            size={24}
+                            isHalf={true}
+                            fullIcon={<AiFillStar />}
+                            activeColor="#ffd700"
+                          />
+                        </div>
+                      </div>
+                      <p className="text-gray-400 text-sm font-semibold">
+                        {review?.user?.role === "user" && "User"}
+                      </p>
                     </div>
                   </div>
-                  <p className="text-gray-400 text-sm font-semibold">CEO, apple</p>
+                  <p className="text-gray-400 text-lg text-left">
+                    {review?.reviewText}
+                  </p>
                 </div>
-              </div>
-              <p className="text-gray-400 text-lg text-left">
-                “Forget the trendy pizza shops, This hidden spot makes the best New York-style pizza slice in naples”
-              </p>
-            </div>
-          </SwiperSlide>
-          {/* slider 2 */}
-          <SwiperSlide>
-            {/* 1 */}
-            <div className="bg-white p-7 rounded-xl">
-              <div className="flex items-center justify-between gap-4 mb-8">
-                <div className="basis-1/5">
-                  <img className="w-20 rounded-full" src={require("../../../assets/images/avatar-1.jpg")} alt="avatar" />
-                </div>
-                <div className="text-left basis-4/5">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-xl text-heading font-bold">Jhon Doe</h2>
-                    <div className="flex items-center justify-center gap-1 text-primary text-xl">
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                    </div>
-                  </div>
-                  <p className="text-gray-400 text-sm font-semibold">CEO, apple</p>
-                </div>
-              </div>
-              <p className="text-gray-400 text-lg text-left">
-                “Forget the trendy pizza shops, This hidden spot makes the best New York-style pizza slice in naples”
-              </p>
-            </div>
-          </SwiperSlide>
-          {/* slider 3 */}
-          <SwiperSlide>
-            {/* 1 */}
-            <div className="bg-white p-7 rounded-xl">
-              <div className="flex items-center justify-between gap-4 mb-8">
-                <div className="basis-1/5">
-                  <img className="w-20 rounded-full" src={require("../../../assets/images/avatar-1.jpg")} alt="avatar" />
-                </div>
-                <div className="text-left basis-4/5">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-xl text-heading font-bold">Jhon Doe</h2>
-                    <div className="flex items-center justify-center gap-1 text-primary text-xl">
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                    </div>
-                  </div>
-                  <p className="text-gray-400 text-sm font-semibold">CEO, apple</p>
-                </div>
-              </div>
-              <p className="text-gray-400 text-lg text-left">
-                “Forget the trendy pizza shops, This hidden spot makes the best New York-style pizza slice in naples”
-              </p>
-            </div>
-          </SwiperSlide>
-          {/* slider 4 */}
-          <SwiperSlide>
-            {/* 1 */}
-            <div className="bg-white p-7 rounded-xl">
-              <div className="flex items-center justify-between gap-4 mb-8">
-                <div className="basis-1/5">
-                  <img className="w-20 rounded-full" src={require("../../../assets/images/avatar-1.jpg")} alt="avatar" />
-                </div>
-                <div className="text-left basis-4/5">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-xl text-heading font-bold">Jhon Doe</h2>
-                    <div className="flex items-center justify-center gap-1 text-primary text-xl">
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                    </div>
-                  </div>
-                  <p className="text-gray-400 text-sm font-semibold">CEO, apple</p>
-                </div>
-              </div>
-              <p className="text-gray-400 text-lg text-left">
-                “Forget the trendy pizza shops, This hidden spot makes the best New York-style pizza slice in naples”
-              </p>
-            </div>
-          </SwiperSlide>
-          {/* slider 5 */}
-          <SwiperSlide>
-            {/* 1 */}
-            <div className="bg-white p-7 rounded-xl">
-              <div className="flex items-center justify-between gap-4 mb-8">
-                <div className="basis-1/5">
-                  <img className="w-20 rounded-full" src={require("../../../assets/images/avatar-1.jpg")} alt="avatar" />
-                </div>
-                <div className="text-left basis-4/5">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-xl text-heading font-bold">Jhon Doe</h2>
-                    <div className="flex items-center justify-center gap-1 text-primary text-xl">
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                    </div>
-                  </div>
-                  <p className="text-gray-400 text-sm font-semibold">CEO, apple</p>
-                </div>
-              </div>
-              <p className="text-gray-400 text-lg text-left">
-                “Forget the trendy pizza shops, This hidden spot makes the best New York-style pizza slice in naples”
-              </p>
-            </div>
-          </SwiperSlide>
+              </SwiperSlide>
+            ))
+            .reverse()}
         </Swiper>
-      </div >
-    </div >
+      </div>
+    </div>
   );
-}
+};
 
 export default Testimonial;
