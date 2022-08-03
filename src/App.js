@@ -27,6 +27,8 @@ import UpdateCateogory from "./Pages/Dashboard/AdminDashboard/Categories/UpdateC
 import Contact from "./Pages/Contact/Contact";
 import About from "./Pages/About/About";
 import AdminProfileUpdate from "./Pages/Dashboard/AdminDashboard/AdminProfileUpdate";
+import PrivateOutlet from "./Shared/PrivateOutlet";
+import AdminOutlet from "./Shared/AdminRoute";
 function App() {
   return (
     <>
@@ -41,35 +43,40 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="wishlist" element={<Wishlist />} />
-          <Route path="checkout" element={<Checkout />} />
-          <Route path="confirmOrder" element={<ConfirmOrder />} />
-          <Route path="product/:productId" element={<ProductDetails />} />
-          <Route path="user" element={<UserDashboard />}>
-            <Route index element={<UserDashboadIndex />} />
-            <Route path="dashboard" element={<UserDashboadIndex />} />
-            <Route path="myOrders" element={<MyOrders />} />
-            <Route path="updateProfile" element={<UpdateProfile />} />
-            <Route path="changePassword" element={<ChangePassword />} />
+          <Route path="/*" element={<PrivateOutlet />}>
+            <Route path="checkout" element={<Checkout />} />
+            <Route path="confirmOrder" element={<ConfirmOrder />} />
+            <Route path="product/:productId" element={<ProductDetails />} />
+            <Route path="user" element={<UserDashboard />}>
+              <Route index element={<UserDashboadIndex />} />
+              <Route path="dashboard" element={<UserDashboadIndex />} />
+              <Route path="myOrders" element={<MyOrders />} />
+              <Route path="updateProfile" element={<UpdateProfile />} />
+              <Route path="changePassword" element={<ChangePassword />} />
+            </Route>
           </Route>
-          <Route path="admin" element={<AdminDashboard />}>
-            <Route index element={<AdminDashboardIndex />} />
-            <Route path="dashboard" element={<AdminDashboardIndex />} />
-            <Route path="allProducts" element={<AllProducts />} />
-            <Route
-              path="allProducts/updateProduct/:productId"
-              element={<UpdateProduct />}
-            />
-            <Route path="allCategories" element={<AllCategory />} />
-            <Route
-              path="allCategories/updateCategory/:categoryId"
-              element={<UpdateCateogory />}
-            />
-            <Route path="allUsers" element={<AllUsers />} />
-            <Route path="updateProfile" element={<AdminProfileUpdate />} />
-            <Route path="allOrders" element={<AllOrders />} />
-            <Route path="addProduct" element={<AddProduct />} />
-            <Route path="addCategory" element={<AddCategory />} />
+          <Route path="/*" element={<AdminOutlet />}>
+            <Route path="admin" element={<AdminDashboard />}>
+              <Route index element={<AdminDashboardIndex />} />
+              <Route path="dashboard" element={<AdminDashboardIndex />} />
+              <Route path="allProducts" element={<AllProducts />} />
+              <Route
+                path="allProducts/updateProduct/:productId"
+                element={<UpdateProduct />}
+              />
+              <Route path="allCategories" element={<AllCategory />} />
+              <Route
+                path="allCategories/updateCategory/:categoryId"
+                element={<UpdateCateogory />}
+              />
+              <Route path="allUsers" element={<AllUsers />} />
+              <Route path="updateProfile" element={<AdminProfileUpdate />} />
+              <Route path="allOrders" element={<AllOrders />} />
+              <Route path="addProduct" element={<AddProduct />} />
+              <Route path="addCategory" element={<AddCategory />} />
+            </Route>
           </Route>
+
           <Route path="*" element={<NotFound />} />
         </Routes>
         {/* <Footer /> */}
