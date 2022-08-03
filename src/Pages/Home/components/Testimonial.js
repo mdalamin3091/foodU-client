@@ -15,7 +15,6 @@ import ReactStars from "react-rating-stars-component";
 
 const Testimonial = () => {
   const { data } = useAllReviewQuery();
-  console.log(data?.allReview);
   return (
     <div className="font-JosefinSans section-padding bg-light-gray">
       <div className="container">

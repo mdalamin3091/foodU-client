@@ -45,7 +45,6 @@ const Checkout = () => {
               shippingCost={shippingCost}
               setShippingCost={setShippingCost}
             />
-
             {/* cart details */}
             <div className="col-span-3 lg:col-span-1">
               <OrderSummary totalCost={totalCost} shippingCost={shippingCost} />

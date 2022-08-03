@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import DrawerCart from "../../../Shared/Drawer/DrawerCart";
+import EmptyCart from "../../../Shared/Drawer/EmptyCart";
 
 const OrderSummary = ({ shippingCost }) => {
   const { cart } = useSelector((state) => state);
@@ -27,11 +28,13 @@ const OrderSummary = ({ shippingCost }) => {
         <h3 className="text-2xl font-bold text-left">Order Summary</h3>
         <div className="w-full h-[220px] overflow-y-auto hide-scrollbar">
           {/* <DrawperCart /> */}
-          {cart.cartItems.length === 0
-            ? "Product Not Found"
-            : cart.cartItems.map((product) => {
-                return <DrawerCart key={product._id} product={product} />;
-              })}
+          {cart.cartItems.length === 0 ? (
+            <EmptyCart />
+          ) : (
+            cart.cartItems.map((product) => {
+              return <DrawerCart key={product._id} product={product} />;
+            })
+          )}
         </div>
         {/* coupon */}
         <form

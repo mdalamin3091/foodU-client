@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { showModalTrue } from "../../store/reducers/authSlice";
 import { drawerOpenFalse } from "../../store/reducers/drawerSlice";
 import DrawerCart from "./DrawerCart";
+import EmptyCart from "./EmptyCart";
 const Drawer = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const Drawer = () => {
           {/* drawer body */}
           <div className="text-black overflow-auto ml-5 mt-2 !mb-[85px]">
             {cart.cartItems.length === 0
-              ? "Product Not Found"
+              ? <EmptyCart />
               : cart.cartItems.map((product) => {
                   return <DrawerCart key={product._id} product={product} />;
                 })}
@@ -66,7 +67,7 @@ const Drawer = () => {
                     Proceed To Checkout
                   </span>
                   <span className="rounded-lg font-bold py-2 px-3 bg-white text-secondary">
-                    £ {cart.totalAmount}
+                    $ {cart.totalAmount}
                   </span>
                 </button>
               </div>

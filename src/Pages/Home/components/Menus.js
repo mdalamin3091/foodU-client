@@ -18,7 +18,7 @@ const Menus = () => {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
           {isLoading
             ? "Loading..."
-            : data?.allCategory.slice(0, 6).map((category, index) => (
+            : data?.allCategory.slice(0, 9).map((category, index) => (
                 <Link
                   to="/shop"
                   key={index}
