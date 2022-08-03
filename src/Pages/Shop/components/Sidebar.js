@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { useAllCategoryQuery } from "../../../store/services/productServices";
-const Sidebar = ({
-  selectCate,
-  setSelectCate,
-  searchProducts,
-  setSearchProducts,
-  products,
-}) => {
+import { filterByCategory } from "../../../store/reducers/cartSlice";
+import { useAllCategoryQuery, useAllProductQuery } from "../../../store/services/productServices";
+const Sidebar = ({ searchProducts, setSearchProducts, products }) => {
   const [searchText, setSearchText] = useState("");
   const { data, isLoading, isSuccess } = useAllCategoryQuery();
+  const { category: selectCategory } = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+  const { data:allProducts } = useAllProductQuery();
   const navigate = useNavigate();
   const handleSearch = (e) => {
     setSearchText(e.target.value);
@@ -29,8 +28,8 @@ const Sidebar = ({
       setSearchProducts("");
     }
   };
-  const filterByCategory = (categoryName) => {
-    setSelectCate(categoryName);
+  const handleCategory = (categoryName) => {
+      dispatch(filterByCategory(categoryName))
   };
   const handleNavigate = (id) => {
     navigate(`/product/${id}`);
@@ -46,14 +45,14 @@ const Sidebar = ({
               <div
                 key={category._id}
                 className={
-                  selectCate === category.categoryName
+                  selectCategory === category.categoryName
                     ? "flex items-start justify-start text-lg border-gray-300 w-full cursor-pointer bg-primary text-white py-2 rounded-lg"
                     : "flex items-start justify-start text-lg text-gray-500 hover:text-primary border-b-[1px] border-dashed border-gray-300 w-full cursor-pointer  py-2 rounded-lg"
                 }
               >
                 <p
                   className="ml-2"
-                  onClick={() => filterByCategory(category.categoryName)}
+                  onClick={() => handleCategory(category.categoryName)}
                 >
                   {category.categoryName}
                 </p>

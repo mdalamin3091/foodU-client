@@ -10,17 +10,18 @@ import Footer from "../../Shared/Footer";
 import { useAllProductQuery } from "../../store/services/productServices";
 import Pagination from "./components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
-import { sortProduct } from "../../store/reducers/cartSlice";
+import { sortProduct, filterByCategory } from "../../store/reducers/cartSlice";
+import NotFound from "../../Shared/DataNotFound";
+import MenuLoader from "../../Shared/Loader/MenuLoader";
 
 const Shop = () => {
   const [gridView, setGridView] = useState(true);
-  const [selectCate, setSelectCate] = useState(null);
   const [searchProducts, setSearchProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [productPerPage, setProductPerPage] = useState(9);
   const { data, isLoading } = useAllProductQuery();
   const dispatch = useDispatch();
-  const { sort } = useSelector((state) => state.cart);
+  const { sort, category } = useSelector((state) => state.cart);
   const indexOfLastProduct = currentPage * productPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productPerPage;
   const currentProducts = data?.allProducts?.slice(
@@ -33,15 +34,21 @@ const Shop = () => {
   const handleChange = (e) => {
     dispatch(sortProduct(e.target.value));
   };
-  const productSortByPrice = () =>{
-    let sortedProduct;
+  const productSortByPriceAndCategory = () => {
+    let sortedProduct = currentProducts;
     if (sort && data) {
-      sortedProduct = currentProducts.sort((a, b) => 
+      sortedProduct = currentProducts.sort((a, b) =>
         sort === "high_to_low" ? a.price - b.price : b.price - a.price
       );
     }
-    return sortedProduct
-  }
+    if (category && data) {
+      sortedProduct = sortedProduct.filter(
+        (item) => item.category === category
+      );
+    }
+    return sortedProduct;
+  };
+
   return (
     <>
       <NavBar />
@@ -63,8 +70,7 @@ const Shop = () => {
             {/* sorting product part */}
             <div className="flex items-center justify-center md:justify-between mb-12">
               <p className="text-black text-lg hidden md:block">
-                Showing results 10
-                {/* Showing results {filteredProduct?.length || 0} */}
+                Showing results {productSortByPriceAndCategory()?.length}
               </p>
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center justify-between gap-3">
@@ -93,6 +99,9 @@ const Shop = () => {
                   className="outline-none text-lg px-8 py-4 bg-light-gray text-black rounded-md"
                   onClick={handleChange}
                 >
+                  <option className="text-black text-lg" value="">
+                    Default Sorting
+                  </option>
                   <option className="text-black text-lg" value="high_to_low">
                     High to low
                   </option>
@@ -103,27 +112,31 @@ const Shop = () => {
               </div>
             </div>
             {/* product part */}
-            <div
-              className={
-                gridView
-                  ? `grid grid-cols-2 lg:grid-cols-3 gap-6`
-                  : `grid grid-cols-1 gap-6`
-              }
-            >
-              {isLoading
-                ? "Loading..."
-                : !data?.allProducts
-                ? "Product Not Found"
-                : productSortByPrice()
-                    ?.map((product) => (
-                      <Product
-                        key={product._id}
-                        gridView={gridView}
-                        product={product}
-                      />
-                    ))
-                    .reverse()}
-            </div>
+            {isLoading ? (
+              <MenuLoader />
+            ) : !productSortByPriceAndCategory().length ? (
+              <NotFound>
+                No products were found matching your selection.
+              </NotFound>
+            ) : (
+              <div
+                className={
+                  gridView
+                    ? `grid grid-cols-2 lg:grid-cols-3 gap-6`
+                    : `grid grid-cols-1 gap-6`
+                }
+              >
+                {productSortByPriceAndCategory()
+                  ?.map((product) => (
+                    <Product
+                      key={product._id}
+                      gridView={gridView}
+                      product={product}
+                    />
+                  ))
+                  .reverse()}
+              </div>
+            )}
             <Pagination
               currentPage={currentPage}
               productPerPage={productPerPage}
@@ -132,8 +145,6 @@ const Shop = () => {
             />
           </div>
           <Sidebar
-            selectCate={selectCate}
-            setSelectCate={setSelectCate}
             searchProducts={searchProducts}
             setSearchProducts={setSearchProducts}
             products={data?.allProducts}

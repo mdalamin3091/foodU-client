@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
+import { BsFillClockFill } from "react-icons/bs";
 import ReactStars from "react-rating-stars-component";
 import { useSelector } from "react-redux";
+import NotFound from "../../../Shared/DataNotFound";
 import { useAddReviewMutation } from "../../../store/services/productServices";
 const ReviewTabContent = ({ data }) => {
   const { user } = useSelector((state) => state.auth);
@@ -31,13 +33,14 @@ const ReviewTabContent = ({ data }) => {
   };
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-5 lg:px-0" id="reviews">
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 gap-5 px-5 lg:px-0"
+        id="reviews"
+      >
         {/* display review */}
         <div>
-          {data?.getProduct?.review.length < 1 ? (
-            <h2 className="text-xl text-black font-bold mb-3">
-              Any review not found
-            </h2>
+          {!data?.getProduct?.review.length ? (
+            <NotFound>Any review not found</NotFound>
           ) : (
             data?.getProduct?.review.map((review) => (
               <div className="flex items-start justify-center mb-10">
@@ -60,9 +63,19 @@ const ReviewTabContent = ({ data }) => {
                       activeColor="#ffd700"
                     />
                   </div>
-                  <h2 className="text-xl text-black font-bold mb-3">
-                    {review?.fullname}
-                  </h2>
+                  <div className="flex justify-start">
+                    <h2 className="text-xl text-black font-bold mb-1 mr-3">
+                      {review?.fullname}
+                    </h2>
+
+                    <p className="mt-1 text-gray-400 flex items-center text-sm">
+                      {" "}
+                      <span className="mr-2 -mt-1 text-sm">
+                        <BsFillClockFill />
+                      </span>{" "}
+                      {new Date(review?.createdAt).toLocaleTimeString()}
+                    </p>
+                  </div>
                   <p className="text-gray-500 text-lg">{review?.reviewText}</p>
                 </div>
               </div>
