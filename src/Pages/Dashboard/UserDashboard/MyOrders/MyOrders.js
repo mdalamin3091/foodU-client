@@ -1,4 +1,5 @@
 import React from "react";
+import NotFound from "../../../../Shared/NotFound";
 import { useGetSingleUserQuery } from "../../../../store/services/userServices";
 import MyOrderTable from "./MyOrderTable";
 const MyOrders = () => {
@@ -20,6 +21,8 @@ const MyOrders = () => {
       <h2 className="text-2xl font-bold mb-4">My Orders</h2>
       {isLoading ? (
         "Loading..."
+      ) : !data?.user?.order.length ? (
+        <NotFound />
       ) : (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-left text-gray-500 dark:text-gray-400 whitespace-nowrap">
@@ -44,11 +47,10 @@ const MyOrders = () => {
               </tr>
             </thead>
             <tbody className="text-[16px]">
-              {!data?.user?.order.length
-                ? "Order Not Found"
-                : data?.user?.order?.map((item) => (
-                    <MyOrderTable key={item._id} order={item} />
-                  ))}
+              {data?.user?.order.length &&
+                data?.user?.order?.map((item) => (
+                  <MyOrderTable key={item._id} order={item} />
+                ))}
             </tbody>
           </table>
         </div>

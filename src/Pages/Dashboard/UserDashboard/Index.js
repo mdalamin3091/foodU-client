@@ -3,6 +3,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FcProcess } from "react-icons/fc";
 import { GiCancel, GiConfirmed } from "react-icons/gi";
 import { GiScooter } from "react-icons/gi";
+import NotFound from "../../../Shared/NotFound";
 import { useGetSingleUserQuery } from "../../../store/services/userServices";
 import MyOrderTable from "./MyOrders/MyOrderTable";
 const Index = () => {
@@ -71,34 +72,40 @@ const Index = () => {
       </div>
       {/* my orders */}
       <h2 className="text-2xl font-bold mb-3">Recent Orders</h2>
-      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-left text-gray-500 dark:text-gray-400 whitespace-nowrap">
-          <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-              <th scope="col" className="px-6 py-3">
-                ID
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Order time
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Method
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Status
-              </th>
-              <th scope="col" className="px-6 py-3">
-                Total
-              </th>
-            </tr>
-          </thead>
-          <tbody className="text-[16px]">
-            {!data?.user?.order.length
-              ? "Order Not Found"
-              : data?.user?.order?.map((item) => <MyOrderTable order={item} />)}
-          </tbody>
-        </table>
-      </div>
+      {!data?.user?.order.length ? (
+        <NotFound />
+      ) : (
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+          <table className="w-full text-left text-gray-500 dark:text-gray-400 whitespace-nowrap">
+            <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" className="px-6 py-3">
+                  ID
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Order time
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Method
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Status
+                </th>
+                <th scope="col" className="px-6 py-3">
+                  Total
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-[16px]">
+              {!data?.user?.order.length
+                ? "Order Not Found"
+                : data?.user?.order
+                    ?.slice(0, 5)
+                    .map((item) => <MyOrderTable order={item} />)}
+            </tbody>
+          </table>
+        </div>
+      )}
     </>
   );
 };

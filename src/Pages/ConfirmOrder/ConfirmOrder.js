@@ -15,10 +15,10 @@ const ConfirmOrder = () => {
               <GiConfirmed />
             </p>
             <h2 className="text-3xl lg:text-5xl font-bold text-heading">
-              Your order is complete
+              Your order is Confirmed!!
             </h2>
             <p className="text-gray-500 text-xl mb-16">
-              We are accept your order. Thanks for your order
+              We are accept your order. Thanks for your order!!
             </p>
             <Link to="/shop" className="btn-primary mt-5">
               Continue Shopping
