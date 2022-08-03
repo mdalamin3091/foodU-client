@@ -83,7 +83,7 @@ const ProductDetails = () => {
               {data?.getProduct?.shortDescription}
             </p>
             <p className="text-primary text-4xl font-bold mb-4">
-              £{data?.getProduct?.price}
+              ${data?.getProduct?.price}
             </p>
             <div className="flex items-center justify-between border-t border-t-gray-200 border-b border-b-gray-200 py-4 mb-6">
               <div className="flex items-center justify-between">

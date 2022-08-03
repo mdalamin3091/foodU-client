@@ -49,7 +49,7 @@ const ProductDetailsBottom = ({ data }) => {
                 </span>
               </p>
               <h3 className="text-3xl font-bold text-red-600">
-                £{data?.getProduct?.price}
+                ${data?.getProduct?.price}
               </h3>
             </div>
           </div>

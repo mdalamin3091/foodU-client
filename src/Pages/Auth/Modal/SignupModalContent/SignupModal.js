@@ -11,6 +11,7 @@ import {
   setToken,
   setUser,
 } from "../../../../store/reducers/authSlice";
+import { useState } from "react";
 const SignupModal = ({ setIsSignUpModal }) => {
   const [userInfo, setUserInfo] = React.useState({
     fullname: "",
@@ -19,6 +20,7 @@ const SignupModal = ({ setIsSignUpModal }) => {
   });
   const [profilePic, setProfilePic] = React.useState(null);
   const [signupData, result] = useSignupMutation();
+  const [isLoading, setIsLoading] = useState(false);
   const [uploadImages] = useUploadImagesMutation();
   const dispatch = useDispatch();
   const handleChange = (e) => {
@@ -27,14 +29,15 @@ const SignupModal = ({ setIsSignUpModal }) => {
   };
   // image upload
   const handleImage = (pics) => {
+    setIsLoading(true);
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
       const data = new FormData();
       data.append("file", pics);
       data.append("upload_preset", "poco-site");
       data.append("cloud_name", "online-poco");
-      uploadImages(data).then(
-        (result) => setProfilePic(result.data.url.toString())
-      );
+      uploadImages(data).then((result) => {
+        setProfilePic(result.data.url.toString());
+      }, setIsLoading(false));
     }
   };
   // create new user
@@ -45,7 +48,6 @@ const SignupModal = ({ setIsSignUpModal }) => {
         ...userInfo,
         profilePic,
       });
-      
     } else {
       alert("Please select a profile photo");
     }
@@ -165,7 +167,7 @@ const SignupModal = ({ setIsSignUpModal }) => {
                     required
                   />
                 </div>
-              </div> 
+              </div>
               {/* choose file */}
               <div>
                 <div className="form-group border-none my-2">
@@ -180,7 +182,9 @@ const SignupModal = ({ setIsSignUpModal }) => {
                 </div>
               </div>
               <input
-                className="btn-primary py-2 block"
+                className={`btn-primary py-2 block ${
+                  isLoading ? "cursor-not-allowed" : ""
+                }`}
                 type="submit"
                 value="Register"
               />

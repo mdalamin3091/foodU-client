@@ -143,9 +143,10 @@ const Index = () => {
             </tr>
           </thead>
           <tbody className="text-[16px]">
-            {allOrders?.allOrder?.slice(0, 6).map((item) => (
-              <AllOrderTable order={item} />
-            )).reverse()}
+            {allOrders?.allOrder
+              ?.slice(0, 6)
+              .map((item) => <AllOrderTable order={item} />)
+              .reverse()}
           </tbody>
         </table>
       </div>

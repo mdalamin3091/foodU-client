@@ -38,11 +38,6 @@ const UpdateProfile = () => {
       _id: user._id,
     });
   };
-
-  // useEffect(()=>{
-  //   setProfileInfo(user)
-  // }, [user])
-  console.log(profileInfo)
   useEffect(() => {
     if (result?.isSuccess){
       localStorage.setItem("user", JSON.stringify(result?.data?.updateUser));

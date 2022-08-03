@@ -127,7 +127,7 @@ const Sidebar = ({
               >
                 BBQ chicken breast
               </Link>
-              <p className="text-primary text-lg font-bold">£8.00</p>
+              <p className="text-primary text-lg font-bold">$8.00</p>
             </div>
           </div>
         </div>

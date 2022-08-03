@@ -66,7 +66,7 @@ const Wishlist = () => {
                           {product.title}
                         </h3>
                         <p className="text-gray-600 font-bold">
-                          £{product.price}
+                          ${product.price}
                         </p>
                       </div>
                     </td>

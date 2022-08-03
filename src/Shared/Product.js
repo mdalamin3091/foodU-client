@@ -6,12 +6,14 @@ import {
   useAddWishlistMutation,
   useGetSingleUserQuery,
 } from "../store/services/userServices";
-import { removeFromCart, addToCart } from "../store/reducers/cartSlice";
+import { addToCart } from "../store/reducers/cartSlice";
 import { useDispatch } from "react-redux";
 const Product = ({ gridView, product }) => {
-  const [addProductWishlist, result] = useAddWishlistMutation();
-  const { data, isLoading, isSuccess } = useGetSingleUserQuery();
-  const { productId } = useParams();
+  let url = window.location.href;
+  const filename = url.split("/").pop().split("#")[0].split("?")[0];
+  console.log(filename);
+  const [addProductWishlist] = useAddWishlistMutation();
+  const { data } = useGetSingleUserQuery();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleWishlist = (productId) => {
@@ -24,10 +26,16 @@ const Product = ({ gridView, product }) => {
     });
   };
   const handleNavigate = (id) => {
-    navigate(`product/${id}`);
+    if (filename === "shop") {
+      navigate(`../product/${id}`);
+    } else if (filename !== "shop") {
+      navigate(`../../product/${id}`);
+    } else {
+      navigate(`product/${id}`);
+    }
   };
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product))
+    dispatch(addToCart(product));
     toast.success("Product added your cart", {
       theme: "colored",
       closeOnClick: true,
@@ -91,11 +99,8 @@ const Product = ({ gridView, product }) => {
           <p className="text-lg text-gray-500 ">{product?.shortDescription}</p>
         </div>
         <div className="flex items-center justify-between mt-3 absolute bottom-0 left-0 right-0 p-4">
-          <h3 className="text-2xl text-primary font-bold">£{product?.price}</h3>
-          <div
-            className="cart-icon"
-            onClick={() => handleAddToCart(product)}
-          >
+          <h3 className="text-2xl text-primary font-bold">${product?.price}</h3>
+          <div className="cart-icon" onClick={() => handleAddToCart(product)}>
             <BsMinecart />
           </div>
         </div>
