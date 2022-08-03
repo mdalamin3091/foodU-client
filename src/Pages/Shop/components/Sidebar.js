@@ -4,13 +4,16 @@ import { FaSearch } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { filterByCategory } from "../../../store/reducers/cartSlice";
-import { useAllCategoryQuery, useAllProductQuery } from "../../../store/services/productServices";
+import {
+  useAllCategoryQuery,
+  useAllProductQuery,
+} from "../../../store/services/productServices";
 const Sidebar = ({ searchProducts, setSearchProducts, products }) => {
   const [searchText, setSearchText] = useState("");
   const { data, isLoading, isSuccess } = useAllCategoryQuery();
   const { category: selectCategory } = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const { data:allProducts } = useAllProductQuery();
+  const { data: allProducts } = useAllProductQuery();
   const navigate = useNavigate();
   const handleSearch = (e) => {
     setSearchText(e.target.value);
@@ -29,11 +32,12 @@ const Sidebar = ({ searchProducts, setSearchProducts, products }) => {
     }
   };
   const handleCategory = (categoryName) => {
-      dispatch(filterByCategory(categoryName))
+    dispatch(filterByCategory(categoryName));
   };
   const handleNavigate = (id) => {
     navigate(`/product/${id}`);
   };
+  console.log("allProducts", allProducts);
   return (
     <>
       {/* sidebar  */}
@@ -103,32 +107,41 @@ const Sidebar = ({ searchProducts, setSearchProducts, products }) => {
         <h3 className="text-xl font-bold mb-6 border-b-[1px] border-dashed border-gray-300 mt-7">
           Best Deals
         </h3>
-        <div className="recipe border-2 border-gray-200 rounded-3xl p-2">
-          <div className="bg-light-gray flex items-center justify-between rounded-3xl gap-2">
-            <div className="basis-1/3">
-              <img
-                className="w-full"
-                src={require("../../../assets/images/food_2.png")}
-                alt="food"
-              />
-            </div>
-            <div className="content basis-2/3 text-left mt-6 relative py-1">
-              <div className="flex items-center justify-start gap-1 text-primary text-lg mb-2">
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-                <AiFillStar />
-              </div>
-              <Link
-                to="/shop"
-                className="text-lg font-bold text-heading hover:text-primary cursor-pointer"
-              >
-                BBQ chicken breast
-              </Link>
-              <p className="text-primary text-lg font-bold">$8.00</p>
-            </div>
-          </div>
+        <div className="grid grid-cols-1 gap-5">
+          {allProducts?.allProducts?.map(
+            (item) =>
+              item?.review?.length > 3 && (
+                <div className="recipe border-2 border-gray-200 rounded-3xl p-2">
+                  <div className="bg-light-gray flex items-center justify-between rounded-3xl gap-2">
+                    <div className="basis-1/3">
+                      <img
+                        className="w-full"
+                        src={require("../../../assets/images/food_2.png")}
+                        alt="food"
+                      />
+                    </div>
+                    <div className="content basis-2/3 text-left mt-6 relative py-1">
+                      <div className="flex items-center justify-start gap-1 text-primary text-lg mb-2">
+                        <AiFillStar />
+                        <AiFillStar />
+                        <AiFillStar />
+                        <AiFillStar />
+                        <AiFillStar />
+                      </div>
+                      <Link
+                        to="/shop"
+                        className="text-lg font-bold text-heading hover:text-primary cursor-pointer"
+                      >
+                        {item.title}
+                      </Link>
+                      <p className="text-primary text-lg font-bold">
+                        ${item.price}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )
+          )}
         </div>
       </div>
     </>
