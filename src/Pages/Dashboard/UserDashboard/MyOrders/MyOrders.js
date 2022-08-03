@@ -1,5 +1,5 @@
 import React from "react";
-import NotFound from "../../../../Shared/NotFound";
+import NotFound from "../../../../Shared/DataNotFound";
 import { useGetSingleUserQuery } from "../../../../store/services/userServices";
 import MyOrderTable from "./MyOrderTable";
 const MyOrders = () => {

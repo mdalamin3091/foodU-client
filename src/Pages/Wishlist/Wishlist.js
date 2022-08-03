@@ -12,6 +12,7 @@ import {
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/reducers/cartSlice";
 import { toast } from "react-toastify";
+import NotFound from "../../Shared/DataNotFound";
 const Wishlist = () => {
   const { data, isLoading, isSuccess } = useGetSingleUserQuery();
   const [addProductWishlist, result] = useAddWishlistMutation();
@@ -50,7 +51,9 @@ const Wishlist = () => {
             {isLoading
               ? "Loading..."
               : !data?.user?.wishlist.length
-              ? "You are not wishlist any product"
+              ? <NotFound>
+                <h2 className="text-3xl font-bold text-red-500">You are not wishlist any product</h2>
+              </NotFound>
               : data?.user?.wishlist?.map((product) => (
                   <tr className="w-full" key={product._id}>
                     <td className="border border-gray-400 w-1/6">

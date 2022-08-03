@@ -1,5 +1,5 @@
 import React from "react";
-import NotFound from "../../../../Shared/NotFound";
+import NotFound from "../../../../Shared/DataNotFound";
 import { useAllOrderQuery } from "../../../../store/services/orderService";
 import AllOrderTable from "./AllOrderTable";
 

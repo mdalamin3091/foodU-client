@@ -43,10 +43,10 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="wishlist" element={<Wishlist />} />
+          <Route path="product/:productId" element={<ProductDetails />} />
           <Route path="/*" element={<PrivateOutlet />}>
             <Route path="checkout" element={<Checkout />} />
             <Route path="confirmOrder" element={<ConfirmOrder />} />
-            <Route path="product/:productId" element={<ProductDetails />} />
             <Route path="user" element={<UserDashboard />}>
               <Route index element={<UserDashboadIndex />} />
               <Route path="dashboard" element={<UserDashboadIndex />} />

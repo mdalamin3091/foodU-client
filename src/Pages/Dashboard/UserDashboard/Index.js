@@ -3,7 +3,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FcProcess } from "react-icons/fc";
 import { GiCancel, GiConfirmed } from "react-icons/gi";
 import { GiScooter } from "react-icons/gi";
-import NotFound from "../../../Shared/NotFound";
+import NotFound from "../../../Shared/DataNotFound";
 import { useGetSingleUserQuery } from "../../../store/services/userServices";
 import MyOrderTable from "./MyOrders/MyOrderTable";
 const Index = () => {
