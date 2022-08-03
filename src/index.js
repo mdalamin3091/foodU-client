@@ -21,3 +21,16 @@ root.render(
     </Provider>
   </React.StrictMode>
 );
+
+
+// problem list
+// 1. cart item not delete
+// 2. rating average
+// 3. about page design not complete
+// 4. shop page showing result not dynamic
+// 5. grid and flex layout problme
+// 6. filter not work
+// 7. best deal not work
+// 8. product details page count not work with cart page
+// 9. navbar responsive for mobile
+// 10. dashboard navbar responsive

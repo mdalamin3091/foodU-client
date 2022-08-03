@@ -22,7 +22,8 @@ const Wishlist = () => {
   };
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
-    toast.success("Product added your cart", {
+    addProductWishlist({ productId:product._id });
+    toast.success("Product added your cart and remove from wishlist", {
       theme: "colored",
       closeOnClick: true,
       hideProgressBar: false,
@@ -52,7 +53,7 @@ const Wishlist = () => {
               ? "Loading..."
               : !data?.user?.wishlist.length
               ? <NotFound>
-                <h2 className="text-3xl font-bold text-red-500">You are not wishlist any product</h2>
+                You are not wishlist any product
               </NotFound>
               : data?.user?.wishlist?.map((product) => (
                   <tr className="w-full" key={product._id}>
