@@ -8,10 +8,11 @@ import {
 } from "../store/services/userServices";
 import { addToCart } from "../store/reducers/cartSlice";
 import { useDispatch } from "react-redux";
+import ReactStars from "react-rating-stars-component";
+import { AiFillStar } from "react-icons/ai";
 const Product = ({ gridView, product }) => {
   let url = window.location.href;
   const filename = url.split("/").pop().split("#")[0].split("?")[0];
-  console.log(filename);
   const [addProductWishlist] = useAddWishlistMutation();
   const { data } = useGetSingleUserQuery();
   const dispatch = useDispatch();
@@ -90,6 +91,16 @@ const Product = ({ gridView, product }) => {
 
         {/* product content */}
         <div className="content relative text-left p-4 pt-5 mb-12">
+          <ReactStars
+            count={5}
+            value={product.review.length}
+            edit={false}
+            size={24}
+            isHalf={true}
+            fullIcon={<AiFillStar />}
+            activeColor="#ffd700"
+          />
+
           <h3
             onClick={() => handleNavigate(product?._id)}
             className="text-2xl font-bold text-heading hover:text-primary_hover cursor-pointer"

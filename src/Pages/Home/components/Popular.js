@@ -3,6 +3,7 @@ import Tab from "../../../Shared/Tab";
 import Product from "../../../Shared/Product";
 import { Link } from "react-router-dom";
 import { useAllProductQuery } from "../../../store/services/productServices";
+import MenuLoader from "../../../Shared/Loader/MenuLoader";
 
 const Popular = () => {
   const [openTab, setOpenTab] = useState("Pizza");
@@ -18,16 +19,23 @@ const Popular = () => {
         {/* tab */}
         <Tab openTab={openTab} setOpenTab={setOpenTab} />
         {/* product */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5 lg:px-0">
-          {isLoading
-            ? "Loading..."
-            : filteredData
-                ?.slice(0, 6)
-                .map((product) => (
-                  <Product key={product._id} gridView={gridView} product={product} />
-                ))
-                .reverse()}
-        </div>
+
+        {isLoading ? (
+          <MenuLoader />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5 lg:px-0">
+            {filteredData
+              ?.slice(0, 6)
+              .map((product) => (
+                <Product
+                  key={product._id}
+                  gridView={gridView}
+                  product={product}
+                />
+              ))
+              .reverse()}
+          </div>
+        )}
         <div className="flex items-center justify-center mt-12">
           <Link to="/shop" className="btn-primary">
             All Products

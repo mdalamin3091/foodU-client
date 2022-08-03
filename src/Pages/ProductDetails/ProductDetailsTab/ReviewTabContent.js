@@ -31,7 +31,7 @@ const ReviewTabContent = ({ data }) => {
   };
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-5 lg:px-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-5 lg:px-0" id="reviews">
         {/* display review */}
         <div>
           {data?.getProduct?.review.length < 1 ? (

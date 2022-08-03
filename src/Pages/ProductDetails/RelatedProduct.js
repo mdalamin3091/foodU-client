@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NotFound from "../../Shared/DataNotFound";
 import Product from "../../Shared/Product";
 import { useAllProductQuery } from "../../store/services/productServices";
 const RelatedProduct = ({ data }) => {
@@ -15,13 +16,15 @@ const RelatedProduct = ({ data }) => {
       <h2 className="text-4xl py-8 text-black font-bold text-center">
         Related Product
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5 lg:px-0">
-        {!relatedData.length
-          ? "Product Not Found"
-          : relatedData?.map((product) => (
-              <Product gridView={gridView} product={product} />
-            ))}
-      </div>
+      {!relatedData.length ? (
+        <NotFound>Related Product Not Found</NotFound>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-5 lg:px-0">
+          {relatedData?.map((product) => (
+          <Product gridView={gridView} product={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

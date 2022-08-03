@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReviewTabContent from "./ReviewTabContent";
 
 const ProductDetailsTab = ({ data }) => {
-  const [selectTab, setSelectTab] = useState("Description");
+  const [selectTab, setSelectTab] = useState("Review");
   return (
     <div className="font-JosefinSans section-padding pt-0">
       {/* tab */}

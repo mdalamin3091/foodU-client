@@ -18,7 +18,7 @@ const Testimonial = () => {
   return (
     <div className="font-JosefinSans section-padding bg-light-gray">
       <div className="container">
-        <h2 className="section-title text-center">What our client says </h2>
+        <h2 className="section-title text-center">What our customer says </h2>
 
         {/* slider */}
         <Swiper
@@ -41,9 +41,9 @@ const Testimonial = () => {
         >
           {data?.allReview
             .slice(0, 8)
-            .map((review) => (
+            .map((review, index) => (
               <SwiperSlide>
-                <div className="bg-white p-7 rounded-xl" key={review._id}>
+                <div className="bg-white p-7 rounded-xl" key={index}>
                   <div className="flex items-center justify-between gap-4 mb-8">
                     <div className="basis-1/5">
                       <img

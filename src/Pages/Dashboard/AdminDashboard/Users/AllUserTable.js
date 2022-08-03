@@ -46,6 +46,17 @@ const AllUserTable = ({user}) => {
           {user?.fullname}
         </td>
         <td className="px-6 py-4 text-gray-900">{user?.email}</td>
+        <td
+          className={`${
+            user?.role === "user"
+              ? "text-blue-500"
+              : user?.role === "admin"
+              ? "text-green-500"
+              : null
+          } px-6 py-4`}
+        >
+          {user?.role === "user" ? "User" : "Admin"}
+        </td>
         <td className="px-6 py-4">
           <select
             name="role"

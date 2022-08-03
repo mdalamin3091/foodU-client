@@ -9,14 +9,18 @@ import NavBar from "../../Shared/NavBar";
 import Footer from "../../Shared/Footer";
 import { useAllProductQuery } from "../../store/services/productServices";
 import Pagination from "./components/Pagination";
+import { useDispatch, useSelector } from "react-redux";
+import { sortProduct } from "../../store/reducers/cartSlice";
 
 const Shop = () => {
   const [gridView, setGridView] = useState(true);
   const [selectCate, setSelectCate] = useState(null);
   const [searchProducts, setSearchProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage, setProductPerPage] = useState(2);
+  const [productPerPage, setProductPerPage] = useState(9);
   const { data, isLoading } = useAllProductQuery();
+  const dispatch = useDispatch();
+  const { sort } = useSelector((state) => state.cart);
   const indexOfLastProduct = currentPage * productPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productPerPage;
   const currentProducts = data?.allProducts?.slice(
@@ -26,6 +30,18 @@ const Shop = () => {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  const handleChange = (e) => {
+    dispatch(sortProduct(e.target.value));
+  };
+  const productSortByPrice = () =>{
+    let sortedProduct;
+    if (sort && data) {
+      sortedProduct = currentProducts.sort((a, b) => 
+        sort === "high_to_low" ? a.price - b.price : b.price - a.price
+      );
+    }
+    return sortedProduct
+  }
   return (
     <>
       <NavBar />
@@ -73,18 +89,15 @@ const Shop = () => {
                     <FaList />
                   </span>
                 </div>
-                <select className="outline-none text-lg px-8 py-4 bg-light-gray text-black rounded-md">
-                  <option className="text-black text-lg" value="">
-                    Default sorting
-                  </option>
+                <select
+                  className="outline-none text-lg px-8 py-4 bg-light-gray text-black rounded-md"
+                  onClick={handleChange}
+                >
                   <option className="text-black text-lg" value="high_to_low">
                     High to low
                   </option>
                   <option className="text-black text-lg" value="low_to_high">
                     Low to high
-                  </option>
-                  <option className="text-black text-lg" value="average_rating">
-                    Average rating
                   </option>
                 </select>
               </div>
@@ -101,7 +114,7 @@ const Shop = () => {
                 ? "Loading..."
                 : !data?.allProducts
                 ? "Product Not Found"
-                : currentProducts
+                : productSortByPrice()
                     ?.map((product) => (
                       <Product
                         key={product._id}

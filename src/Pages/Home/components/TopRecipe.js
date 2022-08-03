@@ -5,11 +5,12 @@ import { useAllProductQuery } from "../../../store/services/productServices";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../store/reducers/cartSlice";
+import TopRecipeLoader from "../../../Shared/Loader/TopRecipeLoader";
 const TopRecipe = () => {
   const { data, isLoading, isSuccess } = useAllProductQuery();
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product))
+    dispatch(addToCart(product));
     toast.success("Product added your cart", {
       theme: "colored",
       closeOnClick: true,
@@ -33,47 +34,48 @@ const TopRecipe = () => {
             </Link>
           </div>
           {/* product items */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-5 md:px-0">
-            {isLoading
-              ? "Loading..."
-              : data?.allProducts?.slice(0, 6).map((product) => (
-                  <>
-                    <div
-                      className="recipe border-2 border-gray-200 rounded-3xl p-2"
-                      key={product._id}
-                    >
-                      <div className="bg-light-gray flex products-center justify-between rounded-3xl gap-2">
-                        <div className="basis-1/3">
-                          <img
-                            className="w-full"
-                            src={require("../../../assets/images/food_2.png")}
-                            alt="food"
-                          />
-                        </div>
-                        <div className="content basis-2/3 text-left mt-5 relative">
-                          <Link
-                            to={`product/${product._id}`}
-                            className="text-lg font-bold text-heading hover:text-primary cursor-pointer"
-                          >
-                            {product?.title}
-                          </Link>
-                          <h3>{product?.category}</h3>
-                          <span className="text-primary text-lg font-bold">
-                            $ {product?.price}
-                          </span>
-                          <span
-                            className="cart-icon absolute right-3 bottom-3"
-                            onClick={() => handleAddToCart(product)}
-                          >
-                            <BsMinecart />
-                          </span>
-                        </div>
+          {isLoading ? (
+            <TopRecipeLoader />
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-5 md:px-0">
+              {data?.allProducts?.slice(0, 6).map((product) => (
+                <>
+                  <div
+                    className="recipe border-2 border-gray-200 rounded-3xl p-2"
+                    key={product._id}
+                  >
+                    <div className="bg-light-gray flex products-center justify-between rounded-3xl gap-2">
+                      <div className="basis-1/3">
+                        <img
+                          className="w-full"
+                          src={require("../../../assets/images/food_2.png")}
+                          alt="food"
+                        />
+                      </div>
+                      <div className="content basis-2/3 text-left mt-5 relative">
+                        <Link
+                          to={`product/${product._id}`}
+                          className="text-lg font-bold text-heading hover:text-primary cursor-pointer"
+                        >
+                          {product?.title}
+                        </Link>
+                        <h3>{product?.category}</h3>
+                        <span className="text-primary text-lg font-bold">
+                          $ {product?.price}
+                        </span>
+                        <span
+                          className="cart-icon absolute right-3 bottom-3"
+                          onClick={() => handleAddToCart(product)}
+                        >
+                          <BsMinecart />
+                        </span>
                       </div>
                     </div>
-                  </>
-                ))}
-            {/* 1 */}
-          </div>
+                  </div>
+                </>
+              ))}
+            </div>
+          )}
         </div>
         {/* banner part */}
         <div className="hidden md:col-span-1 md:block">

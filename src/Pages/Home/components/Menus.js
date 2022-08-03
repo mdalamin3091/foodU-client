@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import CategoryLoader from "../../../Shared/Loader/CategoryLoader";
 import { useAllCategoryQuery } from "../../../store/services/productServices";
 
 const Menus = () => {
@@ -15,28 +16,30 @@ const Menus = () => {
             Menus
           </Link>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
-          {isLoading
-            ? "Loading..."
-            : data?.allCategory.slice(0, 9).map((category, index) => (
-                <Link
-                  to="/shop"
-                  key={index}
-                  className="flex items-center justify-center flex-col cursor-pointer hover:text-primary transition-all duration-150 group"
-                >
-                  <div className="mx-auto overflow-hidden">
-                    <img
-                      className="group-hover:scale-125 transition-all duration-300 ease-in-out w-24 h-[100px] object-contain"
-                      src={category.categoryImage}
-                      alt="category-img"
-                    />
-                  </div>
-                  <h2 className="uppercase text-sm font-bold text-center">
-                    {category.categoryName}
-                  </h2>
-                </Link>
-              ))}
-        </div>
+        {isLoading ? (
+          <CategoryLoader />
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+            {data?.allCategory.slice(0, 9).map((category, index) => (
+              <Link
+                to="/shop"
+                key={index}
+                className="flex items-center justify-center flex-col cursor-pointer hover:text-primary transition-all duration-150 group"
+              >
+                <div className="mx-auto overflow-hidden">
+                  <img
+                    className="group-hover:scale-125 transition-all duration-300 ease-in-out w-24 h-[100px] object-contain"
+                    src={category.categoryImage}
+                    alt="category-img"
+                  />
+                </div>
+                <h2 className="uppercase text-sm font-bold text-center">
+                  {category.categoryName}
+                </h2>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

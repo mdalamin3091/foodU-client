@@ -14,11 +14,12 @@ import { toast } from "react-toastify";
 import { useAddWishlistMutation } from "../../store/services/userServices";
 import { addToCart } from "../../store/reducers/cartSlice";
 import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 const ProductDetails = () => {
   const [productCount, setProductCount] = useState(1);
   const { productId } = useParams();
   const dispatch = useDispatch();
-  const { data} = useSingleProductQuery({
+  const { data } = useSingleProductQuery({
     productId,
   });
   const [addProductWishlist] = useAddWishlistMutation();
@@ -39,11 +40,13 @@ const ProductDetails = () => {
       hideProgressBar: false,
     });
   };
+  // let average = data?.getProduct?.review?.reduce((sum, curr, _, arr) => (curr.ratingStar + sum) / arr.length, 0);
+  // console.log(average)
   return (
     <div>
       <NavBar />
       <Breadcrumb data={data} />
-      <div className="container">
+      <div className="container scroll-smooth">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 section-padding font-JosefinSans px-5 lg:px-0">
           <div>
             {/* big image  */}
@@ -61,23 +64,15 @@ const ProductDetails = () => {
             <h2 className="text-3xl md:text-5xl font-bold mb-3">
               {data?.getProduct?.title}
             </h2>
-            <div className="flex items-center justify-start gap-1 text-primary text-lg mb-4">
-              <ReactStars
-                count={5}
-                value={4}
-                edit={false}
-                size={24}
-                isHalf={true}
-                fullIcon={<AiFillStar />}
-                activeColor="#ffd700"
-              />
-              <p className="text-gray-400 ml-2">
-                (
+            <div className="flex items-center justify-start gap-1 text-lg mb-4">
+              
+              <a href="#reviews" className="text-gray-400 ml-2 cursor-pointer hover:text-primary hover:underline hover:decoration-primary">
+                
                 {data?.getProduct?.review?.length
                   ? data?.getProduct?.review?.length
                   : 0}{" "}
-                Customer Reviews)
-              </p>
+                Customer Reviews
+              </a>
             </div>
             <p className="text-gray-600 text-xl mb-8">
               {data?.getProduct?.shortDescription}

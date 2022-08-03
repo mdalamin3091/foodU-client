@@ -21,6 +21,9 @@ const AllUsers = () => {
                 Role
               </th>
               <th scope="col" className="px-6 py-3">
+              Update Role
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Profile
               </th>
               <th scope="col" className="px-6 py-3">
