@@ -114,11 +114,9 @@ const AdminSidebar = ({ openMenu, setOpenMenu }) => {
 
       {/* Mobile menu */}
       <div
-        className={`fixed inset-0 z-20 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center ${
-          openMenu ? "block" : "hidden"
-        } lg:hidden`}
+        className={`fixed inset-0 z-20 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center ${openMenu ? "opacity-100": "opacity-0"} transition-all ease-linear duration-500`}
       >
-        <aside className="fixed inset-y-0 z-30 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white left-0">
+        <aside className={`fixed inset-y-0 z-30 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white left-0 ${openMenu ? "-translate-x-0": "-translate-x-[400px]"} transition-all ease-linear duration-500`}>
           <h3 className="px-6 py-3 text-xl lg:text-3xl font-bold uppercase mt-4">
             {user?.fullname}
           </h3>

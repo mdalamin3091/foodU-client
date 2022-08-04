@@ -60,7 +60,7 @@ const Index = () => {
               {item.icon}
             </div>
             <div>
-              <p className="text-lg font-medium  text-gray-600 ">
+              <p className="text-lg font-medium  text-gray-600 whitespace-nowrap">
                 {item.title}
               </p>
               <p className="text-lg font-semibold text-gray-700">
