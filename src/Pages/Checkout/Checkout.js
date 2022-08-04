@@ -38,7 +38,7 @@ const Checkout = () => {
       </ScreenHeader>
       <div className="bg-gray-50 font-JosefinSans">
         <div className="container section-padding">
-          <div className="grid grid-cols-1 lg:grid-cols-3 px-5 lg:px-0 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 lg:px-0 gap-8">
             {/* shipping details */}
             <CheckoutForm
               totalCost={totalCost}

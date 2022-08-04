@@ -19,10 +19,10 @@ const TopRecipe = () => {
   };
   return (
     <div className="section-padding font-JosefinSans">
-      <div className="container grid grid-cols-3 gap-8">
+      <div className="container grid grid-cols-3 gap-5">
         <div className="col-span-3 md:col-span-2">
           {/* header */}
-          <div className="flex items-center justify-between mb-12 px-5 md:px-0">
+          <div className="flex items-center justify-between mb-12 md:px-0">
             <h2 className="text-4xl md:text-5xl font-bold text-heading">
               Top recipes
             </h2>
@@ -37,7 +37,7 @@ const TopRecipe = () => {
           {isLoading ? (
             <TopRecipeLoader />
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-5 md:px-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:px-0">
               {data?.allProducts?.slice(0, 6).map((product) => (
                 <>
                   <div

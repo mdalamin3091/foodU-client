@@ -65,8 +65,8 @@ const Shop = () => {
         </div>
       </ScreenHeader>
       <div className="container section-padding font-JosefinSans">
-        <div className="grid grid-cols-4 gap-8">
-          <div className="col-span-4 md:col-span-3">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+          <div className="col-span-1 md:col-span-3">
             {/* sorting product part */}
             <div className="flex items-center justify-center md:justify-between mb-12">
               <p className="text-black text-lg hidden md:block">
@@ -122,8 +122,8 @@ const Shop = () => {
               <div
                 className={
                   gridView
-                    ? `grid grid-cols-2 lg:grid-cols-3 gap-6`
-                    : `grid grid-cols-1 gap-6`
+                    ? `grid grid-cols-1 lg:grid-cols-3 gap-5`
+                    : `grid grid-cols-1 gap-5`
                 }
               >
                 {productSortByPriceAndCategory()

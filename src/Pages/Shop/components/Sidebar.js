@@ -67,7 +67,7 @@ const Sidebar = ({ searchProducts, setSearchProducts, products }) => {
         {/* search bar */}
         <div className="outline-none text-lg px-8 py-3 bg-light-gray text-black rounded-md relative">
           <input
-            type="search"
+            type="text"
             name="search"
             placeholder="Search product"
             className="outline-none py-3 w-full bg-transparent"

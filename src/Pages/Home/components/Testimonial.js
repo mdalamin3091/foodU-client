@@ -18,7 +18,7 @@ const Testimonial = () => {
   return (
     <div className="font-JosefinSans section-padding bg-light-gray">
       <div className="container">
-        <h2 className="section-title text-center capitalize">What our customer says </h2>
+        <h2 className="section-title text-4xl md:text-5xl text-center capitalize">What our customer says </h2>
 
         {/* slider */}
         <Swiper
@@ -37,7 +37,7 @@ const Testimonial = () => {
             clickable: true,
           }}
           modules={[FreeMode, Pagination]}
-          className="mySwiper !px-5 !md:px-0"
+          className="mySwiper"
         >
           {data?.allReview
             .slice(0, 8)

@@ -4,7 +4,7 @@ import NavBar from "../../Shared/NavBar";
 import Footer from "../../Shared/Footer";
 import { Link } from "react-router-dom";
 import { MdOutlinePhoneIphone, MdOutlineMail } from "react-icons/md";
-import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 const Contact = () => {
   return (
     <>
@@ -43,7 +43,7 @@ const Contact = () => {
           {/* email */}
           <div>
             <span className="text-7xl font-bold text-primary">
-              <MdOutlinePhoneIphone />
+            <FaEnvelope />
             </span>
             <h2 className="text-2xl font-bold mt-10 mb-4">Email:</h2>
             <p className="text-gray-400">contact@example.com</p>

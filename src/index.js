@@ -28,5 +28,4 @@ root.render(
 // 2. best deal rating not dynamic
 // 3. product details page count not work with cart page
 // 4. navbar responsive for mobile
-// 5. dashboard navbar responsive smoth behavior
-// 6. user dashboard my order problem not rerender 
+// 5. user dashboard my order problem not rerender 

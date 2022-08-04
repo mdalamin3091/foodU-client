@@ -18,7 +18,7 @@ const AboutTestimonial = () => {
   return (
     <div className='relative bg-[url("https://i.ibb.co/0t3rHwy/offer-50-main-bg.jpg")] h-auto lg:h-[500px] w-full py-24 bg-cover bg-no-repeat bg-center z-0'>
       <div className="container">
-        <h2 className="section-title text-center text-white mb-10 capitalize">What our customer says </h2>
+      <h2 className="section-title text-white text-4xl md:text-5xl text-center capitalize">What our customer says </h2>
 
         {/* slider */}
         <Swiper
