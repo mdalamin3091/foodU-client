@@ -7,7 +7,7 @@ import { MdArrowBackIosNew } from "react-icons/md";
 import { FaExchangeAlt } from "react-icons/fa";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout } from "../../../store/reducers/authSlice";
-import {useDispatch, useSelector} from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 const UserSidebar = ({ openMenu, setOpenMenu }) => {
   const sidebarLinks = [
     {
@@ -43,24 +43,24 @@ const UserSidebar = ({ openMenu, setOpenMenu }) => {
   ];
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {user} = useSelector(state => state.auth);
+  const { user } = useSelector((state) => state.auth);
   const handleLogout = (title) => {
     if (title === "Logout") {
-      dispatch(logout(null))
+      dispatch(logout(null));
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       navigate("/");
     }
   };
   const handleLogoutMobile = (title) => {
-    setOpenMenu(!openMenu)
-    if(title === "Logout"){
-      dispatch(logout(null))
+    setOpenMenu(!openMenu);
+    if (title === "Logout") {
+      dispatch(logout(null));
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       navigate("/");
     }
-  }
+  };
   return (
     <>
       {/* Desktop menu */}
@@ -87,11 +87,17 @@ const UserSidebar = ({ openMenu, setOpenMenu }) => {
 
       {/* Mobile menu */}
       <div
-        className={`fixed inset-0 z-20 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center ${openMenu ? "opacity-100": "opacity-0"} transition-all ease-linear duration-500`}
+        className={`fixed inset-0 z-20 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center ${
+          openMenu ? "opacity-100" : "opacity-0 hidden"
+        } transition-all ease-linear duration-500`}
       >
-        <aside className={`fixed inset-y-0 z-30 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white left-0 ${openMenu ? "-translate-x-0": "-translate-x-[400px]"} transition-all ease-linear duration-500`}>
+        <aside
+          className={`fixed inset-y-0 z-30 flex-shrink-0 w-64 mt-16 overflow-y-auto bg-white left-0 ${
+            openMenu ? "-translate-x-0" : "-translate-x-[400px]"
+          } transition-all ease-linear duration-500`}
+        >
           <h3 className="px-6 py-3 text-xl lg:text-3xl font-bold uppercase mt-4">
-          {user?.fullname}
+            {user?.fullname}
           </h3>
           {sidebarLinks.map((item, index) => (
             <NavLink
