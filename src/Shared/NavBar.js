@@ -109,9 +109,9 @@ const NavBar = () => {
             </div>
           </div>
           <div className="hidden lg:flex items-center justify-between">
-            <span className="navbar-icon">
+            {/* <span className="navbar-icon">
               <BiSearchAlt2 />
-            </span>
+            </span> */}
             <Link to="/wishlist" className="navbar-icon relative group">
               <BsFillSuitHeartFill />
               <span className="flex items-center justify-center w-6 h-6 text-sm font-semibold text-white bg-primary rounded-[50%] absolute top-0 right-0 group-hover:bg-primary_hover">

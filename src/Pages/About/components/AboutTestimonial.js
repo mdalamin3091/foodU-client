@@ -13,12 +13,12 @@ import { AiFillStar } from "react-icons/ai";
 import { useAllReviewQuery } from "../../../store/services/productServices";
 import ReactStars from "react-rating-stars-component";
 
-const Testimonial = () => {
+const AboutTestimonial = () => {
   const { data } = useAllReviewQuery();
   return (
-    <div className="font-JosefinSans section-padding bg-light-gray">
+    <div className='relative bg-[url("https://i.ibb.co/0t3rHwy/offer-50-main-bg.jpg")] h-auto lg:h-[500px] w-full py-24 bg-cover bg-no-repeat bg-center z-0'>
       <div className="container">
-        <h2 className="section-title text-center capitalize">What our customer says </h2>
+        <h2 className="section-title text-center text-white mb-10 capitalize">What our customer says </h2>
 
         {/* slider */}
         <Swiper
@@ -87,4 +87,4 @@ const Testimonial = () => {
   );
 };
 
-export default Testimonial;
+export default AboutTestimonial;

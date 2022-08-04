@@ -37,7 +37,6 @@ const Sidebar = ({ searchProducts, setSearchProducts, products }) => {
   const handleNavigate = (id) => {
     navigate(`/product/${id}`);
   };
-  console.log("allProducts", allProducts);
   return (
     <>
       {/* sidebar  */}

@@ -107,7 +107,7 @@ const Product = ({ gridView, product }) => {
           >
             {product?.title}
           </h3>
-          <p className="text-lg text-gray-500 ">{product?.shortDescription}</p>
+          <p className="text-lg text-gray-500 ">{product?.shortDescription.slice(0, 70)}...</p>
         </div>
         <div className="flex items-center justify-between mt-3 absolute bottom-0 left-0 right-0 p-4">
           <h3 className="text-2xl text-primary font-bold">${product?.price}</h3>

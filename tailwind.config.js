@@ -1,7 +1,5 @@
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
@@ -12,20 +10,27 @@ module.exports = {
         primary_hover: "#eeac00",
       },
       height: {
-        "screen-85": "85vh"
+        "screen-85": "85vh",
       },
       fontFamily: {
-        JosefinSans: ['Josefin Sans', 'sans-serif'],
-        Norican: ['Norican', 'cursive'],
+        JosefinSans: ["Josefin Sans", "sans-serif"],
+        Norican: ["Norican", "cursive"],
       },
       backgroundImage: {
-        "hero": "url('https://i.ibb.co/grmgsSZ/React-App.png')",
+        hero: "url('https://i.ibb.co/grmgsSZ/React-App.png')",
+        about_guarantee:"url('https://i.ibb.co/qMYGCpk/about.jpg')"
       },
       container: {
         center: true,
-        padding: "1 rem"
-      }
+        padding: "1rem",
+      },
+    }, 
+    screens: {
+      "sm": "640px",
+      "md": "768px",
+      "lg": "1024px",
+      "xl": "1290px",
     },
   },
   plugins: [],
-}
+};

@@ -24,11 +24,11 @@ root.render(
 
 
 // problem list
-// 2. rating average
-// 3. about page design not complete
-// 4. grid and flex layout problem
-// 5. best deal rating not dynamic
-// 6. product details page count not work with cart page
-// 7. navbar responsive for mobile
-// 8. dashboard navbar responsive
-// 9. user dashboard my order problem not rerender 
+// 1. rating average
+// 2. about page design not complete
+// 3. grid and flex layout problem
+// 4. best deal rating not dynamic
+// 5. product details page count not work with cart page
+// 6. navbar responsive for mobile
+// 7. dashboard navbar responsive smoth behavior
+// 8. user dashboard my order problem not rerender 
