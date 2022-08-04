@@ -26,7 +26,7 @@ const SingleProduct = ({ product }) => {
   };
   return (
     <>
-      <div className="w-full p-4">
+      <div className="w-full">
         <div className="product border-2 border-gray-200 bg-white rounded-2xl p-2 relative group font-JosefinSans">
           {/* image */}
           <div

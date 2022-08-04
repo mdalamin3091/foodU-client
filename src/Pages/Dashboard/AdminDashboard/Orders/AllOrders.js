@@ -7,7 +7,7 @@ const AllOrders = () => {
   const { data: allOrders, isLoading } = useAllOrderQuery();
   return (
     <>
-      <h2 className="text-2xl font-bold mb-4">All Orders</h2>
+      <h2 className="text-2xl font-bold mb-4 mt-4">All Orders</h2>
       {isLoading ? (
         "Loading..."
       ) : !allOrders?.allOrder?.length ? (

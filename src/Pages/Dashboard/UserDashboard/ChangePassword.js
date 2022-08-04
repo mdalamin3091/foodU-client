@@ -43,7 +43,7 @@ const ChangePassword = () => {
   }, [result?.isError])
   return (
     <>
-      <h2 className="text-2xl font-bold mb-4">Update Profile</h2>
+      <h2 className="text-2xl font-bold mb-4 mt-4">Update Profile</h2>
       <div className="grid grid-cols-1">
         <div className="mb-3">
           <label htmlFor="Email" className="text-gray-600 text-lg">

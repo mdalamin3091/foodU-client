@@ -18,7 +18,7 @@ const MyOrders = () => {
   );
   return (
     <>
-      <h2 className="text-2xl font-bold mb-4">My Orders</h2>
+      <h2 className="text-2xl font-bold mb-4 mt-4">My Orders</h2>
       {isLoading ? (
         "Loading..."
       ) : !data?.user?.order.length ? (

@@ -63,7 +63,7 @@ const UpdateProduct = () => {
   };
   return (
     <>
-      <h2 className="text-2xl font-bold mb-4">Update Product</h2>
+      <h2 className="text-2xl font-bold mb-4 mt-4">Update Product</h2>
       <div className="grid grid-cols-1 bg-white shadow-md p-6 rounded-md mx-0 lg:mx-16">
         <div className="mb-4">
           <label htmlFor="title" className="text-xl font-bold">

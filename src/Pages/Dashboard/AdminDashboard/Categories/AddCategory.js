@@ -46,7 +46,7 @@ const AddCategory = () => {
   }, [result?.isError]);
   return (
     <>
-      <h2 className="text-2xl font-bold mb-4">Add Category</h2>
+      <h2 className="text-2xl font-bold mb-4 mt-4">Add Category</h2>
       <form
         onSubmit={handleAddCategory}
         className="grid grid-cols-1 bg-white shadow-md p-6 rounded-md mx-0 lg:mx-16"
