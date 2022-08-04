@@ -64,7 +64,7 @@ const NavBar = () => {
       <nav
         className={`bg-white shadow-lg font-JosefinSans sticky ${
           !scrollPosition ? "py-7" : "py-2"
-        } top-0 transition-all duration-100 z-[38]`}
+        } top-0 transition-all ease-in-out duration-300 z-[38]`}
       >
         <div className="container flex justify-between">
           <div className="lg:hidden text-2xl text-left flex items-center justify-center !ml-[15px]">
@@ -109,9 +109,6 @@ const NavBar = () => {
             </div>
           </div>
           <div className="hidden lg:flex items-center justify-between">
-            {/* <span className="navbar-icon">
-              <BiSearchAlt2 />
-            </span> */}
             <Link to="/wishlist" className="navbar-icon relative group">
               <BsFillSuitHeartFill />
               <span className="flex items-center justify-center w-6 h-6 text-sm font-semibold text-white bg-primary rounded-[50%] absolute top-0 right-0 group-hover:bg-primary_hover">

@@ -8,8 +8,8 @@ const AllUsers = () => {
     <>
       <h2 className="text-2xl font-bold mb-4 mt-4">All Users</h2>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table className="w-full text-left text-gray-500 dark:text-gray-400 whitespace-nowrap">
-          <thead className="text-[16px] text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <table className="w-full text-left text-gray-500 table-auto whitespace-nowrap">
+          <thead className="text-[16px] text-gray-700 uppercase bg-gray-50">
             <tr>
               <th scope="col" className="px-6 py-3">
                 Full Name
