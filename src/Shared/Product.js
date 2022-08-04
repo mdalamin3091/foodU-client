@@ -49,7 +49,7 @@ const Product = ({ gridView, product }) => {
         className={
           gridView
             ? "product border-2 border-gray-200 rounded-2xl p-2 relative group font-JosefinSans"
-            : "product border-2 border-gray-200 rounded-2xl p-2 relative group font-JosefinSans flex items-end justify-between"
+            : "product border-2 border-gray-200 rounded-2xl p-2 relative group font-JosefinSans flex items-end justify-start"
         }
       >
         {/* image */}
@@ -110,7 +110,7 @@ const Product = ({ gridView, product }) => {
           <p className="text-lg text-gray-500 ">{product?.shortDescription.slice(0, 70)}...</p>
         </div>
         <div className="flex items-center justify-between mt-3 absolute bottom-0 left-0 right-0 p-4">
-          <h3 className="text-2xl text-primary font-bold">${product?.price}</h3>
+          <h3 className={`text-2xl text-primary font-bold ${!gridView ? "ml-[315px]" : ""}`}>${product?.price}</h3>
           <div className="cart-icon" onClick={() => handleAddToCart(product)}>
             <BsMinecart />
           </div>
