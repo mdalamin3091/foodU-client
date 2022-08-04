@@ -10,8 +10,9 @@ export const cartSlice = createSlice({
     category:""
   },
   reducers: {
-    addToCart: (state, { payload }) => {
+    addToCart: (state, {payload}) => {
       const newItem = payload;
+      console.log(payload)
       const existItem = state.cartItems.find(
         (item) => item._id === newItem._id
       );
@@ -52,7 +53,7 @@ export const cartSlice = createSlice({
       const existItem = state.cartItems.find((item) => item._id === id);
       if (existItem) {
         state.cartItems = state.cartItems.filter(
-          (item) => item._id !== existItem.id
+          (item) => item._id !== existItem._id
         );
         state.totalQuantity = state.totalQuantity - existItem.quantity;
       }

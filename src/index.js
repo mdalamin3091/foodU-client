@@ -24,13 +24,11 @@ root.render(
 
 
 // problem list
-// 1. cart item not delete
 // 2. rating average
 // 3. about page design not complete
-// 4. shop page showing result not dynamic
-// 5. grid and flex layout problme
-// 6. filter not work
-// 7. best deal not work
-// 8. product details page count not work with cart page
-// 9. navbar responsive for mobile
-// 10. dashboard navbar responsive
+// 4. grid and flex layout problem
+// 5. best deal rating not dynamic
+// 6. product details page count not work with cart page
+// 7. navbar responsive for mobile
+// 8. dashboard navbar responsive
+// 9. user dashboard my order problem not rerender 

@@ -15,6 +15,8 @@ import { useAddWishlistMutation } from "../../store/services/userServices";
 import { addToCart } from "../../store/reducers/cartSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { FiMinus } from "react-icons/fi";
+import { BiPlus } from "react-icons/bi";
 const ProductDetails = () => {
   const [productCount, setProductCount] = useState(1);
   const { productId } = useParams();
@@ -65,9 +67,10 @@ const ProductDetails = () => {
               {data?.getProduct?.title}
             </h2>
             <div className="flex items-center justify-start gap-1 text-lg mb-4">
-              
-              <a href="#reviews" className="text-gray-400 ml-2 cursor-pointer hover:text-primary hover:underline hover:decoration-primary">
-                
+              <a
+                href="#reviews"
+                className="text-gray-400 ml-2 cursor-pointer hover:text-primary hover:underline hover:decoration-primary"
+              >
                 {data?.getProduct?.review?.length
                   ? data?.getProduct?.review?.length
                   : 0}{" "}
@@ -84,25 +87,25 @@ const ProductDetails = () => {
               <div className="flex items-center justify-between">
                 <div>
                   <p
-                    className="w-8 h-8 rounded-full bg-light-gray text-black flex items-center justify-center text-3xl cursor-pointer"
+                    className="w-8 h-8 rounded-full bg-light-gray text-black flex items-center justify-center text-lg cursor-pointer"
                     onClick={() =>
                       setProductCount((prevCount) =>
                         prevCount > 1 ? prevCount - 1 : prevCount
                       )
                     }
                   >
-                    -
+                    <FiMinus />
                   </p>
                 </div>
                 <p className="text-black px-3 text-xl">{productCount}</p>
                 <div>
                   <p
-                    className="w-8 h-8 rounded-full bg-light-gray text-black flex items-center justify-center text-3xl cursor-pointer"
+                    className="w-8 h-8 rounded-full bg-light-gray text-black flex items-center justify-center text-lg cursor-pointer"
                     onClick={() =>
                       setProductCount((prevCount) => prevCount + 1)
                     }
                   >
-                    +
+                    <BiPlus />
                   </p>
                 </div>
               </div>
