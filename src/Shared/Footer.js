@@ -51,9 +51,9 @@ const Footer = () => {
         </div>
       </div>
       {/* footer bottom */}
-      <div className='bg-secondary py-5 font-JosefinSans'>
+      <div className='bg-secondary py-5 font-JosefinSans mb-20 lg:mb-0'>
         <div className="container flex items-center justify-between flex-col md:flex-row">
-          <h2 className='text-white text-lg mb-4 md:mb-0'>Copyright © 2022 Al Amin. All Rights Reserved.</h2>
+          <h2 className='text-white text-lg mb-4 md:mb-0 text-center lg:text-left'>Copyright © 2022 Al Amin. All Rights Reserved.</h2>
           <div>
             <img src={require("../assets/images/footer_bottom.png")} alt="footer bottom img" />
           </div>

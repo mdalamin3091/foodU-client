@@ -6,10 +6,14 @@ import { MdOutlineShoppingCart, MdAddIcCall } from "react-icons/md";
 import { RiMenuLine } from "react-icons/ri";
 import { BsFillPersonFill, BsFillSuitHeartFill } from "react-icons/bs";
 import Drawer from "./Drawer/Drawer";
-import { showModalTrue, logout } from "../store/reducers/authSlice";
-import { drawerOpenTrue } from "../store/reducers/drawerSlice";
+import { showModalTrue } from "../store/reducers/authSlice";
+import {
+  drawerOpenTrue,
+  mobileNavOpen,
+} from "../store/reducers/drawerSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useGetSingleUserQuery } from "../store/services/userServices";
+import MobileNav from "./MobileNav";
 const NavBar = () => {
   const menus = [
     {
@@ -33,12 +37,14 @@ const NavBar = () => {
       path: "/contact",
     },
   ];
+  const dispatch = useDispatch();
   const [scrollPosition, setScrollPosition] = useState(false);
   const { data, isLoading, isSuccess } = useGetSingleUserQuery();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state);
+  const { mobileNav } = useSelector((state) => state.drawer);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -68,7 +74,9 @@ const NavBar = () => {
       >
         <div className="container flex justify-between">
           <div className="lg:hidden text-2xl text-left flex items-center justify-center !ml-[15px]">
-            <RiMenuLine />
+            <span onClick={() => dispatch(mobileNavOpen())}>
+              <RiMenuLine />
+            </span>
           </div>
           <div className="flex items-center justify-between">
             <div className="mr-6">
@@ -189,6 +197,7 @@ const NavBar = () => {
         </ul>
       </div>
       <Drawer />
+      <MobileNav menus={menus}/>
     </>
   );
 };

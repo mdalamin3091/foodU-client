@@ -51,7 +51,7 @@ const ProductDetails = () => {
       <NavBar />
       <Breadcrumb data={data} />
       <div className="container scroll-smooth">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 section-padding font-JosefinSans px-5 lg:px-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 section-padding font-JosefinSans lg:px-0">
           <div>
             {/* big image  */}
             <div className="border-2 border-gray-200 rounded-2xl p-2 h-[500px]">
@@ -97,7 +97,7 @@ const ProductDetails = () => {
             <p className="text-primary text-4xl font-bold mb-4">
               ${data?.getProduct?.price}
             </p>
-            <div className="flex items-center justify-between border-t border-t-gray-200 border-b border-b-gray-200 py-4 mb-6">
+            <div className="flex items-center justify-between border-t border-t-gray-200 border-b border-b-gray-200 py-4 mb-6 flex-wrap gap-2">
               <div className="flex items-center justify-between">
                 <div>
                   <p

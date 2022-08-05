@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 const MenuItem = ({ product }) => {
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product))
+    dispatch(addToCart(product));
     toast.success("Product added your cart", {
       theme: "colored",
       closeOnClick: true,
@@ -16,12 +16,12 @@ const MenuItem = ({ product }) => {
   };
   return (
     <>
-    <div className="recipe border-2 border-gray-200 rounded-3xl p-2">
-        <div className="bg-light-gray flex items-center justify-between rounded-3xl gap-2">
-          <div className="basis-1/3">
+      <div className="recipe border-2 border-gray-200 rounded-3xl p-2">
+        <div className="bg-light-gray flex flex-col md:flex-row items-center justify-between rounded-3xl gap-2 p-4">
+          <div className="md:basis-1/3 basis-full">
             <img className="w-full" src={product.images[0]} alt="food" />
           </div>
-          <div className="content basis-2/3 text-left mt-5 relative">
+          <div className="content md:basis-2/3 basis-full text-left mt-5 relative">
             <Link
               to={`../product/${product._id}`}
               className="text-2xl font-bold text-heading hover:text-primary cursor-pointer"
@@ -33,7 +33,7 @@ const MenuItem = ({ product }) => {
               $ {product.price}
             </span>
             <span
-              className="cart-icon absolute right-3 bottom-[-20px]"
+              className="cart-icon absolute right-3 bottom-[0px]"
               onClick={() => handleAddToCart(product)}
             >
               <BsMinecart />
