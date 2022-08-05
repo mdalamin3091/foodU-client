@@ -59,7 +59,7 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
         hideProgressBar: false,
       });
       setProcessing(false);
-      dispatch(removeAllProduct())
+      dispatch(removeAllProduct());
       navigate("/confirmOrder");
     } else {
       checkOutInfo = {
@@ -118,7 +118,7 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
           hideProgressBar: false,
         });
         setProcessing(false);
-        dispatch(removeAllProduct())
+        dispatch(removeAllProduct());
         navigate("/confirmOrder");
       }
     }
@@ -259,7 +259,9 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
             Continue Shopping
           </Link>
           {processing ? (
-            "Processing..."
+            <div class="flex items-center justify-center">
+              <div class="w-[56px] h-[56px] border-l-2 border-gray-900 rounded-full animate-spin"></div>
+            </div>
           ) : (
             <button
               type="submit"

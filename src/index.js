@@ -24,9 +24,9 @@ root.render(
 
 
 // problem list
-// 3. product details page count not work with cart page
-// 4. navbar responsive for mobile
-// 5. user dashboard my order problem not rerender 
-// 6. set loader all page
-// 7. rating average not render current time
-// 8. shop page flex layout mobile responsive not complete
+// 1. product details page count not work with cart page
+// 2. user dashboard my order problem not rerender 
+// 3. set loader all page
+// 4. rating average not render current time
+// 5. shop page flex layout mobile responsive not complete
+// 6. coupon code apply not complete

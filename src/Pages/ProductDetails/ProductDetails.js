@@ -14,7 +14,6 @@ import { toast } from "react-toastify";
 import { useAddWishlistMutation } from "../../store/services/userServices";
 import { addToCart } from "../../store/reducers/cartSlice";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
 import { FiMinus } from "react-icons/fi";
 import { BiPlus } from "react-icons/bi";
 const ProductDetails = () => {
