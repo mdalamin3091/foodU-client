@@ -42,8 +42,10 @@ const ProductDetails = () => {
       hideProgressBar: false,
     });
   };
-  // let average = data?.getProduct?.review?.reduce((sum, curr, _, arr) => (curr.ratingStar + sum) / arr.length, 0);
-  // console.log(average)
+  let average = data?.getProduct?.review.reduce(
+    (sum, curr, _, array) => sum + curr.ratingStar / array.length,
+    0
+  );
   return (
     <div>
       <NavBar />
@@ -67,6 +69,18 @@ const ProductDetails = () => {
               {data?.getProduct?.title}
             </h2>
             <div className="flex items-center justify-start gap-1 text-lg mb-4">
+              {average && (
+                <ReactStars
+                  count={5}
+                  value={average}
+                  edit={false}
+                  size={24}
+                  isHalf={true}
+                  fullIcon={<AiFillStar />}
+                  activeColor="#ffd700"
+                />
+              )}
+
               <a
                 href="#reviews"
                 className="text-gray-400 ml-2 cursor-pointer hover:text-primary hover:underline hover:decoration-primary"

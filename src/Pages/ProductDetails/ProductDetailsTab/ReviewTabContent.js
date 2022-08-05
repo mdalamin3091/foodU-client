@@ -43,7 +43,7 @@ const ReviewTabContent = ({ data }) => {
             <NotFound>Any review not found</NotFound>
           ) : (
             data?.getProduct?.review.map((review) => (
-              <div className="flex items-start justify-center mb-10">
+              <div className="flex items-start justify-center mb-10" key={review._id}>
                 <div className="basis-1/6">
                   <img
                     className="rounded-full w-[50%] mx-auto"

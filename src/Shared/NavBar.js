@@ -143,6 +143,51 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
+      {/* mobile bottom navbar */}
+      <div className="fixed block lg:hidden bottom-0 left-0 right-0 w-full bg-white py-3 z-50">
+        <ul className="flex items-center justify-between">
+          <li className="list-none flex items-center justify-center">
+            <Link
+              to="/wishlist"
+              className="navbar-icon border-0 relative group"
+            >
+              <BsFillSuitHeartFill />
+              <span className="flex items-center justify-center w-6 h-6 text-sm font-semibold text-white bg-primary rounded-[50%] absolute top-0 right-0 group-hover:bg-primary_hover">
+                {data?.user?.wishlist.length ? data?.user?.wishlist.length : 0}
+              </span>
+            </Link>
+          </li>
+          <li className="list-none  flex items-center justify-center">
+            <span
+              className="navbar-icon border-0 relative group"
+              onClick={() => dispatch(drawerOpenTrue(true))}
+            >
+              <MdOutlineShoppingCart />
+              <span className="flex items-center justify-center w-6 h-6 text-sm font-semibold text-white bg-primary rounded-[50%] absolute top-0 right-0 group-hover:bg-primary_hover">
+                {cart.totalQuantity}
+              </span>
+            </span>
+          </li>
+          <li className="list-none flex items-center justify-center">
+            {user?.profilePic ? (
+              <div className="cursor-pointer" onClick={handleNavigate}>
+                <img
+                  className="w-[50px] h-[50px] rounded-full"
+                  src={user?.profilePic}
+                  alt="profile photo"
+                />
+              </div>
+            ) : (
+              <span
+                className="navbar-icon border-0"
+                onClick={() => dispatch(showModalTrue(true))}
+              >
+                <BsFillPersonFill />
+              </span>
+            )}
+          </li>
+        </ul>
+      </div>
       <Drawer />
     </>
   );

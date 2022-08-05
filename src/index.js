@@ -24,8 +24,9 @@ root.render(
 
 
 // problem list
-// 1. rating average
-// 2. best deal rating not dynamic
 // 3. product details page count not work with cart page
 // 4. navbar responsive for mobile
 // 5. user dashboard my order problem not rerender 
+// 6. set loader all page
+// 7. rating average not render current time
+// 8. shop page flex layout mobile responsive not complete

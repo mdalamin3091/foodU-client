@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { FaSearch } from "react-icons/fa";
+import ReactStars from "react-rating-stars-component";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { filterByCategory } from "../../../store/reducers/cartSlice";
@@ -121,11 +122,15 @@ const Sidebar = ({ searchProducts, setSearchProducts, products }) => {
                     </div>
                     <div className="content basis-2/3 text-left mt-6 relative py-1">
                       <div className="flex items-center justify-start gap-1 text-primary text-lg mb-2">
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
-                        <AiFillStar />
+                        <ReactStars
+                          count={5}
+                          value={item?.review?.length}
+                          edit={false}
+                          size={24}
+                          isHalf={true}
+                          fullIcon={<AiFillStar />}
+                          activeColor="#ffd700"
+                        />
                       </div>
                       <Link
                         to="/shop"

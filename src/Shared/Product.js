@@ -43,6 +43,11 @@ const Product = ({ gridView, product }) => {
       hideProgressBar: false,
     });
   };
+  let average = product?.review.reduce(
+    (sum, currentValue, _, array) =>
+      sum + currentValue.ratingStar / array.length,
+    0
+  );
   return (
     <>
       <div
@@ -91,15 +96,17 @@ const Product = ({ gridView, product }) => {
 
         {/* product content */}
         <div className="content relative text-left p-4 pt-5 mb-12">
-          <ReactStars
-            count={5}
-            value={product.review.length}
-            edit={false}
-            size={24}
-            isHalf={true}
-            fullIcon={<AiFillStar />}
-            activeColor="#ffd700"
-          />
+          {average && (
+            <ReactStars
+              count={5}
+              value={average}
+              edit={false}
+              size={24}
+              isHalf={true}
+              fullIcon={<AiFillStar />}
+              activeColor="#ffd700"
+            />
+          )}
 
           <h3
             onClick={() => handleNavigate(product?._id)}
@@ -107,10 +114,18 @@ const Product = ({ gridView, product }) => {
           >
             {product?.title}
           </h3>
-          <p className="text-lg text-gray-500 ">{product?.shortDescription.slice(0, 70)}...</p>
+          <p className="text-lg text-gray-500 ">
+            {product?.shortDescription.slice(0, 70)}...
+          </p>
         </div>
         <div className="flex items-center justify-between mt-3 absolute bottom-0 left-0 right-0 p-4">
-          <h3 className={`text-2xl text-primary font-bold ${!gridView ? "ml-[315px]" : ""}`}>${product?.price}</h3>
+          <h3
+            className={`text-2xl text-primary font-bold ${
+              !gridView ? "md:ml-[315px] ml-[105px]" : ""
+            }`}
+          >
+            ${product?.price}
+          </h3>
           <div className="cart-icon" onClick={() => handleAddToCart(product)}>
             <BsMinecart />
           </div>

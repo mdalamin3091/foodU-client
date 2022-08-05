@@ -43,7 +43,7 @@ const AboutTestimonial = () => {
             .slice(0, 8)
             .map((review, index) => (
               <SwiperSlide>
-                <div className="bg-white p-7 rounded-xl" key={index}>
+                <div className="bg-white p-7 rounded-xl" key={review._id}>
                   <div className="flex items-center justify-between gap-4 mb-8">
                     <div className="basis-1/5">
                       <img
