@@ -3,7 +3,7 @@ import {
   useAddProductMutation,
   useAllCategoryQuery,
 } from "../../../../store/services/productServices";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUploadImagesMutation } from "../../../../store/services/uploadServices";
 import { toast } from "react-toastify";
 const AddProduct = () => {
@@ -17,10 +17,10 @@ const AddProduct = () => {
     const { name, value } = e.target;
     setProductInfo({ ...productInfo, [name]: value });
   };
-  const handleCategoryChange = (e) =>{
+  const handleCategoryChange = (e) => {
     const { name, value } = e.target;
     setProductInfo({ ...productInfo, [name]: value });
-  }
+  };
   // image upload
   const handleImage = (pics) => {
     if (pics.type === "image/jpeg" || pics.type === "image/png") {
@@ -38,11 +38,11 @@ const AddProduct = () => {
     sendAddProduct({
       ...productInfo,
       productImages,
-    }).then(res =>{
-      if(res.data){
+    }).then((res) => {
+      if (res.data) {
         navigate("../allProducts");
       }
-    })
+    });
   };
   useEffect(() => {
     if (result?.isSuccess) {
@@ -97,6 +97,9 @@ const AddProduct = () => {
             required
             onChange={handleCategoryChange}
           >
+            <option selected value="">
+              Select Category
+            </option>
             {isSuccess &&
               categories.allCategory.map((category) => (
                 <option value={category.categoryName} key={category._id}>

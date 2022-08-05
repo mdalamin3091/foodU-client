@@ -7,6 +7,7 @@ import {
   useDeleteCategoryMutation,
 } from "../../../../store/services/productServices";
 import Swal from "sweetalert2";
+import NotFound from "../../../../Shared/DataNotFound";
 const AllCategory = () => {
   const navigate = useNavigate();
   const { data, isSuccess, isLoading } = useAllCategoryQuery();
@@ -32,9 +33,11 @@ const AllCategory = () => {
   return (
     <>
       <h2 className="text-2xl font-bold mb-4 mt-4">All Category</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-        {(!data?.allCategory?.length && "Category Not Found") ||
-          data?.allCategory
+      {(!data?.allCategory?.length && (
+        <NotFound>Category Not Found</NotFound>
+      )) || (
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
+          {data?.allCategory
             ?.map((category, index) => (
               <div
                 key={index}
@@ -67,7 +70,8 @@ const AllCategory = () => {
               </div>
             ))
             .reverse()}
-      </div>
+        </div>
+      )}
     </>
   );
 };
