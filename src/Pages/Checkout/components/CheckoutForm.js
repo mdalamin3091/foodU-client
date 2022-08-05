@@ -21,8 +21,8 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
   const { user } = useSelector((state) => state.auth);
   const [shippingDetails, setshippingDetails] = useState({});
   const [processing, setProcessing] = useState(false);
-  const [createOrder, { data }] = useCreateOrderMutation();
-  const [sendOrderInfo, result] = useSaveOrderInfoMutation();
+  const [createOrder] = useCreateOrderMutation();
+  const [sendOrderInfo] = useSaveOrderInfoMutation();
   const [clientSecret, setClientSecret] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -32,7 +32,7 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
     createOrder({ totalCost }).then((res) =>
       setClientSecret(res.data?.clientSecret)
     );
-  }, [totalCost]);
+  }, [totalCost, createOrder]);
   const handleCost = (e) => {
     setShippingCost(Number(e.target.value));
   };

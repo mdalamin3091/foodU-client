@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { GiScooter } from "react-icons/gi";
-import { BiSearchAlt2 } from "react-icons/bi";
 import { MdOutlineShoppingCart, MdAddIcCall } from "react-icons/md";
 import { RiMenuLine } from "react-icons/ri";
 import { BsFillPersonFill, BsFillSuitHeartFill } from "react-icons/bs";
@@ -39,11 +38,10 @@ const NavBar = () => {
   ];
   const dispatch = useDispatch();
   const [scrollPosition, setScrollPosition] = useState(false);
-  const { data, isLoading, isSuccess } = useGetSingleUserQuery();
+  const { data} = useGetSingleUserQuery();
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state);
-  const { mobileNav } = useSelector((state) => state.drawer);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -137,7 +135,7 @@ const NavBar = () => {
                 <img
                   className="w-[50px] h-[50px] rounded-full"
                   src={user?.profilePic}
-                  alt="profile photo"
+                  alt="profile"
                 />
               </div>
             ) : (
@@ -182,7 +180,7 @@ const NavBar = () => {
                 <img
                   className="w-[50px] h-[50px] rounded-full"
                   src={user?.profilePic}
-                  alt="profile photo"
+                  alt="profile"
                 />
               </div>
             ) : (

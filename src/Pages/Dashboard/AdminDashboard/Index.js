@@ -1,7 +1,6 @@
 import React from "react";
 import { FaShoppingCart, FaUsers, FaHeart } from "react-icons/fa";
 import {
-  MdDelete,
   MdOutlineProductionQuantityLimits,
   MdOutlineReviews,
 } from "react-icons/md";
