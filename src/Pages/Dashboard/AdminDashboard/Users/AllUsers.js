@@ -11,7 +11,7 @@ const AllUsers = () => {
       {isLoading ? (
         <TableLoader />
       ) : !data?.allUser?.length ? (
-        <NotFound />
+        <NotFound> Any User Not Found</NotFound>
       ) : (
         <>
           <h2 className="text-2xl font-bold mb-4 mt-4">All Users</h2>
