@@ -1,26 +1,27 @@
 import React from "react";
 import NotFound from "../../../../Shared/DataNotFound";
+import TableLoader from "../../../../Shared/Loader/TableLoader";
 import { useGetSingleUserQuery } from "../../../../store/services/userServices";
 import MyOrderTable from "./MyOrderTable";
 const MyOrders = () => {
   const { data, isLoading, isSuccess } = useGetSingleUserQuery();
-  const pendingOrder = data?.user?.order?.map(
-    (item) => item.orderStatus === "Pending"
-  );
-  const processingOrder = data?.user?.order?.filter(
-    (item) => item.orderStatus === "Processing"
-  );
-  const completeOrder = data?.user?.order?.filter(
-    (item) => item.orderStatus === "Delivered"
-  );
-  const cencleOrder = data?.user?.order?.filter(
-    (item) => item.orderStatus === "Cancel"
-  );
+  // const pendingOrder = data?.user?.order?.map(
+  //   (item) => item.orderStatus === "Pending"
+  // );
+  // const processingOrder = data?.user?.order?.filter(
+  //   (item) => item.orderStatus === "Processing"
+  // );
+  // const completeOrder = data?.user?.order?.filter(
+  //   (item) => item.orderStatus === "Delivered"
+  // );
+  // const cencleOrder = data?.user?.order?.filter(
+  //   (item) => item.orderStatus === "Cancel"
+  // );
   return (
     <>
       <h2 className="text-2xl font-bold mb-4 mt-4">My Orders</h2>
       {isLoading ? (
-        "Loading..."
+        <TableLoader />
       ) : !data?.user?.order.length ? (
         <NotFound />
       ) : (

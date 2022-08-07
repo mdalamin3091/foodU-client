@@ -35,5 +35,4 @@ root.render(
 
 // morning first work
 // 2. update all dami data
-// 3. check all design with responsive
 // 4. solve problem list
