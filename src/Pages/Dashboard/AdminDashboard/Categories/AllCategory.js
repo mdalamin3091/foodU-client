@@ -8,6 +8,7 @@ import {
 } from "../../../../store/services/productServices";
 import Swal from "sweetalert2";
 import NotFound from "../../../../Shared/DataNotFound";
+import CategoryLoader from "../../../../Shared/Loader/CategoryLoader";
 const AllCategory = () => {
   const navigate = useNavigate();
   const { data, isSuccess, isLoading } = useAllCategoryQuery();
@@ -33,9 +34,11 @@ const AllCategory = () => {
   return (
     <>
       <h2 className="text-2xl font-bold mb-4 mt-4">All Category</h2>
-      {(!data?.allCategory?.length && (
+      {isLoading ? (
+        <CategoryLoader />
+      ) : !data?.allCategory?.length ? (
         <NotFound>Category Not Found</NotFound>
-      )) || (
+      ) : (
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
           {data?.allCategory
             ?.map((category, index) => (

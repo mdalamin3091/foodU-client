@@ -6,8 +6,8 @@ const CategoryLoader = props => (
     width="auto"
     height={120}
     viewBox="0 0 500 100"
-    backgroundColor="#f3f3f3"
-    foregroundColor="#ecebeb"
+    backgroundColor="lightgray"
+    foregroundColor="#fff"
     {...props}
   >
     <circle cx="46" cy="38" r="38" />

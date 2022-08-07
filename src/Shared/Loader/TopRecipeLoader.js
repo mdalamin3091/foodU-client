@@ -6,8 +6,8 @@ const TopRecipeLoader = props => {
     <ContentLoader
       height="auto"
       width="auto"
-      primaryColor="#d9d9d9"
-      secondaryColor="#ecebeb"
+      primaryColor="lightgray"
+      secondaryColor="#ffffff"
       {...props}
     >
       <rect x="103" y="12" rx="3" ry="3" width="123" height="7" />

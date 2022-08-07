@@ -2,6 +2,7 @@ import React from "react";
 import SingleProduct from "./SingleProduct";
 import { useAllProductQuery } from "../../../../store/services/productServices";
 import NotFound from "../../../../Shared/DataNotFound";
+import MenuLoader from "../../../../Shared/Loader/MenuLoader";
 const AllProducts = () => {
   const { data, isLoading, isSuccess } = useAllProductQuery();
   return (
@@ -10,7 +11,7 @@ const AllProducts = () => {
       <body className="antialiased text-gray-900 font-JosefinSans">
         <div className="container mx-auto">
           {isLoading
-            ? "Loading..."
+            ? <MenuLoader />
             : (!data?.allProducts.length && (
                 <NotFound>Product Not Found</NotFound>
               )) || (

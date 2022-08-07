@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { AiFillStar } from "react-icons/ai";
 import { BsFillClockFill } from "react-icons/bs";
 import ReactStars from "react-rating-stars-component";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import NotFound from "../../../Shared/DataNotFound";
+import { showModalTrue } from "../../../store/reducers/authSlice";
 import { useAddReviewMutation } from "../../../store/services/productServices";
 const ReviewTabContent = ({ data }) => {
   const { user } = useSelector((state) => state.auth);
   const [sendReviewInfo, result] = useAddReviewMutation();
+  const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState({
     fullname: user?.fullname,
     email: user?.email,
@@ -23,11 +25,16 @@ const ReviewTabContent = ({ data }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    sendReviewInfo({
-      ...userInfo,
-      ratingStar,
-      id: data?.getProduct?._id,
-    });
+    if(user){
+      sendReviewInfo({
+        ...userInfo,
+        ratingStar,
+        id: data?.getProduct?._id,
+      });
+    }else{
+      dispatch(showModalTrue(true));
+    }
+    
     e.target.reset();
     setRatingStar(0);
   };

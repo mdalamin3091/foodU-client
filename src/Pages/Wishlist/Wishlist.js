@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../store/reducers/cartSlice";
 import { toast } from "react-toastify";
 import NotFound from "../../Shared/DataNotFound";
+import CategoryLoader from "../../Shared/Loader/CategoryLoader";
 const Wishlist = () => {
   const { data, isLoading, isSuccess } = useGetSingleUserQuery();
   const [addProductWishlist, result] = useAddWishlistMutation();
@@ -50,7 +51,7 @@ const Wishlist = () => {
           <tbody>
             {/* 1 */}
             {isLoading
-              ? "Loading..."
+              ? <CategoryLoader />
               : !data?.user?.wishlist.length
               ? <NotFound>
                 You are not wishlist any product

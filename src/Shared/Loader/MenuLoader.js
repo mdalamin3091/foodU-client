@@ -3,11 +3,9 @@ import ContentLoader from 'react-content-loader'
 
 const MenuLoader = props => (
   <ContentLoader
-    width="auto"
-    height={575}
     viewBox="0 0 800 575"
-    backgroundColor="#f3f3f3"
-    foregroundColor="#ecebeb"
+    backgroundColor="lightgray"
+    foregroundColor="#fff"
     {...props}
   >
     <rect x="537" y="9" rx="2" ry="2" width="140" height="10" />

@@ -1,5 +1,6 @@
 import React from "react";
 import NotFound from "../../../../Shared/DataNotFound";
+import TableLoader from "../../../../Shared/Loader/TableLoader";
 import { useAllOrderQuery } from "../../../../store/services/orderService";
 import AllOrderTable from "./AllOrderTable";
 
@@ -9,7 +10,7 @@ const AllOrders = () => {
     <>
       <h2 className="text-2xl font-bold mb-4 mt-4">All Orders</h2>
       {isLoading ? (
-        "Loading..."
+        <TableLoader />
       ) : !allOrders?.allOrder?.length ? (
         <NotFound />
       ) : (

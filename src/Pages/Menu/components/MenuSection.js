@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import MenuItemLoader from "../../../Shared/Loader/MenuItemLoader";
 import Tab from "../../../Shared/Tab";
 import { useAllProductQuery } from "../../../store/services/productServices";
 import MenuItem from "./MenuItem";
@@ -13,13 +14,15 @@ const MenuSection = () => {
       <h2 className="section-title text-center text-4xl">Menus Of The Day</h2>
       <Tab openTab={openTab} setOpenTab={setOpenTab} />
       {/* menu item */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {isLoading
-          ? "Loading..."
-          : filteredData
-              ?.slice(0, 6)
-              .map((product) => <MenuItem product={product} />)}
-      </div>
+      {isLoading ? (
+        <MenuItemLoader />
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {filteredData?.slice(0, 6).map((product) => (
+            <MenuItem product={product} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };
