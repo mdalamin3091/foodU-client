@@ -19,12 +19,12 @@ const Menus = () => {
         {isLoading ? (
           <CategoryLoader />
         ) : (
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-5">
             {data?.allCategory.slice(0, 9).map((category, index) => (
               <Link
                 to="/shop"
                 key={index}
-                className="flex items-center justify-center flex-col cursor-pointer hover:text-primary transition-all duration-150 group"
+                className="flex items-center justify-center flex-col cursor-pointer hover:text-white transition-all duration-150 group bg-primary/40 rounded-xl px-4 py-2"
               >
                 <div className="mx-auto overflow-hidden">
                   <img

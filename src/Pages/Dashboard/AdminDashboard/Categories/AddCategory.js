@@ -23,15 +23,19 @@ const AddCategory = () => {
   };
   const handleAddCategory = (e) => {
     e.preventDefault();
-    categoryInfo({
-      categoryName,
-      categoryImage,
-    }).then((res) => {
-      if (res?.data) {
-        navigate("../allCategories");
-      }
-    })
-    e.target.reset();
+    if (categoryImage) {
+      categoryInfo({
+        categoryName,
+        categoryImage,
+      }).then((res) => {
+        if (res?.data) {
+          navigate("../allCategories");
+        }
+      });
+      e.target.reset();
+    }else{
+      alert("Please select Category Image")
+    }
   };
 
   useEffect(() => {

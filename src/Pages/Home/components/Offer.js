@@ -36,7 +36,7 @@ const Offer = () => {
                     {/* 3 */}
                     <div className='bg-white p-10 flex items-center justify-between cursor-pointer rounded-md group'>
                         <div className='text-left basis-1/2 mr-1'>
-                            <h2 className='text-2xl md:text-3xl font-bold mb-3'>Find a Poco store near you</h2>
+                            <h2 className='text-2xl md:text-3xl font-bold mb-3'>Find a FoodU store near you</h2>
                             <Link to="/contact" className='text-primary text-lg md:text-xl font-bold'>Contact Us</Link>
                         </div>
                         <div className=' basis-1/2'>

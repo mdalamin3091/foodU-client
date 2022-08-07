@@ -8,6 +8,7 @@ module.exports = {
         border: "#e5e5e5",
         heading: "#1e1d23",
         primary_hover: "#eeac00",
+        secondary_bg:"#F7F2E2"
       },
       height: {
         "screen-85": "85vh",
