@@ -25,7 +25,7 @@ const Popular = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:px-0">
             {filteredData
-              ?.slice(0, 6)
+              ?.slice(0, 8)
               .map((product) => (
                 <Product
                   key={product._id}
