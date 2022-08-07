@@ -25,7 +25,6 @@ root.render(
 
 // problem list
 // 1. product details page count not work with cart page
-// 3. set loader all page
 // 2. user dashboard my order problem not rerender 
 
 // optional

@@ -8,17 +8,17 @@ import Sidebar from "./components/Sidebar";
 import NavBar from "../../Shared/NavBar";
 import Footer from "../../Shared/Footer";
 import { useAllProductQuery } from "../../store/services/productServices";
-import Pagination from "./components/Pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { sortProduct, filterByCategory } from "../../store/reducers/cartSlice";
 import NotFound from "../../Shared/DataNotFound";
 import MenuLoader from "../../Shared/Loader/MenuLoader";
+import Pagination from "../../Shared/Pagination";
 
 const Shop = () => {
   const [gridView, setGridView] = useState(true);
   const [searchProducts, setSearchProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage, setProductPerPage] = useState(9);
+  const [productPerPage, setProductPerPage] = useState(8);
   const { data, isLoading } = useAllProductQuery();
   const dispatch = useDispatch();
   const { sort, category } = useSelector((state) => state.cart);
@@ -48,7 +48,6 @@ const Shop = () => {
     }
     return sortedProduct;
   };
-
   return (
     <>
       <NavBar />
