@@ -45,7 +45,7 @@ const Sidebar = ({ searchProducts, setSearchProducts, products }) => {
         <div className="border-2 border-gray-200 rounded-2xl p-2 pt-5 mb-7">
           <h3 className="text-xl font-bold mb-3 pl-2">Categories</h3>
           <div className="bg-light-gray p-4 rounded-xl">
-            {data?.allCategory.map((category, index) => (
+            {data?.allCategory.slice(0, 8).map((category, index) => (
               <div
                 key={category._id}
                 className={

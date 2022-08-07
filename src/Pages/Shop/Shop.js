@@ -9,7 +9,7 @@ import NavBar from "../../Shared/NavBar";
 import Footer from "../../Shared/Footer";
 import { useAllProductQuery } from "../../store/services/productServices";
 import { useDispatch, useSelector } from "react-redux";
-import { sortProduct, filterByCategory } from "../../store/reducers/cartSlice";
+import { sortProduct } from "../../store/reducers/cartSlice";
 import NotFound from "../../Shared/DataNotFound";
 import MenuLoader from "../../Shared/Loader/MenuLoader";
 import Pagination from "../../Shared/Pagination";
@@ -42,7 +42,7 @@ const Shop = () => {
       );
     }
     if (category && data) {
-      sortedProduct = sortedProduct.filter(
+      sortedProduct = data?.allProducts?.filter(
         (item) => item.category === category
       );
     }
@@ -139,7 +139,7 @@ const Shop = () => {
             <Pagination
               currentPage={currentPage}
               productPerPage={productPerPage}
-              totalProducts={data?.allProducts.length}
+              totalProducts={data?.allProducts?.length}
               paginate={paginate}
             />
           </div>
