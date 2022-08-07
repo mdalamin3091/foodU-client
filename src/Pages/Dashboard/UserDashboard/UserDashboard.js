@@ -26,7 +26,7 @@ const UserDashboard = () => {
               />
             </div>
           </header>
-          <div className="h-screen overflow-y-auto p-6">
+          <div className="h-screen overflow-y-auto">
             <div className="container">
               <Outlet />
             </div>

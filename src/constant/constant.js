@@ -1,0 +1,1 @@
+export const baseUrl='https://food-you.herokuapp.com/api/v1';

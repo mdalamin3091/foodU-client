@@ -27,7 +27,7 @@ const AdminDashboard = () => {
             </div>
           </header>
           <div className="h-full overflow-y-auto">
-            <div className="container">
+            <div className="container mb-8">
               <Outlet />
             </div>
           </div>

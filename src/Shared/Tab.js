@@ -13,8 +13,8 @@ const Tab = ({ openTab, setOpenTab }) => {
                 key={index}
                 className={
                   openTab === category.categoryName
-                    ? "btn-tab bg-primary border-primary text-white"
-                    : "btn-tab"
+                    ? "btn-tab text-[15px] md:btn-tab bg-primary border-primary text-white"
+                    : "btn-tab text-[15px] md:btn-tab"
                 }
                 onClick={() => setOpenTab(category.categoryName)}
               >

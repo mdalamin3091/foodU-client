@@ -78,7 +78,7 @@ const Index = () => {
       </div>
       <h2 className="text-3xl font-bold mb-4">Dashboard Summary</h2>
       <h2 className="text-xl font-bold mb-4">Some Products</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 -mx-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {isLoading
           ? "Loading..."
           : allProducts?.allProducts

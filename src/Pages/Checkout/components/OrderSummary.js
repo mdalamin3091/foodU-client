@@ -3,14 +3,14 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import DrawerCart from "../../../Shared/Drawer/DrawerCart";
 import EmptyCart from "../../../Shared/Drawer/EmptyCart";
-
+import {toast} from "react-toastify";
 const OrderSummary = ({ shippingCost }) => {
   const { cart } = useSelector((state) => state);
   const [coupon, setCoupon] = useState("");
   const [applyCoupon, setApplyCoupon] = useState(false);
   const [discount, setDiscount] = useState(0);
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     // if (coupon === "Al Amin" && !applyCoupon) {
     //   cart.totalAmount = cart.totalAmount - 10;
     //   setApplyCoupon(true);
@@ -21,6 +21,13 @@ const OrderSummary = ({ shippingCost }) => {
     //   alert("Coupon Already Applied");
     // }
     // e.target.reset();
+
+    toast.warning("Coupon code is not available", {
+      theme: "colored",
+      closeOnClick: true,
+      hideProgressBar: false,
+    });
+    e.target.reset();
   };
   return (
     <>
