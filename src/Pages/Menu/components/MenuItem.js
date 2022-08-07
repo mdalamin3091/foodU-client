@@ -28,7 +28,7 @@ const MenuItem = ({ product }) => {
             >
               {product.title}
             </Link>
-            <p className="text-gray-500 text-lg">{product.shortDescription}</p>
+            <p className="text-gray-500 text-lg">{product.shortDescription.slice(0, 100)}...</p>
             <span className="text-primary text-lg font-bold">
               $ {product.price}
             </span>
