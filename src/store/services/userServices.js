@@ -56,12 +56,43 @@ const userServices = createApi({
       }),
       invalidatesTags: ["user"],
     }),
+    saveOrderInfo: builder.mutation({
+      query: (orderInfo) => ({
+        url: `product/saveOrderInfo`,
+        method: "POST",
+        body: orderInfo,
+      }),
+      invalidatesTags: ["user"],
+    }),
     getSingleUser: builder.query({
       query: () => ({
         url: `auth/singleUser`,
         method: "GET",
       }),
       providesTags: ["user"],
+    }),
+    createOrder: builder.mutation({
+      query: (totalCost) => ({
+        url: `product/create-payment-intent`,
+        method: "POST",
+        body: totalCost,
+      }),
+      invalidatesTags: ["user"],
+    }),
+    allOrder: builder.query({
+      query: () => ({
+        url: `product/allOrder`,
+        method: "GET",
+      }),
+      providesTags: ["user"],
+    }),
+    updateOrderStatus: builder.mutation({
+      query: (updateInfo) => ({
+        url: `product/updateOrder/${updateInfo._id}`,
+        method: "PUT",
+        body: updateInfo,
+      }),
+      invalidatesTags: ["user"],
     }),
   }),
 });
@@ -74,5 +105,9 @@ export const {
   useUpdateUserRoleMutation,
   useGetSingleUserQuery,
   useAddWishlistMutation,
+  useCreateOrderMutation,
+  useSaveOrderInfoMutation,
+  useAllOrderQuery,
+  useUpdateOrderStatusMutation
 } = userServices;
 export default userServices;

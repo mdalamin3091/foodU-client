@@ -14,10 +14,10 @@ import {
   useAllProductQuery,
   useAllReviewQuery,
 } from "../../../store/services/productServices";
-import { useAllOrderQuery } from "../../../store/services/orderService";
 import TableLoader from "../../../Shared/Loader/TableLoader";
 import NotFound from "../../NotFound/NotFound";
 import ProductLoader from "../../../Shared/Loader/ProductLoader";
+import { useAllOrderQuery } from "../../../store/services/userServices";
 const Index = () => {
   const { data: userData } = useAllUsersQuery();
   const { data: categories } = useAllCategoryQuery();

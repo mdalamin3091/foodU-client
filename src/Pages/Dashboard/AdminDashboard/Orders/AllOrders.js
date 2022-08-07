@@ -1,7 +1,7 @@
 import React from "react";
 import NotFound from "../../../../Shared/DataNotFound";
 import TableLoader from "../../../../Shared/Loader/TableLoader";
-import { useAllOrderQuery } from "../../../../store/services/orderService";
+import { useAllOrderQuery } from "../../../../store/services/userServices";
 import AllOrderTable from "./AllOrderTable";
 
 const AllOrders = () => {

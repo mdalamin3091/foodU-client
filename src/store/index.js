@@ -8,7 +8,6 @@ import userServices from "./services/userServices";
 import productServices from "./services/productServices";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import orderServices from "./services/orderService";
 
 const persistConfig = {
   key: "root",
@@ -23,7 +22,6 @@ const Store = configureStore({
     [userServices.reducerPath]: userServices.reducer,
     [uploadServices.reducerPath]: uploadServices.reducer,
     [productServices.reducerPath]: productServices.reducer,
-    [orderServices.reducerPath]: orderServices.reducer,
     auth: authReducer,
     drawer: drawerReducer,
     cart: persistedReducer,
@@ -34,7 +32,6 @@ const Store = configureStore({
       uploadServices.middleware,
       userServices.middleware,
       productServices.middleware,
-      orderServices.middleware,
     ]),
 });
 

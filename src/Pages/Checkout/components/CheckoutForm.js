@@ -11,11 +11,8 @@ import { BsArrowRight } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { toast } from "react-toastify";
-import {
-  useCreateOrderMutation,
-  useSaveOrderInfoMutation,
-} from "../../../store/services/orderService";
 import { removeAllProduct } from "../../../store/reducers/cartSlice";
+import { useCreateOrderMutation, useSaveOrderInfoMutation } from "../../../store/services/userServices";
 const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
   const { user } = useSelector((state) => state.auth);

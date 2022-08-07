@@ -1,6 +1,6 @@
 import React from "react";
-import { useUpdateOrderStatusMutation } from "../../../../store/services/orderService";
 import { toast } from "react-toastify";
+import { useUpdateOrderStatusMutation } from "../../../../store/services/userServices";
 const AllOrderTable = ({ order }) => {
   const [sendUpdateStatus] = useUpdateOrderStatusMutation();
   const handleChange = (e) => {
