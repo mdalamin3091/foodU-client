@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import AdminSidebar from "./AdminSidebar";
 import { FiMenu } from "react-icons/fi";
 import { useSelector} from "react-redux";

@@ -4,7 +4,7 @@ import { useAllProductQuery } from "../../../store/services/productServices";
 import MenuItem from "./MenuItem";
 const MenuSection = () => {
   const [openTab, setOpenTab] = useState("Pizza");
-  const { data, isLoading, isSuccess } = useAllProductQuery();
+  const { data, isLoading } = useAllProductQuery();
   const filteredData = data?.allProducts.filter(
     (product) => product.category === openTab
   );

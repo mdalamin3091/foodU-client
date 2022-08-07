@@ -1,6 +1,6 @@
 import React from "react";
 import { BsSuitHeartFill, BsMinecart } from "react-icons/bs";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   useAddWishlistMutation,

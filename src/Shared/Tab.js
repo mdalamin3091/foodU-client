@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useAllCategoryQuery } from "../store/services/productServices";
 
 const Tab = ({ openTab, setOpenTab }) => {
-  const { data, isSuccess, isLoading } = useAllCategoryQuery();
+  const { data, isLoading } = useAllCategoryQuery();
   return (
     <>
       <div className="tab-wrapper flex flex-wrap items-center justify-center gap-4 mb-12">
