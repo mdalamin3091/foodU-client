@@ -4,7 +4,10 @@ import { FaSearch } from "react-icons/fa";
 import ReactStars from "react-rating-stars-component";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { filterByCategory } from "../../../store/reducers/cartSlice";
+import {
+  clearFilter,
+  filterByCategory,
+} from "../../../store/reducers/cartSlice";
 import {
   useAllCategoryQuery,
   useAllProductQuery,
@@ -64,7 +67,12 @@ const Sidebar = ({ searchProducts, setSearchProducts, products }) => {
             ))}
           </div>
         </div>
-
+        <button
+          className="btn-primary w-full mb-5"
+          onClick={() => dispatch(clearFilter())}
+        >
+          Clear Filter
+        </button>
         {/* search bar */}
         <div className="outline-none text-lg px-8 py-3 bg-light-gray text-black rounded-md relative">
           <input

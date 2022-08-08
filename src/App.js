@@ -1,41 +1,45 @@
+import React, { Suspense, lazy } from "react";
 import "./styled/App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home/Home";
-import Menu from "./Pages/Menu/Menu";
-import Shop from "./Pages/Shop/Shop";
-import ProductDetails from "./Pages/ProductDetails/ProductDetails";
-import Wishlist from "./Pages/Wishlist/Wishlist";
 import Modal from "./Pages/Auth/Modal/Modal";
-import Checkout from "./Pages/Checkout/Checkout";
-import ConfirmOrder from "./Pages/ConfirmOrder/ConfirmOrder";
-import NotFound from "./Pages/NotFound/NotFound";
-import UserDashboard from "./Pages/Dashboard/UserDashboard/UserDashboard";
-import AdminDashboard from "./Pages/Dashboard/AdminDashboard/AdminDashboard";
-import MyOrders from "./Pages/Dashboard/UserDashboard/MyOrders/MyOrders";
-import UserDashboadIndex from "./Pages/Dashboard/UserDashboard/Index";
-import UpdateProfile from "./Pages/Dashboard/UserDashboard/UpdateProfile";
-import ChangePassword from "./Pages/Dashboard/UserDashboard/ChangePassword";
-import AdminDashboardIndex from "./Pages/Dashboard/AdminDashboard/Index";
-import AllProducts from "./Pages/Dashboard/AdminDashboard/Products/AllProducts";
-import AllCategory from "./Pages/Dashboard/AdminDashboard/Categories/AllCategory";
-import AddProduct from "./Pages/Dashboard/AdminDashboard/Products/AddProduct";
-import AddCategory from "./Pages/Dashboard/AdminDashboard/Categories/AddCategory";
-import AllOrders from "./Pages/Dashboard/AdminDashboard/Orders/AllOrders";
-import AllUsers from "./Pages/Dashboard/AdminDashboard/Users/AllUsers";
-import UpdateProduct from "./Pages/Dashboard/AdminDashboard/Products/UpdateProduct";
-import UpdateCateogory from "./Pages/Dashboard/AdminDashboard/Categories/UpdateCategory";
-import Contact from "./Pages/Contact/Contact";
-import About from "./Pages/About/About";
-import AdminProfileUpdate from "./Pages/Dashboard/AdminDashboard/AdminProfileUpdate";
-import PrivateOutlet from "./Shared/PrivateOutlet";
-import AdminOutlet from "./Shared/AdminRoute";
+import Loader from "./Shared/Loader/Loader";
+const Home = lazy(()=> import ("./Pages/Home/Home"));
+const Menu = lazy(() => import("./Pages/Menu/Menu"));
+const Shop = lazy(()=> import("./Pages/Shop/Shop"))
+const ProductDetails = lazy(()=> import("./Pages/ProductDetails/ProductDetails"))
+const Wishlist = lazy(()=> import("./Pages/Wishlist/Wishlist"))
+const Checkout = lazy(()=> import("./Pages/Checkout/Checkout"))
+const ConfirmOrder = lazy(()=> import("./Pages/ConfirmOrder/ConfirmOrder"))
+const NotFound = lazy(()=> import("./Pages/NotFound/NotFound"))
+const UserDashboard = lazy(()=> import("./Pages/Dashboard/UserDashboard/UserDashboard"));
+const AdminDashboard = lazy(()=> import("./Pages/Dashboard/AdminDashboard/AdminDashboard"))
+const MyOrders = lazy(()=> import("./Pages/Dashboard/UserDashboard/MyOrders/MyOrders"))
+const UserDashboadIndex = lazy(()=> import("./Pages/Dashboard/UserDashboard/Index"));
+const UpdateProfile = lazy(()=> import("./Pages/Dashboard/UserDashboard/UpdateProfile"))
+const ChangePassword = lazy(()=> import("./Pages/Dashboard/UserDashboard/ChangePassword"))
+const AdminDashboardIndex = lazy(()=> import("./Pages/Dashboard/AdminDashboard/Index"))
+const AllProducts = lazy(()=> import("./Pages/Dashboard/AdminDashboard/Products/AllProducts"))
+const AllCategory = lazy(()=> import("./Pages/Dashboard/AdminDashboard/Categories/AllCategory"))
+const AddProduct = lazy(()=> import("./Pages/Dashboard/AdminDashboard/Products/AddProduct"))
+const AddCategory = lazy(()=> import("./Pages/Dashboard/AdminDashboard/Categories/AddCategory"))
+const AllOrders = lazy(()=> import("./Pages/Dashboard/AdminDashboard/Orders/AllOrders"))
+const AllUsers = lazy(()=> import("./Pages/Dashboard/AdminDashboard/Users/AllUsers"))
+const UpdateProduct = lazy(()=> import("./Pages/Dashboard/AdminDashboard/Products/UpdateProduct"))
+const UpdateCateogory = lazy(()=> import("./Pages/Dashboard/AdminDashboard/Categories/UpdateCategory"))
+const Contact = lazy(()=> import("./Pages/Contact/Contact"))
+const About = lazy(()=> import("./Pages/About/About"))
+const AdminProfileUpdate = lazy(()=> import("./Pages/Dashboard/AdminDashboard/AdminProfileUpdate"))
+const PrivateOutlet = lazy(()=> import("./Shared/PrivateOutlet"))
+const AdminOutlet = lazy(()=> import("./Shared/AdminRoute"))
+
 function App() {
   return (
     <>
       {/* <h1>In the name of Alah</h1> */}
       <Router>
-        {/* signup modal */}
         <Modal />
+        <Suspense fallback={<Loader />}>
+        {/* signup modal */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="menu" element={<Menu />} />
@@ -76,10 +80,9 @@ function App() {
               <Route path="addCategory" element={<AddCategory />} />
             </Route>
           </Route>
-
           <Route path="*" element={<NotFound />} />
         </Routes>
-        {/* <Footer /> */}
+        </Suspense>
       </Router>
     </>
   );

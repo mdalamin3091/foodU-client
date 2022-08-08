@@ -42,7 +42,7 @@ const Shop = () => {
       );
     }
     if (category && data) {
-      sortedProduct = currentProducts.filter(
+      sortedProduct = data?.allProducts?.filter(
         (item) => item.category === category
       );
     }

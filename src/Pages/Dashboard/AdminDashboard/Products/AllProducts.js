@@ -19,7 +19,7 @@ const AllProducts = () => {
   };
   return (
     <>
-      <h2 className="text-2xl font-bold mb-4 mt-4">All Products</h2>
+      <h2 className="text-2xl font-bold mb-4 mt-4">Products</h2>
       <div className="antialiased text-gray-900 font-JosefinSans">
         <div className="container mx-auto">
           {isLoading
