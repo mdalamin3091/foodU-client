@@ -79,7 +79,7 @@ const NavBar = () => {
           <div className="flex items-center justify-between">
             <div className="mr-6">
               <Link to="/">
-                <img src={require("../assets/images/logo.png")} alt="logo" />
+                <img src="https://i.ibb.co/THs3Nv9/food-U-removebg-preview.png" alt="logo" />
               </Link>
             </div>
             <div className="hidden lg:flex items-center justify-center">
