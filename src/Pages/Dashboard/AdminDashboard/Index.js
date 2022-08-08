@@ -15,9 +15,9 @@ import {
   useAllReviewQuery,
 } from "../../../store/services/productServices";
 import TableLoader from "../../../Shared/Loader/TableLoader";
-import NotFound from "../../NotFound/NotFound";
 import ProductLoader from "../../../Shared/Loader/ProductLoader";
 import { useAllOrderQuery } from "../../../store/services/userServices";
+import NotFound from "../../../Shared/DataNotFound";
 const Index = () => {
   const { data: userData } = useAllUsersQuery();
   const { data: categories } = useAllCategoryQuery();

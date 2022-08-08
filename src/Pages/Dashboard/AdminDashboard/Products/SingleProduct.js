@@ -34,7 +34,7 @@ const SingleProduct = ({ product }) => {
             onClick={() => handleViewProduct(product._id)}
           >
             <img
-              className="group-hover:scale-110 transition-all ease-linear duration-200 w-full"
+              className="group-hover:scale-110 transition-all ease-linear duration-200 w-full h-[300px] object-contain"
               src={product.images[0]}
               alt="food"
             />
