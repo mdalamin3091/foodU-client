@@ -19,7 +19,13 @@ const Wishlist = () => {
   const [addProductWishlist, result] = useAddWishlistMutation();
   const dispatch = useDispatch();
   const handleWishlist = (productId) => {
-    addProductWishlist({ productId });
+    addProductWishlist({ productId }).then((res) => {
+      toast.success(res?.data?.msg, {
+        theme: "colored",
+        closeOnClick: true,
+        hideProgressBar: false,
+      });
+    });
   };
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
@@ -30,7 +36,6 @@ const Wishlist = () => {
       hideProgressBar: false,
     });
   };
-
   return (
     <>
       <NavBar />

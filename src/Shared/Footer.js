@@ -7,7 +7,7 @@ const Footer = () => {
       <div className='bg-black section-padding font-JosefinSans'>
         <div className="container">
           <div className='mb-12'>
-            <img className='mx-auto' src={require("../assets/images/footer_logo.png")} alt="footer logo" />
+            <img className='mx-auto' src="https://i.ibb.co/THs3Nv9/food-U-removebg-preview.png" alt="logo" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
             {/* 1 */}

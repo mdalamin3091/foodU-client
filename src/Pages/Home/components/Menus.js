@@ -28,7 +28,7 @@ const Menus = () => {
           <CategoryLoader />
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-5">
-            {data?.allCategory.slice(0, 9).map((category, index) => (
+            {data?.allCategory.slice(0, 8).map((category, index) => (
               <button
                 key={index}
                 className="flex items-center justify-center flex-col cursor-pointer hover:text-white transition-all duration-150 group bg-primary/40 rounded-xl px-4 py-2"
