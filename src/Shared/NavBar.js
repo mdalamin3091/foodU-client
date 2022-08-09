@@ -67,7 +67,7 @@ const NavBar = () => {
     <>
       <nav
         className={`bg-white shadow-lg font-JosefinSans sticky ${
-          !scrollPosition ? "py-7" : "py-2"
+          !scrollPosition ? "py-6" : "py-2"
         } top-0 transition-all ease-in-out duration-300 z-[38]`}
       >
         <div className="container flex justify-between">
