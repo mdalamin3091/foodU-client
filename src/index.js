@@ -25,8 +25,8 @@ root.render(
 
 // problem list
 // 1. product details page count not work with cart page
-// 2. user dashboard my order problem not rerender 
-
+// 2. product delete with your review
+// 
 // optional
 // 4. rating average not render current time
 // 5. shop page flex layout mobile responsive not complete
