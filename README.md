@@ -14,7 +14,7 @@ user can add any product review. and all products shown on the testimonials sect
 - Admin can delete any user from this website.
 - Admin can see total number of products and categories and ordered products, total wishlist, total products review. Admin can update ordered products status. 
 
-### Explanation of the useing technologies.
+### Explanation of the using technologies.
 - I am designed full website using tailwind css.
 - Used Redux toolkit and useState hook for state management.
 - Used Redux toolkit query to make all API implementations.
