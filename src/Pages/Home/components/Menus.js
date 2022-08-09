@@ -1,10 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import CategoryLoader from "../../../Shared/Loader/CategoryLoader";
+import { filterByCategory } from "../../../store/reducers/cartSlice";
 import { useAllCategoryQuery } from "../../../store/services/productServices";
 
 const Menus = () => {
   const { data, isSuccess, isLoading } = useAllCategoryQuery({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleNavigate = (category) => {
+    dispatch(filterByCategory(category.categoryName));
+    navigate("/shop");
+  };
   return (
     <div className="font-JosefinSans bg-white py-20">
       <div className="container relative">
@@ -21,10 +29,10 @@ const Menus = () => {
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-5">
             {data?.allCategory.slice(0, 9).map((category, index) => (
-              <Link
-                to="/shop"
+              <button
                 key={index}
                 className="flex items-center justify-center flex-col cursor-pointer hover:text-white transition-all duration-150 group bg-primary/40 rounded-xl px-4 py-2"
+                onClick={() => handleNavigate(category)}
               >
                 <div className="mx-auto overflow-hidden">
                   <img
@@ -36,7 +44,7 @@ const Menus = () => {
                 <h2 className="uppercase text-sm font-bold text-center">
                   {category.categoryName}
                 </h2>
-              </Link>
+              </button>
             ))}
           </div>
         )}

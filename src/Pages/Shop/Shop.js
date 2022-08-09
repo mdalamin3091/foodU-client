@@ -48,6 +48,7 @@ const Shop = () => {
     }
     return sortedProduct;
   };
+  console.log(category)
   return (
     <>
       <NavBar />
