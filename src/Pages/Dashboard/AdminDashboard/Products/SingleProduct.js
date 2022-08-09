@@ -7,10 +7,17 @@ import { toast } from "react-toastify";
 import ViewProductModal from "./ViewProductModal";
 const SingleProduct = ({ product }) => {
   const navigate = useNavigate();
+  let url = window.location.href;
+  const filename = url.split("/").pop().split("#")[0].split("?")[0];
+  console.log(filename)
   const [showModal, setShowModal] = React.useState(false);
   const [sendProductId] = useDeleteProductMutation();
   const handleNavigate = (id) => {
-    navigate(`updateProduct/${id}`);
+    if(filename === "dashboard") {
+      navigate(`../allProducts/updateProduct/${id}`);
+    }else{
+      navigate(`updateProduct/${id}`);
+    }
   };
   const handleDelete = (id) => {
     sendProductId(id).then((res) => {
