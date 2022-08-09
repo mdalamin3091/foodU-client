@@ -1,7 +1,7 @@
 # Starting with FoodU
 
 This project is [FoodU](https://food-u.netlify.app/).
-![FoodU](https://i.ibb.co/ws2tfL2/screencapture-localhost-3000-2022-08-07-08-13-57.png)
+![FoodU](https://i.ibb.co/KWWX9CG/foodU2.png)
 
 ### Some Feature FoodU
 

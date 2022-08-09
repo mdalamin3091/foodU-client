@@ -29,7 +29,6 @@ root.render(
 // 
 // optional
 // 4. rating average not render current time
-// 5. shop page flex layout mobile responsive not complete
 // 6. coupon code apply not complete
 
 // extra work list
