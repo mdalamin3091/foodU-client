@@ -21,7 +21,7 @@ user can add any product review. and all products shown on the testimonials sect
 - Making this website api using node js, express js.
 - Mongodb is used as database.
 - I have used Mongoose library for relation inside database collection.
-- JWT package used for verify user and protected api.
+- JWT package used for verify user and protected routes.
 - Express validator package used for validations.
 
 ### Frontend Technology
@@ -35,7 +35,7 @@ user can add any product review. and all products shown on the testimonials sect
 - Stripe payment service
 - Some other packages
 
-### Backend Technology `18
+### Backend Technology
 
 - Node JS
 - Express JS
