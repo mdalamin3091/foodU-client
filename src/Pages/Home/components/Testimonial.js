@@ -43,18 +43,18 @@ const Testimonial = () => {
             .slice(0, 8)
             .map((review, index) => (
               <SwiperSlide>
-                <div className="bg-white p-7 rounded-xl" key={index}>
+                <div className="bg-white p-7 rounded-xl  min-h-[310px]" key={index}>
                   <div className="flex items-center justify-between gap-4 mb-8">
                     <div className="basis-1/5">
                       <img
-                        className="w-20 rounded-full"
+                        className="w-20 rounded-full h-16"
                         src={review?.user?.profilePic}
                         alt="avatar"
                       />
                     </div>
                     <div className="text-left basis-4/5">
                       <div className="flex items-center justify-between">
-                        <h2 className="text-xl text-heading font-bold">
+                        <h2 className="text-xl text-heading font-bold capitalize">
                           {review?.fullname}
                         </h2>
                         <div className="flex items-center justify-center gap-1 text-primary text-xl">

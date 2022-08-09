@@ -118,7 +118,7 @@ const Sidebar = ({ searchProducts, setSearchProducts, products }) => {
         <div className="grid grid-cols-1 gap-5">
           {allProducts?.allProducts?.map(
             (item) =>
-              item?.review?.length > 3 && (
+              item?.review?.length > 1 && (
                 <div className="recipe border-2 border-gray-200 rounded-3xl p-2">
                   <div className="bg-light-gray flex items-center justify-between rounded-3xl gap-2">
                     <div className="basis-1/3">

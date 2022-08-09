@@ -32,11 +32,6 @@ root.render(
 // 5. shop page flex layout mobile responsive not complete
 // 6. coupon code apply not complete
 
-// morning first work
-// 2. update all dami data
-// 4. solve problem list
-
-
 // extra work list
 // 1. Invoice add
 // 2. search add in all user and all product and all category
