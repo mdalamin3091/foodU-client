@@ -5,7 +5,6 @@ import { useAllUsersQuery } from "../../../../store/services/authServices";
 import AllUserTable from "./AllUserTable";
 const AllUsers = () => {
   const { data, isLoading } = useAllUsersQuery();
-
   return (
     <>
       {isLoading ? (

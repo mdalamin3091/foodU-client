@@ -44,7 +44,7 @@ const AddCategory = () => {
     });
   }, [result?.isSuccess]);
   useEffect(() => {
-    toast.error(result?.error?.data?.error.categoryName, {
+    toast.error(result?.error?.data?.error?.categoryName, {
       theme: "colored",
     });
   }, [result?.isError]);

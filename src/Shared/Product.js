@@ -43,7 +43,7 @@ const Product = ({ gridView, product }) => {
       hideProgressBar: false,
     });
   };
-  let average = product?.review.reduce(
+  let average = product?.review?.reduce(
     (sum, currentValue, _, array) =>
       sum + currentValue.ratingStar / array.length,
     0
