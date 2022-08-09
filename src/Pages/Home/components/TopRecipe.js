@@ -20,7 +20,7 @@ const TopRecipe = () => {
   return (
     <div className="section-padding font-JosefinSans">
       <div className="container grid grid-cols-3 gap-5">
-        <div className="col-span-3 md:col-span-2">
+        <div className="col-span-3 lg:col-span-2">
           {/* header */}
           <div className="flex items-center justify-between mb-12 md:px-0">
             <h2 className="text-4xl md:text-5xl font-bold text-heading">
@@ -78,7 +78,7 @@ const TopRecipe = () => {
           )}
         </div>
         {/* banner part */}
-        <div className="hidden md:col-span-1 md:block">
+        <div className="hidden md:col-span-1 lg:block">
           <div className="relative text-center">
             <img
               className="rounded-lg w-full"
@@ -89,7 +89,7 @@ const TopRecipe = () => {
               <h2 className="font-Norican font-bold text-3xl mb-2 text-white">
                 Super Delicious
               </h2>
-              <h1 className="text-6xl text-red-500 font-bold my-3">CHICKEN</h1>
+              <h1 className="text-3xl md:text-4xl lg:text-6xl text-red-500 font-bold my-3">CHICKEN</h1>
               <p className="text-xl font-bold text-white">CALL US NOW:</p>
               <p className="text-3xl font-bold text-red-500">1-800-555-333</p>
             </div>

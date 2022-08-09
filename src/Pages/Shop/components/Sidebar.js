@@ -68,7 +68,7 @@ const Sidebar = ({ searchProducts, setSearchProducts, products }) => {
           </div>
         </div>
         <button
-          className="btn-primary w-full mb-5"
+          className="btn-primary w-full mb-5 whitespace-nowrap"
           onClick={() => dispatch(clearFilter())}
         >
           Clear Filter
