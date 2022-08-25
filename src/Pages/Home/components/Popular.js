@@ -2,16 +2,22 @@ import React, { useState } from "react";
 import Tab from "../../../Shared/Tab";
 import Product from "../../../Shared/Product";
 import { Link } from "react-router-dom";
-import { useAllProductQuery } from "../../../store/services/productServices";
+import { useAllCategoryQuery, useAllProductQuery } from "../../../store/services/productServices";
 import MenuLoader from "../../../Shared/Loader/MenuLoader";
+import { useEffect } from "react";
 
 const Popular = () => {
-  const [openTab, setOpenTab] = useState("Pizza");
+  const { data:allCategory} = useAllCategoryQuery();
+  const [openTab, setOpenTab] = useState(allCategory?.allCategory[0]?.categoryName);
   const [gridView, setGridView] = useState(true);
   const { data, isLoading, isSuccess } = useAllProductQuery();
   const filteredData = data?.allProducts.filter(
     (product) => product.category === openTab
-  );
+    );
+
+  useEffect(()=>{
+      setOpenTab(allCategory?.allCategory[0]?.categoryName)
+  }, [allCategory])
   return (
     <div className="bg-white font-JosefinSans section-padding">
       <div className="container">

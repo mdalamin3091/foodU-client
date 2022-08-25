@@ -5,12 +5,12 @@ This project is [FoodU](https://food-u.netlify.app/).
 
 ### Some Feature FoodU
 
-- Food You is a food Ecommerce site. Every user can order food after logging in. And he/she can save his favorite food on the wishlist page.
+- Food You is a food Ecommerce site. Every user can order food after logging in. And he/she can save his favorite food on the Wishlist page.
 user can add any product review. and all products shown on the testimonials section. 
 - There are two rols in this website user and admin.
 - Every user can see all their orders on their Dashboard and User can change passaword and update profile.
-- Admin can controll whole website and every user. admin can add product or category and update or delete product or category. Admin can make any user an admin from this website user.
-- Intregated payment methods can be used to purchase products and payment using stripe or cash on delivery.
+- Admin can control whole website and every user. admin can add product or category and update or delete product or category. Admin can make any user an admin from this website user.
+- Integrated payment methods can be used to purchase products and payment using stripe or cash on delivery.
 - Admin can delete any user from this website.
 - Admin can see total number of products and categories and ordered products, total wishlist, total products review. Admin can update ordered products status. 
 
