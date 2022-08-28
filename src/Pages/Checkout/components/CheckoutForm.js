@@ -15,6 +15,7 @@ import { removeAllProduct } from "../../../store/reducers/cartSlice";
 import { useCreateOrderBySSLMutation, useCreateOrderMutation, useSaveOrderInfoMutation } from "../../../store/services/userServices";
 const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
+  const { cart } = useSelector((state) => state);
   const { user } = useSelector((state) => state.auth);
   const [shippingDetails, setshippingDetails] = useState({});
   const [processing, setProcessing] = useState(false);
@@ -285,7 +286,7 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
             <button
               type="submit"
               className="bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white"
-              disabled={!stripe}
+              disabled={!stripe || cart.cartItems.length === 0}
             >
               Confirm Order
               <span className="text-xl ml-2">
