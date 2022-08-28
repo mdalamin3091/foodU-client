@@ -129,7 +129,9 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
       sendOrderInfo({
         checkOutInfo
       }).then(res => console.log(res))
+      dispatch(removeAllProduct());
       await sendOrderBySSL({ checkOutInfo }).then(res => {
+        console.log(res)
         window.location.replace(res.data)
       })
     }
