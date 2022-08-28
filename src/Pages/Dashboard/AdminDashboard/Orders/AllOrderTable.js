@@ -34,22 +34,21 @@ const AllOrderTable = ({ order }) => {
         </td>
         <td className="px-6 py-4">
           {order.shippingCostAndMethod.shippingMethod === "Cash on Delivery"
-            ? "COD"
-            : "Card"}
+            ? "COD" : order.shippingCostAndMethod.shippingMethod === "SSL Commerze" ?
+              "SSL" : "Card"}
         </td>
         <td className="px-6 py-4">${order.paymentDetails.totalCost}</td>
         <td
-          className={`${
-            order?.orderStatus === "Pending"
+          className={`${order?.orderStatus === "Pending"
               ? "text-yellow-500"
               : order?.orderStatus === "Processing"
-              ? "text-blue-500"
-              : order?.orderStatus === "Delivered"
-              ? "text-green-500"
-              : order?.orderStatus === "Cencel"
-              ? "text-red-500"
-              : null
-          } px-6 py-4`}
+                ? "text-blue-500"
+                : order?.orderStatus === "Delivered"
+                  ? "text-green-500"
+                  : order?.orderStatus === "Cencel"
+                    ? "text-red-500"
+                    : null
+            } px-6 py-4`}
         >
           {order?.orderStatus}
         </td>

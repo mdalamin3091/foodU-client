@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { toast } from "react-toastify";
 import { removeAllProduct } from "../../../store/reducers/cartSlice";
-import { useCreateOrderMutation, useSaveOrderInfoMutation } from "../../../store/services/userServices";
+import { useCreateOrderBySSLMutation, useCreateOrderMutation, useSaveOrderInfoMutation } from "../../../store/services/userServices";
 const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
   const { user } = useSelector((state) => state.auth);
@@ -20,6 +20,7 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
   const [processing, setProcessing] = useState(false);
   const [createOrder] = useCreateOrderMutation();
   const [sendOrderInfo] = useSaveOrderInfoMutation();
+  const [sendOrderBySSL] = useCreateOrderBySSLMutation();
   const [clientSecret, setClientSecret] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -58,7 +59,7 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
       setProcessing(false);
       dispatch(removeAllProduct());
       navigate("/confirmOrder");
-    } else {
+    } else if (selectedPaymentMethod === "Credit Card") {
       checkOutInfo = {
         ...shippingDetails,
         selectedPaymentMethod,
@@ -118,6 +119,19 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
         dispatch(removeAllProduct());
         navigate("/confirmOrder");
       }
+    } else if (selectedPaymentMethod === "SSL Commerze") {
+      checkOutInfo = {
+        ...shippingDetails,
+        selectedPaymentMethod,
+        shippingCost,
+        totalCost,
+      };
+      sendOrderInfo({
+        checkOutInfo
+      }).then(res => console.log(res))
+      await sendOrderBySSL({ checkOutInfo }).then(res => {
+        window.location.replace(res.data)
+      })
     }
   };
   return (
@@ -167,9 +181,11 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
         <h2 className="text-xl text-black mb-3">03. Shipping Cost</h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-5">
           {shippinCost.map((item, index) => (
-            <div
+            <label
+              htmlFor={item.id}
+              id={item.id}
               key={index}
-              className="mb-3 border-2 border-gray-200 bg-light-gray rounded-md p-3 flex items-center justify-between"
+              className="mb-3 border-2 border-gray-200 bg-light-gray rounded-md p-3 flex items-center justify-between cursor-pointer"
             >
               <div className="flex items-center ">
                 <span className="text-5xl color-gray-300 mr-3">
@@ -190,9 +206,10 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
                 type={item.type}
                 placeholder={item.placeholder}
                 value={item.cost}
+                id={item.id}
                 required
               />
-            </div>
+            </label>
           ))}
         </div>
         {/* payment method */}
@@ -220,9 +237,11 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
           {paymentInfo.map((item, index) => (
             <div className="col-span-2 lg:col-span-1">
               {/* select method */}
-              <div
+              <label
+                htmlFor={item.id}
+                id={item.id}
                 key={index}
-                className="mb-3 border-2 border-gray-200 bg-light-gray rounded-md p-3 flex items-center justify-between"
+                className="mb-3 border-2 border-gray-200 bg-light-gray rounded-md p-3 flex items-center justify-between cursor-pointer"
               >
                 <div className="flex items-center">
                   <span className="text-4xl color-gray-300 mr-3">
@@ -239,8 +258,9 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
                   type={item.type}
                   value={item.text}
                   required
+                  id={item.id}
                 />
-              </div>
+              </label>
             </div>
           ))}
         </div>

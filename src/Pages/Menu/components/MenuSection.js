@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import MenuItemLoader from "../../../Shared/Loader/MenuItemLoader";
 import Tab from "../../../Shared/Tab";
-import { useAllProductQuery } from "../../../store/services/productServices";
+import { useAllCategoryQuery, useAllProductQuery } from "../../../store/services/productServices";
 import MenuItem from "./MenuItem";
 const MenuSection = () => {
-  const [openTab, setOpenTab] = useState("Pizza");
+  const { data:allCategory} = useAllCategoryQuery();
+  const [openTab, setOpenTab] = useState(allCategory?.allCategory[0]?.categoryName);
   const { data, isLoading } = useAllProductQuery();
   const filteredData = data?.allProducts.filter(
     (product) => product.category === openTab

@@ -64,6 +64,15 @@ const userServices = createApi({
       }),
       invalidatesTags: ["user"],
     }),
+    createOrderBySSL: builder.mutation({
+      query: (orderInfo) => ({
+        url: `product/init`,
+        method: "POST", 
+        body: orderInfo,
+      }),
+      invalidatesTags: ["user"],
+    }),
+    
     getSingleUser: builder.query({
       query: () => ({
         url: `auth/singleUser`,
@@ -108,6 +117,7 @@ export const {
   useCreateOrderMutation,
   useSaveOrderInfoMutation,
   useAllOrderQuery,
-  useUpdateOrderStatusMutation
+  useUpdateOrderStatusMutation,
+  useCreateOrderBySSLMutation
 } = userServices;
 export default userServices;
