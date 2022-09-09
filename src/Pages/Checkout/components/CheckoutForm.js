@@ -246,7 +246,7 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
                 key={index}
                 className="mb-3 border-2 border-gray-200 bg-light-gray rounded-md p-3 flex items-center justify-between cursor-pointer"
               >
-                <div className="flex items-center">
+                <div className="flex items-center cursor-pointer">
                   <span className="text-4xl color-gray-300 mr-3">
                     {item.icon}
                   </span>
@@ -256,7 +256,7 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
                 </div>
                 <input
                   onChange={(e) => setSelectedPaymentMethod(e.target.value)}
-                  className=" bg-light-gray w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 "
+                  className=" bg-light-gray w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 cursor-pointer"
                   name={item.name}
                   type={item.type}
                   value={item.text}
