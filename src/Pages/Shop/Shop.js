@@ -48,7 +48,6 @@ const Shop = () => {
     }
     return sortedProduct;
   };
-  console.log(category)
   return (
     <>
       <NavBar />
@@ -114,7 +113,7 @@ const Shop = () => {
             {/* product part */}
             {isLoading ? (
               <MenuLoader />
-            ) : !productSortByPriceAndCategory().length ? (
+            ) : !productSortByPriceAndCategory()?.length ? (
               <NotFound>
                 No products were found matching your selection.
               </NotFound>
