@@ -1,10 +1,17 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import NotFound from "../../../../Shared/DataNotFound";
 import TableLoader from "../../../../Shared/Loader/TableLoader";
 import { useAllUsersQuery } from "../../../../store/services/authServices";
 import AllUserTable from "./AllUserTable";
 const AllUsers = () => {
   const { data, isLoading } = useAllUsersQuery();
+  const { user: { email } } = useSelector(state => state.auth);
+  let allUser;
+  if (!isLoading) {
+    allUser = data?.allUser?.filter(user => user.email !== email)
+    console.log(allUser)
+  }
   return (
     <>
       {isLoading ? (
@@ -39,7 +46,7 @@ const AllUsers = () => {
                 </tr>
               </thead>
               <tbody className="text-[16px]">
-                {data?.allUser
+                {allUser
                   .map((user) => <AllUserTable key={user._id} user={user} />)
                   .reverse()}
               </tbody>

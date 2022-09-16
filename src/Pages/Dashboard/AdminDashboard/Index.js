@@ -18,10 +18,16 @@ import TableLoader from "../../../Shared/Loader/TableLoader";
 import ProductLoader from "../../../Shared/Loader/ProductLoader";
 import { useAllOrderQuery } from "../../../store/services/userServices";
 import NotFound from "../../../Shared/DataNotFound";
+import { useSelector } from "react-redux";
 const Index = () => {
-  const { data: userData } = useAllUsersQuery();
+  const { data: userData, isLoading } = useAllUsersQuery();
+  const { user: { email } } = useSelector(state => state.auth);
+  let allUser;
+  if (!isLoading) {
+    allUser = userData?.allUser?.filter(user => user.email !== email)
+  }
   const { data: categories } = useAllCategoryQuery();
-  const { data: allProducts, isLoading } = useAllProductQuery();
+  const { data: allProducts, isLoading: productLoading } = useAllProductQuery();
   const { data: allOrders } = useAllOrderQuery();
   const { data: allReviews } = useAllReviewQuery();
   const { data } = useAllUsersQuery();
@@ -94,7 +100,7 @@ const Index = () => {
         ))}
       </div>
       <h2 className="text-3xl font-bold mb-4">Dashboard Summary</h2>
-      {isLoading ? (
+      {productLoading ? (
         <ProductLoader />
       ) : (
         <>
@@ -139,7 +145,7 @@ const Index = () => {
                 </tr>
               </thead>
               <tbody className="text-[16px]">
-                {data?.allUser
+                {allUser
                   .slice(0, 5)
                   .map((user) => <AllUserTable key={user._id} user={user} />)
                   .reverse()}

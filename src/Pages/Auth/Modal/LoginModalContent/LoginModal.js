@@ -9,10 +9,10 @@ import {
   setToken,
   setUser,
 } from "../../../../store/reducers/authSlice";
-const LoginModal = ({ setIsSignUpModal }) => {
+const LoginModal = ({ setIsSignUpModal, isAdminLogin }) => {
   const [userInfo, setUserInfo] = React.useState({
-    email: "",
-    password: "",
+    email: isAdminLogin ? "admin@gmail.com" : "",
+    password: isAdminLogin ? "123456" : "",
   });
   const [loginData, result] = useLoginMutation();
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const LoginModal = ({ setIsSignUpModal }) => {
       dispatch(showModalFalse(false));
       setIsSignUpModal(true);
     }
-  }, [result?.isSuccess]);
+  }, [result?.isSuccess, dispatch]);
 
   // handle error
   useEffect(() => {
@@ -86,6 +86,7 @@ const LoginModal = ({ setIsSignUpModal }) => {
                   </div>
                   <input
                     type="email"
+                    value={userInfo.email}
                     onChange={handleChange}
                     className="block border-none w-full p-2 rounded outline-none"
                     name="email"
@@ -108,6 +109,7 @@ const LoginModal = ({ setIsSignUpModal }) => {
                   </div>
                   <input
                     type="password"
+                    value={userInfo.password}
                     onChange={handleChange}
                     className="block border-none w-full p-2 rounded outline-none"
                     name="password"

@@ -12,7 +12,7 @@ import {
   setUser,
 } from "../../../../store/reducers/authSlice";
 import { useState } from "react";
-const SignupModal = ({ setIsSignUpModal }) => {
+const SignupModal = ({ setIsSignUpModal, setIsAdminLogin }) => {
   const [userInfo, setUserInfo] = React.useState({
     fullname: "",
     email: "",
@@ -191,7 +191,10 @@ const SignupModal = ({ setIsSignUpModal }) => {
                 Already have a account ?&nbsp;
                 <span
                   className="hover:text-primary cursor-pointer"
-                  onClick={() => setIsSignUpModal(false)}
+                  onClick={() => {
+                    setIsSignUpModal(false)
+                    setIsAdminLogin(false)
+                  }}
                 >
                   Login
                 </span>
@@ -199,7 +202,10 @@ const SignupModal = ({ setIsSignUpModal }) => {
               <p className="text-gray-500 text-center">
                 <span
                   className="hover:text-primary cursor-pointer"
-                  onClick={() => setIsSignUpModal(false)}
+                  onClick={() => {
+                    setIsSignUpModal(false)
+                    setIsAdminLogin(true)
+                  }}
                 >
                   Admin Login
                 </span>

@@ -6,6 +6,7 @@ import LoginModalContent from "./LoginModalContent/LoginModal";
 const Modal = () => {
   const { showModal } = useSelector((state) => state.auth);
   const [isSignUpModal, setIsSignUpModal] = useState(true);
+  const [isAdminLogin, setIsAdminLogin] = useState(false)
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(showModalTrue(false))
@@ -17,9 +18,9 @@ const Modal = () => {
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none font-JosefinSans">
             {isSignUpModal ? (
-              <SignupModalContent setIsSignUpModal={setIsSignUpModal} />
+              <SignupModalContent setIsSignUpModal={setIsSignUpModal} setIsAdminLogin={setIsAdminLogin} />
             ) : (
-              <LoginModalContent setIsSignUpModal={setIsSignUpModal} />
+              <LoginModalContent setIsSignUpModal={setIsSignUpModal} isAdminLogin={isAdminLogin} />
             )}
             <div
               className="absolute text-red-600 top-5 right-5  rounded-full bg-white text-4xl cursor-pointer w-8 h-8 flex items-center justify-center -rotate-45 hover:bg-red-100"

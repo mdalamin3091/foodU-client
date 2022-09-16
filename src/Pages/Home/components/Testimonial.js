@@ -27,8 +27,8 @@ const Testimonial = () => {
               ? 1
                 ? window.innerWidth < 1024
                 : 2
-                ? window.innerWidth < 1280
-                : 3
+                  ? window.innerWidth < 1280
+                  : 3
               : 3
           }
           spaceBetween={30}
@@ -43,7 +43,7 @@ const Testimonial = () => {
             .slice(0, 8)
             .map((review, index) => (
               <SwiperSlide>
-                <div className="bg-white p-7 rounded-xl  min-h-[330px]" key={index}>
+                <div className="bg-white p-7 rounded-xl  min-h-[330px]" key={review?._id}>
                   <div className="flex items-center justify-between gap-4 mb-8">
                     <div className="basis-1/5">
                       <img

@@ -1,5 +1,6 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import "./styled/App.css";
+import Swal from "sweetalert2";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Modal from "./Pages/Auth/Modal/Modal";
 import Loader from "./Shared/Loader/Loader";
@@ -33,6 +34,16 @@ const PrivateOutlet = lazy(() => import("./Shared/PrivateOutlet"))
 const AdminOutlet = lazy(() => import("./Shared/AdminRoute"))
 
 function App() {
+  useEffect(() => {
+    setTimeout(() => {
+      Swal.fire({
+        title: "Don't Remove any data",
+        icon: "warning",
+        showButton: true,
+        text: "You can login as a admin for test purpose using gmail:admin@gmail.com & password:123456",
+      })
+    }, 10000);
+  }, [])
   return (
     <>
       {/* <h1>In the name of Alah</h1> */}
