@@ -182,9 +182,8 @@ const SignupModal = ({ setIsSignUpModal }) => {
                 </div>
               </div>
               <input
-                className={`btn-primary py-2 block ${
-                  isLoading ? "cursor-not-allowed" : ""
-                }`}
+                className={`btn-primary py-2 block ${isLoading ? "cursor-not-allowed" : ""
+                  }`}
                 type="submit"
                 value="Register"
               />
@@ -195,6 +194,14 @@ const SignupModal = ({ setIsSignUpModal }) => {
                   onClick={() => setIsSignUpModal(false)}
                 >
                   Login
+                </span>
+              </p>
+              <p className="text-gray-500 text-center">
+                <span
+                  className="hover:text-primary cursor-pointer"
+                  onClick={() => setIsSignUpModal(false)}
+                >
+                  Admin Login
                 </span>
               </p>
             </div>

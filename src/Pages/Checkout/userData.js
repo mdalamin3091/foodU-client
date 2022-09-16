@@ -80,20 +80,20 @@ const paymentInfo = [
     type: "radio",
     text: `Credit Card`,
   },
-  {
-    icon: <FaMoneyBillAlt />,
-    card: true,
-    name: "payment_method",
-    type: "radio",
-    text: `Bkash`,
-  },
-  {
-    icon: <MdPayments />,
-    card: true,
-    name: "payment_method",
-    type: "radio",
-    text: `SSL Commerze`,
-  },
+  // {
+  //   icon: <FaMoneyBillAlt />,
+  //   card: true,
+  //   name: "payment_method",
+  //   type: "radio",
+  //   text: `Bkash`,
+  // },
+  // {
+  //   icon: <MdPayments />,
+  //   card: true,
+  //   name: "payment_method",
+  //   type: "radio",
+  //   text: `SSL Commerze`,
+  // },
 ];
 
 export { personalInfo, shippingInfo, shippinCost, paymentInfo };

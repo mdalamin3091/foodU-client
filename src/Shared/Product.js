@@ -7,24 +7,33 @@ import {
   useGetSingleUserQuery,
 } from "../store/services/userServices";
 import { addToCart } from "../store/reducers/cartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ReactStars from "react-rating-stars-component";
 import { AiFillStar } from "react-icons/ai";
 const Product = ({ gridView, product }) => {
   let url = window.location.href;
   const filename = url.split("/").pop().split("#")[0].split("?")[0];
   const [addProductWishlist] = useAddWishlistMutation();
+  const { user } = useSelector((state) => state?.auth);
   const { data } = useGetSingleUserQuery();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleWishlist = (productId) => {
-    addProductWishlist({ productId }).then((res) => {
-      toast.success(res?.data?.msg, {
+    if (user) {
+      addProductWishlist({ productId }).then((res) => {
+        toast.success(res?.data?.msg, {
+          theme: "colored",
+          closeOnClick: true,
+          hideProgressBar: false,
+        });
+      });
+    } else {
+      toast.warning("Please login for wishlist", {
         theme: "colored",
         closeOnClick: true,
         hideProgressBar: false,
       });
-    });
+    }
   };
   const handleNavigate = (id) => {
     if (filename === "shop") {
@@ -120,9 +129,8 @@ const Product = ({ gridView, product }) => {
         </div>
         <div className="flex items-center justify-between mt-3 absolute bottom-0 left-0 right-0 p-4">
           <h3
-            className={`text-2xl text-primary font-bold ${
-              !gridView ? "md:ml-[315px] ml-[105px]" : ""
-            }`}
+            className={`text-2xl text-primary font-bold ${!gridView ? "md:ml-[315px] ml-[105px]" : ""
+              }`}
           >
             ${product?.price}
           </h3>

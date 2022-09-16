@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ScreenHeader from "../../Shared/ScreenHeader";
 import Product from "../../Shared/Product";
 import { Link } from "react-router-dom";

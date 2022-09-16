@@ -21,7 +21,7 @@ const Index = () => {
   const cencleOrder = data?.user?.order?.filter(
     (item) => item.orderStatus === "Cancel"
   );
-  console.log(processingOrder);
+  console.log(data);
   const userOrders = [
     {
       icon: <FaShoppingCart />,

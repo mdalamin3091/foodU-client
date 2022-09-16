@@ -120,22 +120,27 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
         dispatch(removeAllProduct());
         navigate("/confirmOrder");
       }
-    } else if (selectedPaymentMethod === "SSL Commerze") {
-      checkOutInfo = {
-        ...shippingDetails,
-        selectedPaymentMethod,
-        shippingCost,
-        totalCost,
-      };
-      sendOrderInfo({
-        checkOutInfo
-      }).then(res => console.log(res))
-      dispatch(removeAllProduct());
-      await sendOrderBySSL({ checkOutInfo }).then(res => {
-        console.log(res)
-        window.location.replace(res.data)
-      })
-    }
+    } 
+    // else if (selectedPaymentMethod === "SSL Commerze") {
+    //   checkOutInfo = {
+    //     ...shippingDetails,
+    //     selectedPaymentMethod,
+    //     shippingCost,
+    //     totalCost,
+    //   };
+    //   sendOrderInfo({
+    //     checkOutInfo
+    //   }).then(res => console.log(res))
+    //   await sendOrderBySSL({ checkOutInfo }).then(res => {
+    //     window.location.replace(res.data)
+    //   })
+    // } else {
+    //   toast.warning("Currently Bkash payment is not available.", {
+    //     theme: "colored",
+    //     closeOnClick: true,
+    //     hideProgressBar: false,
+    //   });
+    // }
   };
   return (
     <>
@@ -285,8 +290,8 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
           ) : (
             <button
               type="submit"
-              className="bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white"
-              disabled={!stripe || cart.cartItems.length === 0}
+              className={`bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white ${!stripe || cart?.cartItems?.length === 0 && "cursor-not-allowed"}`}
+              disabled={!stripe || cart?.cartItems?.length === 0}
             >
               Confirm Order
               <span className="text-xl ml-2">

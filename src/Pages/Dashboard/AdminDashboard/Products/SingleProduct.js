@@ -9,7 +9,6 @@ const SingleProduct = ({ product }) => {
   const navigate = useNavigate();
   let url = window.location.href;
   const filename = url.split("/").pop().split("#")[0].split("?")[0];
-  console.log(filename)
   const [showModal, setShowModal] = React.useState(false);
   const [sendProductId] = useDeleteProductMutation();
   const handleNavigate = (id) => {
