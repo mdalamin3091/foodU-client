@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { useNavigate, Link } from "react-router-dom";
@@ -12,8 +12,9 @@ import CategoryLoader from "../../../../Shared/Loader/CategoryLoader";
 import FilterDashboard from "../shared/FilterDashboard";
 const AllCategory = () => {
   const navigate = useNavigate();
-  const { data, isSuccess, isLoading } = useAllCategoryQuery();
+  const { data, isLoading } = useAllCategoryQuery();
   const [categoryIdSend] = useDeleteCategoryMutation();
+  const [inputValue, setInputValue] = useState("");
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure!",
@@ -32,6 +33,16 @@ const AllCategory = () => {
     navigate(`updateCategory/${id}`);
   };
 
+  const filterByCategoryName = (category) => {
+    const { categoryName } = category || {};
+    let filteredCategory = true;
+    if (!isLoading && inputValue && categoryName) {
+      filteredCategory = categoryName
+        ?.toLowerCase()
+        .includes(inputValue.toLowerCase());
+    }
+    return filteredCategory;
+  };
   return (
     <>
       <h2 className="text-2xl font-bold mb-4 mt-4">All Category</h2>
@@ -46,6 +57,7 @@ const AllCategory = () => {
               type="text"
               className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
               placeholder="Search by category name"
+              onChange={(e) => setInputValue(e.target.value)}
             />
             <Link
               to="/admin/addCategory"
@@ -56,6 +68,7 @@ const AllCategory = () => {
           </FilterDashboard>
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
             {data?.allCategory
+              .filter(filterByCategoryName)
               ?.map((category, index) => (
                 <div
                   key={index}
