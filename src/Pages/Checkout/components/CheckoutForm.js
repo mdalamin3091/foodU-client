@@ -43,74 +43,22 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let checkOutInfo;
-    if (selectedPaymentMethod === "Cash on Delivery") {
-      setProcessing(true);
-      checkOutInfo = {
-        ...shippingDetails,
-        selectedPaymentMethod,
-        shippingCost,
-        totalCost,
-      };
-      await sendOrderInfo({ checkOutInfo });
-      toast.success("Your Order is successfull", {
+    if(cart?.cartItems?.length === 0){
+      toast.warning("Sorry, Your Cart is empty. Please product add your cart.", {
         theme: "colored",
         closeOnClick: true,
         hideProgressBar: false,
       });
-      setProcessing(false);
-      dispatch(removeAllProduct());
-      navigate("/confirmOrder");
-    } else if (selectedPaymentMethod === "Credit Card") {
-      checkOutInfo = {
-        ...shippingDetails,
-        selectedPaymentMethod,
-        shippingCost,
-        totalCost,
-      };
-      if (!stripe || !elements) {
-        return;
-      }
-      const card = elements.getElement(CardElement);
-      if (card === null) {
-        return;
-      }
-      setProcessing(true);
-      const { error, paymentMethod } = await stripe.createPaymentMethod({
-        type: "card",
-        card,
-      });
-      if (error) {
-        toast.error(error.message, {
-          theme: "colored",
-          closeOnClick: true,
-          hideProgressBar: false,
-        });
-        setProcessing(false);
-      }
-      const { paymentIntent, error: intentError } =
-        await stripe.confirmCardPayment(clientSecret, {
-          payment_method: {
-            card,
-            billing_details: {
-              name: user.fullname,
-              email: user.email,
-            },
-          },
-        });
-      if (intentError) {
-        toast.error(intentError.message, {
-          theme: "colored",
-          closeOnClick: true,
-          hideProgressBar: false,
-        });
-        setProcessing(false);
-      } else {
-        sendOrderInfo({
-          checkOutInfo,
-          transaction: paymentIntent.client_secret,
-          last4: paymentMethod.card.last4,
-        });
-
+    }else{
+      if (selectedPaymentMethod === "Cash on Delivery") {
+        setProcessing(true);
+        checkOutInfo = {
+          ...shippingDetails,
+          selectedPaymentMethod,
+          shippingCost,
+          totalCost,
+        };
+        await sendOrderInfo({ checkOutInfo });
         toast.success("Your Order is successfull", {
           theme: "colored",
           closeOnClick: true,
@@ -119,28 +67,88 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
         setProcessing(false);
         dispatch(removeAllProduct());
         navigate("/confirmOrder");
-      }
-    } 
-    // else if (selectedPaymentMethod === "SSL Commerze") {
-    //   checkOutInfo = {
-    //     ...shippingDetails,
-    //     selectedPaymentMethod,
-    //     shippingCost,
-    //     totalCost,
-    //   };
-    //   sendOrderInfo({
-    //     checkOutInfo
-    //   }).then(res => console.log(res))
-    //   await sendOrderBySSL({ checkOutInfo }).then(res => {
-    //     window.location.replace(res.data)
-    //   })
-    // } else {
-    //   toast.warning("Currently Bkash payment is not available.", {
-    //     theme: "colored",
-    //     closeOnClick: true,
-    //     hideProgressBar: false,
-    //   });
-    // }
+      } else if (selectedPaymentMethod === "Credit Card") {
+        checkOutInfo = {
+          ...shippingDetails,
+          selectedPaymentMethod,
+          shippingCost,
+          totalCost,
+        };
+        if (!stripe || !elements) {
+          return;
+        }
+        const card = elements.getElement(CardElement);
+        if (card === null) {
+          return;
+        }
+        setProcessing(true);
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
+          type: "card",
+          card,
+        });
+        if (error) {
+          toast.error(error.message, {
+            theme: "colored",
+            closeOnClick: true,
+            hideProgressBar: false,
+          });
+          setProcessing(false);
+        }
+        const { paymentIntent, error: intentError } =
+          await stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+              card,
+              billing_details: {
+                name: user.fullname,
+                email: user.email,
+              },
+            },
+          });
+        if (intentError) {
+          toast.error(intentError.message, {
+            theme: "colored",
+            closeOnClick: true,
+            hideProgressBar: false,
+          });
+          setProcessing(false);
+        } else {
+          sendOrderInfo({
+            checkOutInfo,
+            transaction: paymentIntent.client_secret,
+            last4: paymentMethod.card.last4,
+          });
+  
+          toast.success("Your Order is successfull", {
+            theme: "colored",
+            closeOnClick: true,
+            hideProgressBar: false,
+          });
+          setProcessing(false);
+          dispatch(removeAllProduct());
+          navigate("/confirmOrder");
+        }
+      } 
+      // else if (selectedPaymentMethod === "SSL Commerze") {
+      //   checkOutInfo = {
+      //     ...shippingDetails,
+      //     selectedPaymentMethod,
+      //     shippingCost,
+      //     totalCost,
+      //   };
+      //   sendOrderInfo({
+      //     checkOutInfo
+      //   }).then(res => console.log(res))
+      //   await sendOrderBySSL({ checkOutInfo }).then(res => {
+      //     window.location.replace(res.data)
+      //   })
+      // } else {
+      //   toast.warning("Currently Bkash payment is not available.", {
+      //     theme: "colored",
+      //     closeOnClick: true,
+      //     hideProgressBar: false,
+      //   });
+      // }
+    }
   };
   return (
     <>
@@ -290,8 +298,8 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
           ) : (
             <button
               type="submit"
-              className={`bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white ${!stripe || cart?.cartItems?.length === 0 && "cursor-not-allowed"}`}
-              disabled={!stripe || cart?.cartItems?.length === 0}
+              className={`bg-primary text-black py-2 px-4 flex items-center justify-center rounded-md hover:bg-primary_hover hover:text-white ${!stripe && "cursor-not-allowed"}`}
+              disabled={!stripe}
             >
               Confirm Order
               <span className="text-xl ml-2">
