@@ -1,19 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import NotFound from "../../../../Shared/DataNotFound";
 import TableLoader from "../../../../Shared/Loader/TableLoader";
 import { useAllUsersQuery } from "../../../../store/services/authServices";
 import FilterDashboard from "../shared/FilterDashboard";
 import AllUserTable from "./AllUserTable";
+import isValidEmail from "../../../../utils/isValidEmail";
+
 const AllUsers = () => {
   const { data, isLoading } = useAllUsersQuery();
-  const { user: { email } } = useSelector(state => state.auth);
+  const {
+    user: { email },
+  } = useSelector((state) => state.auth);
+  const [inputValue, setInputValue] = useState("");
   let allUser;
   if (!isLoading) {
-    allUser = data?.allUser?.filter(user => user.email !== email)
-    console.log(allUser)
+    allUser = data?.allUser?.filter((user) => user.email !== email);
   }
+  const filterUser = (user) => {
+    const { fullname, email, role } = user || {};
+    let filteredUser = true;
+    console.log(user);
+    if (
+      !isLoading &&
+      inputValue &&
+      !isValidEmail(inputValue) &&
+      fullname &&
+      role
+    ) {
+      filteredUser =
+        fullname?.toLowerCase().includes(inputValue.toLowerCase()) ||
+        role?.toLowerCase().includes(inputValue.toLowerCase());
+    } else if (!isLoading && isValidEmail(inputValue) && email) {
+      filteredUser = email?.toLowerCase().includes(inputValue.toLowerCase());
+    }
+    return filteredUser;
+  };
   return (
     <>
       {isLoading ? (
@@ -28,13 +50,8 @@ const AllUsers = () => {
               type="text"
               className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
               placeholder="Search by name, email or user role"
+              onChange={(e) => setInputValue(e.target.value)}
             />
-            {/* <Link
-              to="/admin/addCategory"
-              className="btn-primary whitespace-nowrap py-3 w-full md:w-auto text-center"
-            >
-              Add Category
-            </Link> */}
           </FilterDashboard>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-left text-gray-500 table-auto whitespace-nowrap">
@@ -62,6 +79,7 @@ const AllUsers = () => {
               </thead>
               <tbody className="text-[16px]">
                 {allUser
+                  .filter(filterUser)
                   .map((user) => <AllUserTable key={user._id} user={user} />)
                   .reverse()}
               </tbody>
