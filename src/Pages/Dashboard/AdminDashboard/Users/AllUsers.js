@@ -24,15 +24,13 @@ const AllUsers = () => {
     if (
       !isLoading &&
       inputValue &&
-      !isValidEmail(inputValue) &&
       fullname &&
       role
     ) {
       filteredUser =
         fullname?.toLowerCase().includes(inputValue.toLowerCase()) ||
-        role?.toLowerCase().includes(inputValue.toLowerCase());
-    } else if (!isLoading && isValidEmail(inputValue) && email) {
-      filteredUser = email?.toLowerCase().includes(inputValue.toLowerCase());
+        role?.toLowerCase().includes(inputValue.toLowerCase()) ||
+        email?.toLowerCase().includes(inputValue.toLowerCase());
     }
     return filteredUser;
   };
