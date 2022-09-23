@@ -27,7 +27,7 @@ const AllProducts = () => {
     <>
       <h2 className="text-2xl font-bold mb-4 mt-4">Products</h2>
       <div className="antialiased text-gray-900 font-JosefinSans">
-        <FilterDashboard>
+        {/* <FilterDashboard>
           <input
             type="text"
             className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
@@ -74,7 +74,7 @@ const AllProducts = () => {
           >
             Add Product
           </Link>
-        </FilterDashboard>
+        </FilterDashboard> */}
         <div className="container mx-auto">
           {isLoading ? (
             <MenuLoader />
