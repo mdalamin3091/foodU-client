@@ -53,7 +53,6 @@ const UpdateCateogory = () => {
   if (result?.isSuccess) {
     navigate("../allCategories");
   }
-  console.log(categoryName);
   return (
     <>
       <h2 className="text-2xl font-bold mb-4 mt-4">Update Category</h2>
