@@ -30,12 +30,12 @@ const AllProducts = () => {
         {/* <FilterDashboard>
           <input
             type="text"
-            className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+            className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray dark:text-darkCard"
             placeholder="Search by product name"
           />
           <select
             name="category"
-            className="px-4 py-3 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+            className="px-4 py-3 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray dark:text-darkCard"
             required
           // onChange={handleCategoryChange}
           >
@@ -54,7 +54,7 @@ const AllProducts = () => {
           </select>
           <select
             name="category"
-            className="px-4 py-3 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+            className="px-4 py-3 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray dark:text-darkCard"
             required
           // onChange={handleCategoryChange}
           >
@@ -70,7 +70,7 @@ const AllProducts = () => {
           </select>
           <Link
             to="/admin/addProduct"
-            className="btn-primary whitespace-nowrap py-3 w-full md:w-auto text-center"
+            className="btn-primary whitespace-nowrap py-3 w-full md:w-auto text-center dark:text-darkCard"
           >
             Add Product
           </Link>

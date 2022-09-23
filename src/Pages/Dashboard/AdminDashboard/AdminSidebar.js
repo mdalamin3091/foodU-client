@@ -4,7 +4,7 @@ import { MdArrowBackIosNew } from "react-icons/md";
 import { GoListUnordered } from "react-icons/go";
 import { BiCategoryAlt } from "react-icons/bi";
 import { FiUnlock } from "react-icons/fi";
-import { GrAdd } from "react-icons/gr";
+import { VscAdd } from "react-icons/vsc";
 import { AiOutlineSetting } from "react-icons/ai";
 import {
   MdOutlineProductionQuantityLimits,
@@ -39,7 +39,7 @@ const AdminSidebar = ({ openMenu, setOpenMenu }) => {
     },
     {
       title: "Add Category",
-      icon: <GrAdd />,
+      icon: <VscAdd />,
       path: "/admin/addCategory",
     },
     {
@@ -91,8 +91,8 @@ const AdminSidebar = ({ openMenu, setOpenMenu }) => {
   return (
     <>
       {/* Desktop menu */}
-      <aside className="z-30 flex-shrink-0 hidden w-64 overflow-y-auto bg-white lg:block shadow-md">
-        <h3 className="px-6 py-3 text-3xl font-bold uppercase mt-4">
+      <aside className="z-30 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-darkBg lg:block shadow-md">
+        <h3 className="px-6 py-3 text-3xl font-bold uppercase mt-4 dark:text-white">
           {user?.fullname}
         </h3>
         {sidebarLinks.map((item, index) => (
@@ -103,7 +103,7 @@ const AdminSidebar = ({ openMenu, setOpenMenu }) => {
             className={({ isActive }) =>
               isActive
                 ? "border-l-4 border-primary bg-light-gray px-6 py-3 flex items-center justify-start text-lg"
-                : "px-6 py-3 flex items-center justify-start text-lg"
+                : "px-6 py-3 flex items-center justify-start text-lg dark:text-white"
             }
           >
             <span className="mr-3">{item?.icon}</span>

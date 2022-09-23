@@ -64,7 +64,7 @@ const UpdateProduct = () => {
   return (
     <>
       <h2 className="text-2xl font-bold mb-4 mt-4">Update Product</h2>
-      <div className="grid grid-cols-1 bg-white shadow-md p-6 rounded-md mx-0">
+      <div className="grid grid-cols-1 bg-white dark:bg-darkCard dark:text-white shadow-md p-6 rounded-md">
         <div className="mb-4">
           <label htmlFor="title" className="text-xl font-bold">
             Product Title
@@ -73,7 +73,7 @@ const UpdateProduct = () => {
           <input
             type="text"
             name="title"
-            className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+            className="mt-2 px-4 py-2 dark:text-darkCard w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder="Product title"
             value={productInfo.title}
             onChange={handleChange}
@@ -87,7 +87,7 @@ const UpdateProduct = () => {
           <input
             type="text"
             name="price"
-            className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+            className="mt-2 px-4 py-2 dark:text-darkCard w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder="Product Price"
             value={productInfo.price}
             onChange={handleChange}
@@ -138,7 +138,7 @@ const UpdateProduct = () => {
           <br />
           <textarea
             name="shortDescription"
-            className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+            className="mt-2 px-4 py-2 dark:text-darkCard w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder=" Product Short Description"
             rows="5"
             value={productInfo.shortDescription}
@@ -152,7 +152,7 @@ const UpdateProduct = () => {
           <br />
           <textarea
             name="description"
-            className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+            className="mt-2 px-4 py-2 dark:text-darkCard w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder=" Product Description"
             rows="5"
             value={productInfo.description}

@@ -35,13 +35,13 @@ const AllOrders = () => {
           <FilterDashboard>
             <input
               type="text"
-              className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+              className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray dark:text-darkCard"
               placeholder="Search by user email"
               onChange={(e) => setEmail(e.target.value)}
             />
             <select
               name="category"
-              className="px-4 py-3 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+              className="px-4 py-3 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray dark:text-darkCard"
               required
               onChange={(e) => setStatus(e.target.value)}
             >
@@ -55,8 +55,8 @@ const AllOrders = () => {
             </select>
           </FilterDashboard>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="w-full text-left text-gray-500 whitespace-nowrap">
-              <thead className="text-[16px] text-gray-700 uppercase bg-gray-50">
+            <table className="w-full text-left text-gray-500 dark:text-white whitespace-nowrap">
+              <thead className="text-[16px] text-gray-700 dark:text-white dark:bg-darkTableHead uppercase bg-gray-50">
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     Email

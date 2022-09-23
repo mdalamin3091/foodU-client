@@ -72,7 +72,7 @@ const AllCategory = () => {
               ?.map((category, index) => (
                 <div
                   key={index}
-                  className="flex items-center justify-center flex-col cursor-pointer hover:text-primary transition-all duration-150 group bg-white p-6 relative"
+                  className="flex items-center justify-center flex-col cursor-pointer hover:text-primary transition-all duration-150 group bg-white dark:bg-darkCard p-6 relative rounded-lg dark:text-white"
                 >
                   <div className="mx-auto overflow-hidden">
                     <img

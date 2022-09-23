@@ -56,7 +56,7 @@ const AddProduct = () => {
       <h2 className="text-2xl font-bold mb-4 mt-4">Add Product</h2>
       <form
         onSubmit={handleSubmit}
-        className="grid grid-cols-1 bg-white shadow-md p-6 rounded-md"
+        className="grid grid-cols-1 bg-white dark:bg-darkCard dark:text-white shadow-md p-6 rounded-md"
       >
         <div className="mb-4">
           <label htmlFor="title" className="text-xl font-bold">
@@ -66,7 +66,7 @@ const AddProduct = () => {
           <input
             type="text"
             name="title"
-            className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+            className="mt-2 px-4 py-2 dark:text-darkCard w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder="Product title"
             required
             onChange={handleChange}
@@ -80,7 +80,7 @@ const AddProduct = () => {
           <input
             type="text"
             name="price"
-            className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+            className="mt-2 px-4 py-2 dark:text-darkCard w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder="Product Price"
             required
             onChange={handleChange}
@@ -93,7 +93,7 @@ const AddProduct = () => {
           <br />
           <select
             name="category"
-            className="bg-light-gray border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 outline-none"
+            className="bg-light-gray border border-gray-300 dark:text-darkCard text-gray-900 text-lg rounded-lg focus:ring-primary focus:border-primary block w-full p-2.5 outline-none"
             required
             onChange={handleCategoryChange}
           >
@@ -132,7 +132,7 @@ const AddProduct = () => {
           <br />
           <textarea
             name="shortDescription"
-            className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+            className="mt-2 px-4 py-2 dark:text-darkCard w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder=" Product Short Description"
             rows="5"
             required
@@ -146,7 +146,7 @@ const AddProduct = () => {
           <br />
           <textarea
             name="description"
-            className="mt-2 px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+            className="mt-2 px-4 py-2 dark:text-darkCard w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
             placeholder=" Product Description"
             rows="5"
             required

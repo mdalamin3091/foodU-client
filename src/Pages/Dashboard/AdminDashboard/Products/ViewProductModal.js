@@ -8,7 +8,7 @@ const ViewProductModal = ({ product, showModal, setShowModal }) => {
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
             <div className="relative w-auto my-6 mx-auto max-w-4xl">
               {/*content*/}
-              <div className="border-0 rounded-lg shadow-lg relative flex flex-col md:flex-row items-center justify-center w-full bg-white outline-none focus:outline-none py-5">
+              <div className="border-0 rounded-lg shadow-lg relative flex flex-col md:flex-row items-center justify-center w-full bg-white dark:bg-darkCard dark:text-white outline-none focus:outline-none py-5">
                 {/*header*/}
                 <div className="mx-auto basis-4/12">
                   <img
@@ -24,11 +24,10 @@ const ViewProductModal = ({ product, showModal, setShowModal }) => {
                   </div>
                   {/*body*/}
                   <div className="relative p-6 pt-0 flex-auto">
-                    <p className="my-4 text-slate-500 text-lg leading-relaxed">
+                    <p className="my-4 text-slate-500 dark:text-white text-lg leading-relaxed">
                       {product.description}
                     </p>
                     <h5 className="text-lg">Category: {product.category}</h5>
-
                   </div>
                   {/*footer*/}
                   <div className="flex items-center justify-end p-6 rounded-b">

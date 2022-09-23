@@ -42,7 +42,7 @@ const NavBar = () => {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
   const { cart } = useSelector((state) => state);
-
+  
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 50) {

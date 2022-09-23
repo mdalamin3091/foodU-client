@@ -38,14 +38,14 @@ const AllUserTable = ({user}) => {
   };
   return (
     <>
-      <tr className="bg-white border-b" key={user._id}>
+      <tr className="bg-white dark:bg-darkCard border-b dark:border-b-darkCard" key={user._id}>
         <td
           scope="row"
-          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+          className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
         >
           {user?.fullname}
         </td>
-        <td className="px-6 py-4 text-gray-900">{user?.email}</td>
+        <td className="px-6 py-4 text-gray-900 dark:text-white">{user?.email}</td>
         <td
           className={`${
             user?.role === "user"
@@ -60,7 +60,7 @@ const AllUserTable = ({user}) => {
         <td className="px-6 py-4">
           <select
             name="role"
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-primary focus:border-primary block lg:w-full w-[150px] p-2.5 outline-none"
+            className="bg-gray-50 dark:bg-[#130f40] border border-gray-300 text-gray-900 dark:text-white text-lg rounded-lg focus:ring-primary focus:border-primary block lg:w-full w-[150px] p-2.5 outline-none"
             onChange={(e) => handleUserRole(user?._id, e)}
           >
             <option selected={user?.role === "user"} value="user">

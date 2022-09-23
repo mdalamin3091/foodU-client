@@ -46,14 +46,14 @@ const AllUsers = () => {
           <FilterDashboard>
             <input
               type="text"
-              className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
+              className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray dark:text-darkCard"
               placeholder="Search by name, email or user role"
               onChange={(e) => setInputValue(e.target.value)}
             />
           </FilterDashboard>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-left text-gray-500 table-auto whitespace-nowrap">
-              <thead className="text-[16px] text-gray-700 uppercase bg-gray-50">
+              <thead className="text-[16px] text-gray-700 dark:text-white uppercase bg-gray-50 dark:bg-darkTableHead">
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     Full Name
