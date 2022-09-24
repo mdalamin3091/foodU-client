@@ -28,7 +28,7 @@ const AdminDashboard = () => {
                   {
                     colorTheme === "light" ? <span className="text-xl cursor-pointer text-primary">
                       <MdLightMode />
-                    </span> : <span className="text-xl cursor-pointer text-darkBg">
+                    </span> : <span className="text-xl cursor-pointer text-primary">
                       <BsMoon />
                     </span>
                   }

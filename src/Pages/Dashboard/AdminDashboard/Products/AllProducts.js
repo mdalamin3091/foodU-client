@@ -13,6 +13,8 @@ const AllProducts = () => {
   const { data, isLoading } = useAllProductQuery();
   const { data: categories, isSuccess } = useAllCategoryQuery();
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectCategory, setSelectCategory] = useState("");
+  const [searchName, setSearchName] = useState("");
   const [productPerPage, setProductPerPage] = useState(8);
   const indexOfLastProduct = currentPage * productPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productPerPage;
@@ -23,50 +25,48 @@ const AllProducts = () => {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  const productFilter = () => {
+    let sortedProduct = currentProducts;
+    if (searchName) {
+      sortedProduct = data?.allProducts?.filter(
+        (item) =>
+          item.title.toLowerCase().includes(searchName.toLowerCase()) ||
+          item.description.toLowerCase().includes(searchName.toLowerCase())
+      );
+    }
+    if (selectCategory && data) {
+      sortedProduct = data?.allProducts?.filter(
+        (item) => item.category === selectCategory
+      );
+    }
+    return sortedProduct;
+  };
   return (
     <>
       <h2 className="text-2xl font-bold mb-4 mt-4">Products</h2>
       <div className="antialiased text-gray-900 font-JosefinSans">
-        {/* <FilterDashboard>
+        <FilterDashboard>
           <input
             type="text"
             className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray dark:text-darkCard"
-            placeholder="Search by product name"
+            placeholder="Search by product name or description"
+            onChange={(e) => setSearchName(e.target.value)}
           />
           <select
             name="category"
             className="px-4 py-3 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray dark:text-darkCard"
             required
-          // onChange={handleCategoryChange}
+            onChange={(e) => setSelectCategory(e.target.value)}
           >
             <option selected value="">
               Select Category
             </option>
             {isSuccess &&
               categories.allCategory.map((category) => (
-                <option
-                  value={category.categoryName}
-                  key={category._id}
-                >
+                <option value={category.categoryName} key={category._id}>
                   {category.categoryName}
                 </option>
               ))}
-          </select>
-          <select
-            name="category"
-            className="px-4 py-3 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray dark:text-darkCard"
-            required
-          // onChange={handleCategoryChange}
-          >
-            <option selected value="">
-              Price
-            </option>
-            <option selected value="high_to_low">
-              High to low
-            </option>
-            <option selected value="low_to_high">
-              Low to High
-            </option>
           </select>
           <Link
             to="/admin/addProduct"
@@ -74,7 +74,7 @@ const AllProducts = () => {
           >
             Add Product
           </Link>
-        </FilterDashboard> */}
+        </FilterDashboard>
         <div className="container mx-auto">
           {isLoading ? (
             <MenuLoader />
@@ -83,9 +83,8 @@ const AllProducts = () => {
               <NotFound>Product Not Found</NotFound>
             )) || (
               <>
-
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 -mx-4">
-                  {currentProducts
+                  {productFilter()
                     ?.map((product) => <SingleProduct product={product} />)
                     .reverse()}
                 </div>
