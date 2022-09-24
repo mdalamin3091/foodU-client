@@ -65,17 +65,17 @@ const Index = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-8 mt-4">
         {userOrders.map((item, index) => (
           <div
-            className="p-4 flex items-center bg-white border border-border rounded-md shadow-md"
+            className="p-4 flex items-center bg-white dark:bg-darkCard dark:border-darkCard border border-border rounded-md shadow-md"
             key={index}
           >
             <div className={`p-3 rounded-full ${item.textColor} ${item.bgColor} mr-4 text-xl`}>
               {item.icon}
             </div>
             <div>
-              <p className="text-lg font-medium  text-gray-600 whitespace-nowrap">
+              <p className="text-lg font-medium  text-gray-600 dark:text-white whitespace-nowrap">
                 {item.title}
               </p>
-              <p className="text-lg font-semibold text-gray-700">
+              <p className="text-lg font-semibold text-gray-700 dark:text-white">
                 {item.numbers}
               </p>
             </div>
@@ -91,7 +91,7 @@ const Index = () => {
       ) : (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-left text-gray-500  table-auto whitespace-nowrap">
-            <thead className="text-lg text-gray-700 uppercase bg-gray-50">
+            <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-darkTableHead dark:text-white">
               <tr>
                 <th scope="col" className="px-6 py-3">
                   ID

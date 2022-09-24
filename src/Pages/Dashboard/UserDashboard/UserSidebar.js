@@ -64,7 +64,7 @@ const UserSidebar = ({ openMenu, setOpenMenu }) => {
   return (
     <>
       {/* Desktop menu */}
-      <aside className="z-30 flex-shrink-0 hidden w-64 overflow-y-auto bg-white lg:block shadow-md">
+      <aside className="z-30 flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-darkBg dark:text-white lg:block shadow-md">
         <h3 className="px-6 py-3 text-3xl font-bold uppercase mt-4">
           {user?.fullname}
         </h3>
@@ -74,8 +74,8 @@ const UserSidebar = ({ openMenu, setOpenMenu }) => {
             to={item.path}
             className={({ isActive }) =>
               isActive
-                ? "border-l-4 border-primary bg-light-gray px-6 py-3 flex items-center justify-start text-lg"
-                : "px-6 py-3 flex items-center justify-start text-lg"
+                ? "border-x-4 border-primary bg-light-gray dark:bg-darkCard dark:text-white px-6 py-3 flex items-center justify-start text-lg"
+                : "px-6 py-3 flex items-center justify-start text-lg dark:text-white"
             }
             onClick={() => handleLogout(item.title)}
           >

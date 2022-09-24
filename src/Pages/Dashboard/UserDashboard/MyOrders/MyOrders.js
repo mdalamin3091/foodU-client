@@ -27,7 +27,7 @@ const MyOrders = () => {
       ) : (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-left text-gray-500  table-auto whitespace-nowrap">
-            <thead className="text-lg text-gray-700 uppercase bg-gray-50">
+            <thead className="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-darkBg dark:text-white">
               <tr>
                 <th scope="col" className="px-6 py-3">
                   ID

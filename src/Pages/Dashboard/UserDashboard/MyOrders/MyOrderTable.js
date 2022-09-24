@@ -3,10 +3,10 @@ import React from "react";
 const MyOrderTable = ({ order }) => {
   return (
     <>
-      <tr className="bg-white border-b">
+      <tr className="bg-white dark:bg-darkCard border-b dark:border-b-darkCard dark:text-white">
         <td
           scope="row"
-          className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+          className="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap"
         >
           {order?._id.slice(0, 11)}
         </td>

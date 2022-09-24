@@ -71,7 +71,7 @@ const UpdateProfile = () => {
           </label>
           <br />
           <input
-            className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-white dark:text-darkCard bg-light-gray"
+            className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md dark:text-darkCard bg-light-gray"
             type="text"
             name="fullname"
             placeholder="Full Name"
