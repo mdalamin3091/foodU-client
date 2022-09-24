@@ -102,7 +102,7 @@ const AdminSidebar = ({ openMenu, setOpenMenu }) => {
             to={item.path}
             className={({ isActive }) =>
               isActive
-                ? "border-l-4 border-primary bg-light-gray px-6 py-3 flex items-center justify-start text-lg"
+                ? "border-x-4 border-primary bg-light-gray dark:bg-darkCard dark:text-white px-6 py-3 flex items-center justify-start text-lg"
                 : "px-6 py-3 flex items-center justify-start text-lg dark:text-white"
             }
           >
