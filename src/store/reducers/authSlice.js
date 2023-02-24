@@ -18,6 +18,7 @@ const verifyToken = () => {
     return null;
   }
 };
+
 export const authSlice = createSlice({
   name: "auth",
   initialState: {

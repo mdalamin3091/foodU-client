@@ -17,7 +17,10 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
   const { cart } = useSelector((state) => state);
   const { user } = useSelector((state) => state.auth);
-  const [shippingDetails, setshippingDetails] = useState({});
+  const [shippingDetails, setshippingDetails] = useState({
+    fullname:user.fullname, 
+    email:user.email
+  });
   const [processing, setProcessing] = useState(false);
   const [createOrder] = useCreateOrderMutation();
   const [sendOrderInfo] = useSaveOrderInfoMutation();
@@ -39,17 +42,17 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
     const { name, value } = e.target;
     setshippingDetails({ ...shippingDetails, [name]: value });
   };
-
+  console.log(shippingDetails);
   const handleSubmit = async (e) => {
     e.preventDefault();
     let checkOutInfo;
-    if(cart?.cartItems?.length === 0){
+    if (cart?.cartItems?.length === 0) {
       toast.warning("Sorry, Your Cart is empty. Please product add your cart.", {
         theme: "colored",
         closeOnClick: true,
         hideProgressBar: false,
       });
-    }else{
+    } else {
       if (selectedPaymentMethod === "Cash on Delivery") {
         setProcessing(true);
         checkOutInfo = {
@@ -117,7 +120,7 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
             transaction: paymentIntent.client_secret,
             last4: paymentMethod.card.last4,
           });
-  
+
           toast.success("Your Order is successfull", {
             theme: "colored",
             closeOnClick: true,
@@ -127,27 +130,7 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
           dispatch(removeAllProduct());
           navigate("/confirmOrder");
         }
-      } 
-      // else if (selectedPaymentMethod === "SSL Commerze") {
-      //   checkOutInfo = {
-      //     ...shippingDetails,
-      //     selectedPaymentMethod,
-      //     shippingCost,
-      //     totalCost,
-      //   };
-      //   sendOrderInfo({
-      //     checkOutInfo
-      //   }).then(res => console.log(res))
-      //   await sendOrderBySSL({ checkOutInfo }).then(res => {
-      //     window.location.replace(res.data)
-      //   })
-      // } else {
-      //   toast.warning("Currently Bkash payment is not available.", {
-      //     theme: "colored",
-      //     closeOnClick: true,
-      //     hideProgressBar: false,
-      //   });
-      // }
+      }
     }
   };
   return (
@@ -163,6 +146,8 @@ const CheckoutForm = ({ totalCost, shippingCost, setShippingCost }) => {
               </label>
               <br />
               <input
+                readOnly
+                value={item?.type === "email" ? user?.email : user?.fullname}
                 onChange={handleChange}
                 className="px-4 py-2 w-full focus:outline-none border-2 border-transparent focus:border-primary rounded-md bg-light-gray"
                 type={item.type}
