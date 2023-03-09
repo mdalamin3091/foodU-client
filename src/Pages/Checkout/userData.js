@@ -60,7 +60,7 @@ const shippinCost = [
     name: "cost",
     title: "UPS",
     type: "radio",
-    text: `Delivary: 5h cost: $ ${15.0}`,
+    text: `Delivary: 5h cost: $ ${5.0}`,
     cost:20,
   },
 ];
