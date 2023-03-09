@@ -20,7 +20,6 @@ const Drawer = () => {
       dispatch(showModalTrue(true));
     }
   };
-  // console.log(cart)
   return (
     <div
       className={
@@ -39,7 +38,7 @@ const Drawer = () => {
         <div className="pb-5 flex flex-col space-y-6 overflow-hidden h-full">
           {/* drawer header */}
           <div className="bg-gray-100">
-            <header className="p-4 font-bold text-lg">Shopping Cart</header>
+            <header className="p-4 font-bold text-lg">Your Cart</header>
             <button
               className="absolute top-4 right-4 -rotate-45 text-3xl hover:text-red-500"
               onClick={() => dispatch(drawerOpenFalse(false))}

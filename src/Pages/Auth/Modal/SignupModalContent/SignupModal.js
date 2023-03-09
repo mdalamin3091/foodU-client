@@ -199,7 +199,8 @@ const SignupModal = ({ setIsSignUpModal, setIsAdminLogin }) => {
                   Login
                 </span>
               </p>
-              <p className="text-gray-500 text-center">
+              
+              {/* <p className="text-gray-500 text-center">
                 <span
                   className="hover:text-primary cursor-pointer"
                   onClick={() => {
@@ -209,7 +210,7 @@ const SignupModal = ({ setIsSignUpModal, setIsAdminLogin }) => {
                 >
                   Admin Login
                 </span>
-              </p>
+              </p> */}
             </div>
           </form>
         </div>

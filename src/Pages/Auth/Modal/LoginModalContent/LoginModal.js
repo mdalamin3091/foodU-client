@@ -11,8 +11,10 @@ import {
 } from "../../../../store/reducers/authSlice";
 const LoginModal = ({ setIsSignUpModal, isAdminLogin }) => {
   const [userInfo, setUserInfo] = React.useState({
-    email: isAdminLogin ? "admin@gmail.com" : "",
-    password: isAdminLogin ? "123456" : "",
+    // email: isAdminLogin ? "admin@gmail.com" : "",
+    // password: isAdminLogin ? "123456" : "",
+    email: "",
+    password: "",
   });
   const [loginData, result] = useLoginMutation();
   const dispatch = useDispatch();
