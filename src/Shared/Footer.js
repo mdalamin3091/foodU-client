@@ -114,7 +114,7 @@ const Footer = () => {
 			<div className="bg-secondary py-5 font-JosefinSans mb-20 lg:mb-0">
 				<div className="container flex items-center justify-between flex-col md:flex-row">
 					<h2 className="text-white text-lg mb-4 md:mb-0 text-center lg:text-left">
-						Copyright © 2023 Robiul Islam Robin. All Rights Reserved.
+						Copyright © 2023 Al Amin. All Rights Reserved.
 					</h2>
 					<div>
 						<img
