@@ -35,16 +35,16 @@ const AdminOutlet = lazy(() => import("./Shared/AdminRoute"))
 
 function App() {
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     Swal.fire({
-  //       title: "Don't Remove any data",
-  //       icon: "warning",
-  //       showButton: true,
-  //       text: "You can login as a admin for test purpose using gmail: admin@gmail.com & password: 123456",
-  //     })
-  //   }, 10000);
-  // }, [])
+  useEffect(() => {
+    setTimeout(() => {
+      Swal.fire({
+        title: "Don't Remove any data",
+        icon: "warning",
+        showButton: true,
+        text: "You can login as a admin for test purpose using gmail: admin@gmail.com & password: 123456",
+      })
+    }, 10000);
+  }, [])
 
   return (
     <>
