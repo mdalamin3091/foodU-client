@@ -56,7 +56,7 @@ const Footer = () => {
 								<span className="font-bold text-white"> 9am – 5pm</span>
 							</p>
 							<div className="flex items-center gap-3 justify-center mt-5">
-								{/* <a href="https://www.facebook.com/AK.AlAmin01/" target="_blank" className='footer-icon'>
+								{<a href="https://www.facebook.com/AK.AlAmin01/" target="_blank" className='footer-icon'>
 									<FaFacebookSquare />
 								</a>
 								<a href="https://twitter.com/mdalamin3091" target="_blank" className='footer-icon'>
@@ -67,35 +67,8 @@ const Footer = () => {
 								</a>
 								<a href="https://dev.to/akalaminamin" target="_blank" className='footer-icon'>
 									<FaDev />
-								</a> */}
-								<a
-									href="https://www.facebook.com/profile.php?id=100007344062718"
-									target="_blank"
-									className="footer-icon"
-								>
-									<FaFacebookSquare />
-								</a>
-								<a
-									href="https://twitter.com/"
-									target="_blank"
-									className="footer-icon"
-								>
-									<FaTwitterSquare />
-								</a>
-								<a
-									href="https://www.linkedin.com/"
-									target="_blank"
-									className="footer-icon"
-								>
-									<FaLinkedin />
-								</a>
-								<a
-									href="https://dev.to"
-									target="_blank"
-									className="footer-icon"
-								>
-									<FaDev />
-								</a>
+								</a>}
+								
 							</div>
 						</div>
 						{/* 4 */}
