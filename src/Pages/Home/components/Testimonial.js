@@ -18,7 +18,9 @@ const Testimonial = () => {
   return (
     <div className="font-JosefinSans section-padding bg-light-gray">
       <div className="container">
-        <h2 className="section-title text-4xl md:text-5xl text-center capitalize">What our customer says </h2>
+        <h2 className="section-title text-4xl md:text-5xl text-center capitalize">
+          What our customer says{" "}
+        </h2>
 
         {/* slider */}
         <Swiper
@@ -27,8 +29,8 @@ const Testimonial = () => {
               ? 1
                 ? window.innerWidth < 1024
                 : 2
-                  ? window.innerWidth < 1280
-                  : 3
+                ? window.innerWidth < 1280
+                : 3
               : 3
           }
           spaceBetween={30}
@@ -43,12 +45,18 @@ const Testimonial = () => {
             .slice(0, 8)
             .map((review, index) => (
               <SwiperSlide>
-                <div className="bg-white p-7 rounded-xl  min-h-[330px]" key={review?._id}>
+                <div
+                  className="bg-white p-7 rounded-xl  min-h-[330px]"
+                  key={review?._id}
+                >
                   <div className="flex items-center justify-between gap-4 mb-8">
                     <div className="basis-1/5">
                       <img
                         className="w-20 rounded-full h-16"
-                        src={review?.user?.profilePic}
+                        src={
+                          review?.user?.profilePic ||
+                          "https://i.ibb.co/PGsBCxG/001-man.png"
+                        }
                         alt="avatar"
                       />
                     </div>

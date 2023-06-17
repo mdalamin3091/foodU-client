@@ -18,7 +18,9 @@ const AboutTestimonial = () => {
   return (
     <div className='relative bg-[url("https://i.ibb.co/0t3rHwy/offer-50-main-bg.jpg")] h-auto lg:min-h-[500px] w-full py-24 bg-cover bg-no-repeat bg-center z-0'>
       <div className="container">
-      <h2 className="section-title text-white text-4xl md:text-5xl text-center capitalize">What our customer says </h2>
+        <h2 className="section-title text-white text-4xl md:text-5xl text-center capitalize">
+          What our customer says{" "}
+        </h2>
 
         {/* slider */}
         <Swiper
@@ -43,12 +45,18 @@ const AboutTestimonial = () => {
             .slice(0, 8)
             .map((review, index) => (
               <SwiperSlide>
-                <div className="bg-white p-7 rounded-xl min-h-[310px]" key={review._id}>
+                <div
+                  className="bg-white p-7 rounded-xl min-h-[310px]"
+                  key={review._id}
+                >
                   <div className="flex items-center justify-between gap-4 mb-8">
                     <div className="basis-1/5">
                       <img
                         className="w-20 rounded-full"
-                        src={review?.user?.profilePic}
+                        src={
+                          review?.user?.profilePic ||
+                          "https://i.ibb.co/PGsBCxG/001-man.png"
+                        }
                         alt="avatar"
                       />
                     </div>
