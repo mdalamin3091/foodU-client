@@ -5,7 +5,6 @@ import TableLoader from "../../../../Shared/Loader/TableLoader";
 import { useAllUsersQuery } from "../../../../store/services/authServices";
 import FilterDashboard from "../shared/FilterDashboard";
 import AllUserTable from "./AllUserTable";
-import isValidEmail from "../../../../utils/isValidEmail";
 
 const AllUsers = () => {
   const { data, isLoading } = useAllUsersQuery();
@@ -20,13 +19,7 @@ const AllUsers = () => {
   const filterUser = (user) => {
     const { fullname, email, role } = user || {};
     let filteredUser = true;
-    console.log(user);
-    if (
-      !isLoading &&
-      inputValue &&
-      fullname &&
-      role
-    ) {
+    if (!isLoading && inputValue && fullname && role) {
       filteredUser =
         fullname?.toLowerCase().includes(inputValue.toLowerCase()) ||
         role?.toLowerCase().includes(inputValue.toLowerCase()) ||
